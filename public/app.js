@@ -18,7 +18,15 @@ var config =  {
     var anos = [];
     var marcas = [];
     var modelos = [];
+    var cnpj = pjData.dadosCadastrais.CNPJ;
     var filtros = [];
+
+    if(pjData.dadosCadastrais.CPF.length>0){
+        pjData.dadosCadastrais.CPF.forEach(cpf => {
+        filtros.push(cpf)
+        })
+    }
+
     if(pjData.frotaDeVeiculos.length>0){
         pjData.frotaDeVeiculos.forEach(veiculo => {
             console.log(veiculo)
@@ -28,6 +36,7 @@ var config =  {
             filtros.push(veiculo.ano,veiculo.marca,veiculo.modelo)
         })
     };
+    filtros.push(cnpj)
 
     docRef.set({
         CNPJ: pjData.dadosCadastrais.CNPJ,
@@ -73,7 +82,6 @@ var config =  {
   }
 
   function getPJByCPF(cpf){
-
     firestore.collection("PJ").where('CPF', 'array-contains-any',
     [cpf])
     .get()
@@ -88,9 +96,8 @@ var config =  {
 
   }
 
-  function getPJByFrota(ano='', modelo='', marca='', page=10){
-
-    firestore.collection("PJ").limit(page).where('FILTROS', 'array-contains-any', [ano, modelo, marca])
+  function getPJFiltered(cnpj='', cpf='', ano='', modelo='', marca='', page=25){
+    firestore.collection("PJ").limit(page).where('FILTROS', 'array-contains-any', [cnpj, cpf, ano, modelo, marca])
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
@@ -100,6 +107,17 @@ var config =  {
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
+  }
 
-    
+  function getAllPJ(page=25){
+    firestore.collection("PJ").limit(page)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id, " => ", doc.data());
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
   }
