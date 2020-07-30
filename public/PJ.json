@@ -1,0 +1,114 @@
+{
+    "dadosCadastrais": {
+        "razaoSocial": "",
+        "CNPJ": "32135",
+        "CPF": [457,255,288],
+        "dataDeAbertora": "",
+        "capitalSocial": "",
+        "numeroDeFuncionariosRegistrados": "",
+        "telefoneFixo": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numeroDaRua": ""
+    },
+    "dadosBancarios": {
+        "banco": "",
+        "agencia": "",
+        "contaCorrente": {
+            "numeroDaConta": "",
+            "digitoDaConta": ""
+        },
+        "tempoDeConta": "",
+        "telefone": ""
+    },
+    "socios": {
+        "porcentagemDoSocioMajoritario": "",
+        "porcentagemDosDemaisSocios": "",
+        "socioMajoritárioAssinaIndividualmente": "true or false"
+    },
+    "contador":{
+        "nomeContador": "",
+        "escritorioContador": "",
+        "telefoneFixo": "",
+        "celular": ""
+    },
+    "faturamentosRecentes": [{
+        "mes": "",
+        "ano": "",
+        "valor": ""
+    }],
+    "ondePrestaServicos": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "tempoQuePrestaServicos": "",
+        "faturamentoAtual": "",
+        "faturamentoFuturo": ""
+    }],
+    "empresaAnterior": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "tempoQuePrestaServicos": "",
+        "salario": ""
+    }],
+    "empresaFutura": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "salario": ""
+    }],
+    "frotaDeVeiculos": [{
+        "marca": "vw",
+        "modelo": "gol",
+        "ano": 2020,
+        "placa": "",
+        "tempoEmNome": "",
+        "quitado": "true or false"
+    },
+    {
+        "marca": "vw",
+        "modelo": "Up",
+        "ano": 2015,
+        "placa": "",
+        "tempoEmNome": "",
+        "quitado": "true or false"
+    }],
+    "referenciaComercial": [{
+        "empresa": "",
+        "telefone": ""
+    }],
+    "veiculoAFinanciar": {
+        "marca": "",
+        "modelo": "",
+        "ano": "",
+        "placa": "",
+        "valorDeVenda": "",
+        "valorDaMolicar": "",
+        "valorDeEntrada": "",
+        "valorFinanciado": "",
+        "bancoAprovado": "",
+        "condicoesAprovadas": "",
+        "indicacao": "",
+        "dataDeConclusao": "",
+        "respostaDeNegativaDeCredito": "",
+        "observacoes": ""
+    }
+}

@@ -1,0 +1,111 @@
+{
+    "dadosCadastrais": {
+        "nomeCompleto": "",
+        "CPF": "555",
+        "CNPJ": [],
+        "RG": "",
+        "dataDeNascimento": "",
+        "estadoCivil": "",
+        "naturalidade": "",
+        "nomeDoPai": "",
+        "nomeDaMae": ""
+    },
+    "dadosBancarios": {
+        "banco": "",
+        "agencia": "",
+        "contaCorrente": {
+            "numeroDaConta": "",
+            "digitoDaConta": ""
+        },
+        "telefone": ""
+    },
+    "enderecoAtual": {
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "tempoDeResidencia": "",
+        "imovelProprio": "true or false",
+        "valorDoImovel": ""
+    },
+    "enderecoAnterior": {
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "tempoDeResidencia": ""
+    },
+    "ondePrestaServicos": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "tempoQuePrestaServicos": "",
+        "faturamentoAtual": "",
+        "faturamentoFuturo": ""
+    }],
+    "empresaAnterior": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "tempoQuePrestaServicos": "",
+        "salario": ""
+    }],
+    "empresaFutura": [{
+        "nomeDaEmpresa": "",
+        "CEP": "",
+        "cidade": "",
+        "rua": "",
+        "bairro": "",
+        "numero": "",
+        "telefoneFixo": "",
+        "celular": "",
+        "salario": ""
+    }],
+    "frotaDeVeiculos": [{
+        "marca": "",
+        "modelo": "",
+        "ano": "",
+        "placa": "",
+        "tempoEmNome": "",
+        "quitado": "true or false",
+        "bancoFinanciado": "",
+        "planoAtual": "",
+        "parcelasPagas": "",
+        "valorParcela": ""
+    }],
+    "referenciaPessoal": [{
+        "nome": "",
+        "telefoneFixo": "",
+        "celular": ""
+    }],
+    "veiculoAFinanciar": {
+        "marca": "",
+        "modelo": "",
+        "ano": "",
+        "placa": "",
+        "valorDeVenda": "",
+        "valorDaMolicar": "",
+        "valorDeEntrada": "",
+        "valorFinanciado": "",
+        "bancoAprovado": "",
+        "condicoesAprovadas": "",
+        "indicacao": "",
+        "dataDeConclusao": "",
+        "respostaDeNegativaDeCredito": "",
+        "observacoes": ""
+    }
+}
