@@ -13,6 +13,8 @@ var config =  {
   firebase.initializeApp(config);
   var firestore = firebase.firestore()
 
+
+  //PJ Functions
   function createPJ(pjData){
     const docRef = firestore.doc(`PJ/${pjData.dadosCadastrais.CNPJ}`)
     var anos = [];
@@ -47,38 +49,36 @@ var config =  {
         FILTROS: filtros,
         pjData
     }).then(function(){
-        console.log("saved")
+        return true
     }).catch(function(error){
-        console.log(error)
-    })
-  }
-
-  function createPF(pfData){
-    const docRef = firestore.doc(`PF/${pfData.dadosCadastrais.CPF}`)
-    docRef.set({
-        CPF: pfData.dadosCadastrais.CPF,
-
-    }).then(function(){
-        console.log("saved")
-    }).catch(function(error){
-        console.log(error)
+        return error
     })
   }
 
   function getPJ(cpnj){
-
       firestore.collection("PJ").where("CNPJ", "==", cpnj)
       .get()
       .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.id, " => ", doc.data());
+              return doc.data()
           });
       })
       .catch(function(error) {
           console.log("Error getting documents: ", error);
+          return false
       });
 
+  }
+
+  function deletePJ(document){
+    firestore.collection("PJ").doc(document).delete().then(function() {
+        console.log("Document successfully deleted!");
+        return true
+    }).catch(function(error) {
+        return false
+    });
   }
 
   function getPJByCPF(cpf){
@@ -88,10 +88,12 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
 
   }
@@ -102,10 +104,12 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
   }
 
@@ -115,9 +119,43 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
+  }
+
+  
+  //PF Functions
+
+  function createPF(pfData){
+    const docRef = firestore.doc(`PF/${pfData.dadosCadastrais.CPF}`)
+    docRef.set({
+        CPF: pfData.dadosCadastrais.CPF,
+        pfData
+    }).then(function(){
+        console.log("saved")
+    }).catch(function(error){
+        console.log(error)
+    })
+  }
+  
+  function getPFByCPF(cpf){
+    firestore.collection("PF").where('CPF', 'array-contains-any',
+    [cpf])
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id, " => ", doc.data());
+            return doc.data()
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        return false
+    });
+
   }
