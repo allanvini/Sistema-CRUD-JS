@@ -1,8 +1,8 @@
 {
     "dadosCadastrais": {
         "nomeCompleto": "",
-        "CPF": "555",
-        "CNPJ": [],
+        "CPF": 555,
+        "CNPJ": [555, 321, 321],
         "RG": "",
         "dataDeNascimento": "",
         "estadoCivil": "",
