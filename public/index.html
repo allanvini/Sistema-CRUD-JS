@@ -4,13 +4,292 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to Firebase Hosting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./styles/custom.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
 
    </head>
   <body>
-    <h1></h1>
+
+  <div id= "app" class="container valign-wrapper center-align">
+
+    <h2 id="greetings" class="center-align">Olá</h2>
+
+    <div id="menu">
+      <a class="base-selector waves-effect" id="PJ">Pessoa Jurídica</a>
+      <a class="base-selector waves-effect" id="PF">Pessoa Física</a>
+    </div>
+
+    <div id="search-queries" class="col s12">
+
+      <div>
+        <i class="small material-icons">account_balance</i>
+        <input placeholder="CNPJ" id="cnpj-query" type="text" class="validate col s3" style="height: 2rem;">
+        <i class="small material-icons">account_box</i>
+        <input placeholder="CPF" id="cpf-query" type="text" class="validate" style="height: 2rem;">
+        <button id="search-by-subject" class="btn" style="margin-left: 10px;"><i class="small material-icons">search</i></button>
+      </div>
+        
+      <div>
+        <i class="small material-icons">directions_car</i>
+        <input placeholder="Modelo" id="model-query" type="text" class="validate" style="height: 2rem;">
+        <input placeholder="Marca" id="brand-query" type="text" class="validate" style="height: 2rem;">
+        <input placeholder="Ano" id="year-query" type="text" class="validate" style="height: 2rem;">
+        <button id="search-by-vehicle" class="btn" style="margin-left: 10px;"><i class="small material-icons">search</i></button>
+      </div>
+      
+
+    </div> <!-- search queries div -->
+
+
+
+
+    <div class="divider"></div>
+
+    <div id="cards-container">
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+      <div class="card blue-grey darken-1 hoverable">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+
+    </div> <!-- cards container div -->
+
+    <a class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a>
+
+    
+  </div> <!-- APP div -->
+
+  <div id="pj-form" style="overflow: scroll;"> <!-- Inicio do modal de cadastro PJ -->
+    <div class="form-body container">
+      
+      <!-- Cabeçalho indicando a qual escopo pertence o form-->
+      <h3>Formulario de cadastro de PJ</h3>
+
+
+      <!-- Dados cadastrais -->
+      <h4 style="color: teal;">Dados cadastrais</h4>
+      <div class="divider"></div>
+
+      <!-- Inicio do formulario-->
+      <form>
+        
+        <p>Razão Social</p> 
+        <input id="razao-social" placeholder="Razão social" class="validate"/input>
+
+        <p>CNPJ</p>
+        <input id="cnpj-empresa" placeholder="CNPJ" class="validate"/input>
+
+        <p>E-Mail</p>
+        <input id="email-empresa" placeholder="E-Mail" class="validate"/input>
+
+        <p>CPF's dos sócios</p>
+        <div style="display: flex;">
+          <input id="cpfs-empresa" placeholder="CPF" class="validate"/input><a class="btn" id="add-cpf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <!-- Começo da lista de CPF's registrados-->
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>CPF's registrados:</b></p>
+          <ul class="browser-default" id="cpf-pego">
+            <li>000.000.000-00</li>
+          </ul>
+        </div>
+        <!-- Fim da lista de CPFs registrados -->
+
+        <p>Data de abertura</p>
+        <input id="data-abertura-empresa" placeholder="Data de abertira" class="validate"/input>
+
+        <p>Capital Social</p>
+        <input id="capital-social-empresa" placeholder="Capital social" class="validate"/input>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr;">
+          <p>Numero de funcionarios registrados</p>
+          <input id="capital-social-empresa" placeholder="Funcionarios registrados" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo" placeholder="Telefone" class="validate"/input>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>CEP</p>
+          <input id="CEP-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa" placeholder="Rua" class="validate"/input>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>Bairro</p>
+          <input id="bairro-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+          <p>Numero</p>
+          <input id="numero-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+        </div>
+        <!-- Fim dos dados cadastrais -->
+
+
+        <!-- Dados Bancarios -->
+        <h4 style="color: teal;">Dados Bancários</h4>
+        <div class="divider"></div>
+
+        <p>Banco</p>
+        <input id="banco-empresa" placeholder="Banco" class="validate"/input>
+
+        <p>Agência</p>
+        <input id="agencia-empresa" placeholder="Agencia" class="validate"/input>
+
+        <p>Conta Corrente</p>
+        <div class="input-field align-center" style="display: flex;">
+          <p>Numero</p>
+          <input id="numero-conta-empresa" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>Digito</p>
+          <input id="digito-conta-empresa" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Tempo de conta</p>
+        <input id="tempo-conta-empresa" placeholder="Agencia" class="validate"/input>
+
+        <p>Telefone da agência</p>
+        <input id="telefone-agencia-empresa" placeholder="Agencia" class="validate"/input>
+        <!-- Fim dos Dados Bancarios -->
+
+        <!-- Dados dos sócios -->
+        <h4 style="color: teal;">Sócios</h4>
+        <div class="divider"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr">
+          <p>Porcentagem do sócio majoritário</p>
+          <input id="porcentagem-socio-majoritario-empresa" placeholder="%" class="validate" style="width: 50px;"/input>
+
+          <p>Demais sócios</p>
+          <input id="porcentagem-demais-socios-empresa" placeholder="%" class="validate" style="width: 50px;"/input>
+        </div>
+
+        
+        <div style="display: flex">
+          <p>O sócio majoritário assina sozinho?</p>
+          <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+            <label>
+              <input type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Sim</span>
+            </label>
+            <label>
+              <input type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+        <!-- Fim dos Dados dos sócios -->
+
+        <!-- Dados do contador -->
+        <h4 style="color: teal;">Contador</h4>
+        <div class="divider"></div>
+
+        <p>Nome do contador</p>
+        <input id="nome-contador-empresa" placeholder="Nome" class="validate"/input>
+
+        <p>Escritório</p>
+        <input id="escritorio-contador-empresa" placeholder="Escritório" class="validate"/input>
+
+        <p>Telefone fixo</p>
+        <input id="telefone-fixo-contador-empresa" placeholder="Telefone Fixo" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-contador-empresa" placeholder="Celular" class="validate"/input>
+        <!-- Fim dos dados do Contador-->
+
+        <!-- Dados de faturamento -->
+        <h4 style="color: teal;">Faturamento</h4>
+        <div class="divider"></div>
+
+        
+        <!-- Fim dos Dados de faturamento -->
+
+      </form>
+      <!-- Fim do formulario -->
+
+      <div class="center-align" style="margin-bottom: 25px; margin-top: 25px;">
+        <a class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
+        <a class="btn waves-effect"><i class="material-icons right">check</i>Concluir</a>
+      </div>
+    </div>
+  </div> <!-- Fim do Modal de cadastro PJ -->
+
   <script src="./app.js"></script>
+  <script src="./scripts/script.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
   </body>
 </html>
