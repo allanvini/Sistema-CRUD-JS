@@ -17,13 +17,16 @@
 
   <div id= "app" class="container valign-wrapper center-align">
 
-    <h2 id="greetings" class="center-align">Olá</h2>
+    <h2 id="greetings" class="center-align">Olá</h2> <!-- SAUDAÇÕES AO USUARIO -->
 
+    <!-- DIV DO MENU SUPERIOR-->
     <div id="menu">
-      <a class="base-selector waves-effect" id="PJ">Pessoa Jurídica</a>
-      <a class="base-selector waves-effect" id="PF">Pessoa Física</a>
+      <a class="base-selector waves-effect" id="PJ" selected="default">Pessoa Jurídica</a>
+      <a class="base-selector waves-effect" id="PF" selected="default">Pessoa Física</a>
     </div>
+    <!-- FIM DA DIV DO MENU SUPERIOR-->
 
+    <!-- DIV DAS SEARCH QUERIES -->
     <div id="search-queries" class="col s12">
 
       <div>
@@ -43,13 +46,16 @@
       </div>
       
 
-    </div> <!-- search queries div -->
+    </div>
+    <!-- FIM DAS SEARCH QUERIES DIV -->
 
 
 
 
     <div class="divider"></div>
 
+
+    <!-- DIV CONTAINER DOS CARDS -->
     <div id="cards-container">
 
       <div class="card blue-grey darken-1 hoverable">
@@ -124,26 +130,44 @@
         </div>
       </div>
 
-    </div> <!-- cards container div -->
+    </div>
+    <!-- FIM DA DIV CONTAINER DOS CARDS -->
 
-    <a class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a>
+
+
+
+
+
 
     
-  </div> <!-- APP div -->
+    <a class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO-->
 
-  <div id="pj-form" style="overflow: scroll;"> <!-- Inicio do modal de cadastro PJ -->
+
+
+
+
+
+
+    
+  </div> <!-- FIM DA DIV APP -->
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <div id="pj-form" style="overflow: scroll; display: default;"> <!-- Inicio do modal de cadastro PJ -->
     <div class="form-body container">
       
       <!-- Cabeçalho indicando a qual escopo pertence o form-->
       <h3>Formulario de cadastro de PJ</h3>
 
-
-      <!-- Dados cadastrais -->
-      <h4 style="color: teal;">Dados cadastrais</h4>
-      <div class="divider"></div>
-
       <!-- Inicio do formulario-->
       <form>
+        <!-- Dados cadastrais -->
+        <h4 style="color: teal;">Dados cadastrais</h4>
+        <div class="divider"></div>
         
         <p>Razão Social</p> 
         <input id="razao-social" placeholder="Razão social" class="validate"/input>
@@ -156,13 +180,15 @@
 
         <p>CPF's dos sócios</p>
         <div style="display: flex;">
-          <input id="cpfs-empresa" placeholder="CPF" class="validate"/input><a class="btn" id="add-cpf"><i class="tiny material-icons">add</i></a>
+          <input id="cpfs-empresa" placeholder="CPF" class="validate"/input><a class="btn waves-effect" id="add-cpf"><i class="tiny material-icons">add</i></a>
         </div>
 
         <!-- Começo da lista de CPF's registrados-->
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>CPF's registrados:</b></p>
           <ul class="browser-default" id="cpf-pego">
+            <li>000.000.000-00</li>
+            <li>000.000.000-00</li>
             <li>000.000.000-00</li>
           </ul>
         </div>
@@ -243,16 +269,26 @@
           <p>O sócio majoritário assina sozinho?</p>
           <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
             <label>
-              <input type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="socio-assina-sim" type="checkbox" class="filled-in" checked="unchecked" />
               <span>Sim</span>
             </label>
             <label>
-              <input type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="socio-assina-nao" type="checkbox" class="filled-in" checked="unchecked" />
               <span>Não</span>
             </label>
           </div>
         </div>
         <!-- Fim dos Dados dos sócios -->
+
+
+
+
+
+
+
+
+
+
 
         <!-- Dados do contador -->
         <h4 style="color: teal;">Contador</h4>
@@ -271,12 +307,242 @@
         <input id="celular-contador-empresa" placeholder="Celular" class="validate"/input>
         <!-- Fim dos dados do Contador-->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Dados de faturamento -->
         <h4 style="color: teal;">Faturamento</h4>
         <div class="divider"></div>
 
+        <div class="input-field align-center" style="display: flex;">
+          <p>Mes</p>
+          <input id="mes-faturamento" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>Ano</p>
+          <input id="ano-faturamento" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <div class="input-field" style="display: grid; grid-template-columns: 1fr 10fr 1fr; align-items: inherit;">
+          <p>Valor</p>
+          <input id="valor-faturamento" placeholder="R$" class="validate"/input>
+          <a class="btn waves-effect" id="add-faturamento"><i class="tiny material-icons">add</i></a>
+        </div>
+            <!-- Lista de faturamentos registrados-->
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Ultimos faturamentos registrados:</b></p>
+              <ul class="browser-default" id="faturamento-pego">
+                <li>12/2019 - R$ 3500,00</li>
+                <li>11/2019 - R$ 3500,00</li>
+                <li>10/2019 - R$ 3500,00</li>
+              </ul>
+            </div>
+            <!-- Fim da Lista de faturamentos registrados-->
         
         <!-- Fim dos Dados de faturamento -->
+
+
+
+
+
+
+
+
+
+        <!-- Onde presta serviços -->
+        <h4 style="color: teal;">Onde presta serviços</h4>
+        <div class="divider"></div>
+
+
+        <!-- EMPRESA ATUAL -->
+        <h5 style="color: teal;">Empresas atuais</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-atual" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-atual" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-atual" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-atual" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 4fr 1fr 6fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-atual" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-atual" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-atual" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-atual" placeholder="" class="validate"/input>
+
+        <p>Tempo de serviço</p>
+        <input id="tempo-empresa-atual" placeholder="" class="validate"/input>
+
+        <p>Faturamento atual</p>
+        <input id="faturamento-atual-empresa-atual" placeholder="" class="validate"/input>
+
+        <p>Faturamento futuro</p>
+        <input id="faturamento-atual-empresa-atual" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-atual"><i class="tiny material-icons">add</i></a>
+        </div>
+            <!-- LISTA DAS EMPRESAS REGISTRADAS-->
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Empresas atuais registradas:</b></p>
+              <ul class="browser-default" id="empresas-atuais-pego">
+                <li>Empresa qualquer</li>
+                <li>Empresa qualquer</li>
+                <li>Empresa qualquer</li>
+              </ul>
+            </div>
+            <!-- FIM DA LISTA DAS EMPRESAS REGISTRADAS -->
+
+        <!-- FIM DAS EMPRESAS ATUAIS-->
+
+
+
+
+
+
+
+
+
+
+        <!-- EMPRESAS ANTERIORES-->
+        <h5 style="color: teal;">Empresas atuais</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-anterior" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-anterior" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-anterior" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-anterior" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-anterior" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-anterior" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-anterior" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-anterior" placeholder="" class="validate"/input>
+
+        <p>Tempo de serviço</p>
+        <input id="tempo-empresa-anterior" placeholder="" class="validate"/input>
+
+        <p>Salário</p>
+        <input id="salario-empresa-anterior" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-anterior"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Empresas anteriores registradas:</b></p>
+          <ul class="browser-default" id="empresas-anterior-pego">
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+          </ul>
+        </div>
+        <!-- FIM DAS EMPRESAS ANTERIORES -->
+
+
+
+
+
+
+
+
+
+        <!-- EMPRESAS FUTURAS -->
+        <h5 style="color: teal;">Empresas futuras</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-futura" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-futura" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-futura" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-futura" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-futura" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-futura" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-futura" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-futura" placeholder="" class="validate"/input>
+
+        <p>Salário</p>
+        <input id="salario-empresa-futura" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-futura"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Empresas anteriores registradas:</b></p>
+          <ul class="browser-default" id="empresas-anterior-pego">
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DAS EMPRESAS FUTURAS -->
+        
+
+
+
+
+
+
+
+
+        <!-- Fim do Onde presta serviços -->
+
+
+
+
+
 
       </form>
       <!-- Fim do formulario -->
@@ -287,6 +553,12 @@
       </div>
     </div>
   </div> <!-- Fim do Modal de cadastro PJ -->
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <script src="./app.js"></script>
   <script src="./scripts/script.js"></script>
