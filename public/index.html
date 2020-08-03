@@ -11,6 +11,8 @@
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
 
    </head>
   <body>
@@ -21,8 +23,8 @@
 
     <!-- DIV DO MENU SUPERIOR-->
     <div id="menu">
-      <a class="base-selector waves-effect" id="PJ" selected="default">Pessoa Jurídica</a>
-      <a class="base-selector waves-effect" id="PF" selected="default">Pessoa Física</a>
+      <a class="base-selector waves-effect" id="PJ">Pessoa Jurídica</a>
+      <a class="base-selector waves-effect" id="PF">Pessoa Física</a>
     </div>
     <!-- FIM DA DIV DO MENU SUPERIOR-->
 
@@ -56,79 +58,13 @@
 
 
     <!-- DIV CONTAINER DOS CARDS -->
-    <div id="cards-container">
+    <div id="cards-container" style="overflow: scroll; width: 1280px; height: 600px; overflow-x: hidden;">
 
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
-
-      <div class="card blue-grey darken-1 hoverable">
-        <div class="card-content white-text">
-          <span class="card-title">Card Title</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-        <div class="card-action">
-          <a href="#">This is a link</a>
-          <a href="#">This is a link</a>
-        </div>
-      </div>
+      <!-- 
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+         /////////////////////////// AQUI SERÃO RENDERIZADOS OS CARDS ///////////////////////////////////////////////
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      -->
 
     </div>
     <!-- FIM DA DIV CONTAINER DOS CARDS -->
@@ -139,8 +75,11 @@
 
 
 
-    
-    <a class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO-->
+    <div style="display: grid; grid-template-columns: 6fr 6fr; grid-gap: 10px; margin-top: 10px; margin-bottom: 20px;">
+      <a id="cadastrar-novo" class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO-->
+      <a id="mostrar-mais" class="btn waves-effect"><i class="material-icons right">add</i>Mostrar Mais</a> <!-- BOTÃO INFERIOR DE AÇÃO DE MOSTRAR MAIS CARDS-->
+    </div>
+      
 
 
 
@@ -156,8 +95,8 @@
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-  <div id="pj-form" style="overflow: scroll; display: default;"> <!-- Inicio do modal de cadastro PJ -->
+  <!-- Inicio do modal de cadastro PJ -->
+  <div id="pj-form" style="overflow: scroll; display: none;"> 
     <div class="form-body container">
       
       <!-- Cabeçalho indicando a qual escopo pertence o form-->
@@ -165,6 +104,18 @@
 
       <!-- Inicio do formulario-->
       <form>
+
+
+
+
+
+
+
+
+
+
+
+
         <!-- Dados cadastrais -->
         <h4 style="color: teal;">Dados cadastrais</h4>
         <div class="divider"></div>
@@ -227,6 +178,14 @@
         <!-- Fim dos dados cadastrais -->
 
 
+
+
+
+
+
+
+
+
         <!-- Dados Bancarios -->
         <h4 style="color: teal;">Dados Bancários</h4>
         <div class="divider"></div>
@@ -251,6 +210,15 @@
         <p>Telefone da agência</p>
         <input id="telefone-agencia-empresa" placeholder="Agencia" class="validate"/input>
         <!-- Fim dos Dados Bancarios -->
+
+
+
+
+
+
+
+
+
 
         <!-- Dados dos sócios -->
         <h4 style="color: teal;">Sócios</h4>
@@ -370,43 +338,43 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-atual" placeholder="" class="validate"/input>
+          <input id="cep-empresa-atual-pj" placeholder="" class="validate"/input>
           <p>Cidade</p>
-          <input id="cidade-empresa-atual" placeholder="" class="validate"/input>
+          <input id="cidade-empresa-atual-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Rua</p>
-        <input id="rua-empresa-atual" placeholder="" class="validate"/input>
+        <input id="rua-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 1fr 4fr 1fr 6fr;">
           <p>Bairro</p>
-          <input id="bairro-empresa-atual" placeholder="" class="validate"/input>
+          <input id="bairro-empresa-atual-pj" placeholder="" class="validate"/input>
           <p>Numero</p>
-          <input id="numero-empresa-atual" placeholder="" class="validate"/input>
+          <input id="numero-empresa-atual-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-atual" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-atual" placeholder="" class="validate"/input>
+        <input id="celular-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-atual" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <p>Faturamento atual</p>
-        <input id="faturamento-atual-empresa-atual" placeholder="" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-atual-empresa-atual" placeholder="" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
-          <a class="btn waves-effect" id="add-empresa-atual"><i class="tiny material-icons">add</i></a>
+          <a class="btn waves-effect" id="add-empresa-atual-pj"><i class="tiny material-icons">add</i></a>
         </div>
             <!-- LISTA DAS EMPRESAS REGISTRADAS-->
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Empresas atuais registradas:</b></p>
-              <ul class="browser-default" id="empresas-atuais-pego">
+              <ul class="browser-default" id="empresas-atuais-pego-pj">
                 <li>Empresa qualquer</li>
                 <li>Empresa qualquer</li>
                 <li>Empresa qualquer</li>
@@ -426,47 +394,47 @@
 
 
         <!-- EMPRESAS ANTERIORES-->
-        <h5 style="color: teal;">Empresas atuais</h5>
+        <h5 style="color: teal;">Empresas anteriores</h5>
 
         <p>Nome da empresa</p>
-        <input id="nome-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="nome-empresa-anterior-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-anterior" placeholder="" class="validate"/input>
+          <input id="cep-empresa-anterior-pj" placeholder="" class="validate"/input>
           <p>Cidade</p>
-          <input id="cidade-empresa-anterior" placeholder="" class="validate"/input>
+          <input id="cidade-empresa-anterior-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Rua</p>
-        <input id="rua-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="rua-empresa-anterior-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>Bairro</p>
-          <input id="bairro-empresa-anterior" placeholder="" class="validate"/input>
+          <input id="bairro-empresa-anterior-pj" placeholder="" class="validate"/input>
           <p>Numero</p>
-          <input id="numero-empresa-anterior" placeholder="" class="validate"/input>
+          <input id="numero-empresa-anterior-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-anterior-pj" placeholder="" class="validate"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="celular-empresa-anteriorpj" placeholder="" class="validate"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-anterior-pj" placeholder="" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-anterior" placeholder="" class="validate"/input>
+        <input id="salario-empresa-anterior-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
-          <a class="btn waves-effect" id="add-empresa-anterior"><i class="tiny material-icons">add</i></a>
+          <a class="btn waves-effect" id="add-empresa-anterior-pj"><i class="tiny material-icons">add</i></a>
         </div>
 
-        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
           <p><b>Empresas anteriores registradas:</b></p>
-          <ul class="browser-default" id="empresas-anterior-pego">
+          <ul class="browser-default" id="empresas-anterior-pego-pj">
             <li>Empresa qualquer</li>
             <li>Empresa qualquer</li>
             <li>Empresa qualquer</li>
@@ -483,44 +451,45 @@
 
 
         <!-- EMPRESAS FUTURAS -->
+
         <h5 style="color: teal;">Empresas futuras</h5>
 
         <p>Nome da empresa</p>
-        <input id="nome-empresa-futura" placeholder="" class="validate"/input>
+        <input id="nome-empresa-futura-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-futura" placeholder="" class="validate"/input>
+          <input id="cep-empresa-futura-pj" placeholder="" class="validate"/input>
           <p>Cidade</p>
-          <input id="cidade-empresa-futura" placeholder="" class="validate"/input>
+          <input id="cidade-empresa-futura-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Rua</p>
-        <input id="rua-empresa-futura" placeholder="" class="validate"/input>
+        <input id="rua-empresa-futura-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>Bairro</p>
-          <input id="bairro-empresa-futura" placeholder="" class="validate"/input>
+          <input id="bairro-empresa-futura-pj" placeholder="" class="validate"/input>
           <p>Numero</p>
-          <input id="numero-empresa-futura" placeholder="" class="validate"/input>
+          <input id="numero-empresa-futura-pj" placeholder="" class="validate"/input>
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-futura" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-futura-pj" placeholder="" class="validate"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-futura" placeholder="" class="validate"/input>
+        <input id="celular-empresa-futura-pj" placeholder="" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-futura" placeholder="" class="validate"/input>
+        <input id="salario-empresa-futura-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
-          <a class="btn waves-effect" id="add-empresa-futura"><i class="tiny material-icons">add</i></a>
+          <a class="btn waves-effect" id="add-empresa-futura-pj"><i class="tiny material-icons">add</i></a>
         </div>
 
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
-          <p><b>Empresas anteriores registradas:</b></p>
-          <ul class="browser-default" id="empresas-anterior-pego">
+          <p><b>Empresas futuras registradas:</b></p>
+          <ul class="browser-default" id="empresas-futura-pego-pj">
             <li>Empresa qualquer</li>
             <li>Empresa qualquer</li>
             <li>Empresa qualquer</li>
@@ -529,14 +498,6 @@
 
         <!-- FIM DAS EMPRESAS FUTURAS -->
         
-
-
-
-
-
-
-
-
         <!-- Fim do Onde presta serviços -->
 
 
@@ -544,24 +505,825 @@
 
 
 
+
+        <!-- FROTA DE VEICULOS -->
+
+        <h4 style="color: teal;">Frota de veiculos</h4>
+        <div class="divider"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Marca</p>
+          <input id="marca-veiculo-frota-pj" placeholder="'ford'" class="validate"/input>
+          <p>Modelo</p>
+          <input id="modelo-veiculo-frota-pj" placeholder="'focus'" class="validate"/input>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Ano</p>
+          <input id="ano-veiculo-frota-pj" placeholder="'2015'" class="validate"/input>
+          <p>Placa</p>
+          <input id="placa-veiculo-frota-pj" placeholder="'AAA-0000'" class="validate"/input>
+        </div>
+
+        <p>Tempo em nome</p>
+        <input id="tempo-em-nome-veiculo-frota-pj" placeholder="'2015'" class="validate"/input>
+
+
+        <div style="display: flex;">
+          <p>Quitado?</p>
+          <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+            <label>
+              <input id="quitado-veiculo-frota-pj" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Sim</span>
+            </label>
+            <label>
+              <input id="nao-quitado-veiculo-frota-pj" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-veiculo-frota-pj"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Veiculos da frota registrados:</b></p>
+          <ul class="browser-default" id="veiculos-frota-pego-pj">
+            <li>Um carro qualquer</li>
+            <li>Um carro qualquer</li>
+            <li>Um carro qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DA FROTA DE VEICULOS -->
+
+
+
+
+
+
+
+
+        <!-- REFERENCIA COMERCIAL -->
+        
+        <h4 style="color: teal;">Referencia comercial</h4>
+        <div class="divider"></div>
+
+        <p>Empresa</p>
+        <input id="nome-empresa-referencia-comercial-pj" placeholder="" class="validate"/input>
+        <p>Telefone</p>
+        <input id="telefone-empresa-referencia-comercial-pj" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-referencia-comercial-pj"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Referencias comerciais registradas:</b></p>
+          <ul class="browser-default" id="referencia-comercial-pego-pj">
+            <li>Uma empresa qualquer</li>
+            <li>Uma empresa qualquer</li>
+            <li>Uma empresa qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DA REFERENCIA COMERCIAL -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- VEICULO A FINANCIAR -->
+
+        <h4 style="color: teal;">Veiculo a financiar</h4>
+        <div class="divider"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Marca</p>
+          <input id="marca-veiculo-a-financiar-pj" placeholder="'ford'" class="validate"/input>
+          <p>Modelo</p>
+          <input id="modelo-veiculo-a-financiar-pj" placeholder="'focus'" class="validate"/input>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Ano</p>
+          <input id="ano-veiculo-a-financiar-pj" placeholder="'2015'" class="validate"/input>
+          <p>Placa</p>
+          <input id="placa-veiculo-a-financiar-pj" placeholder="'AAA-0000'" class="validate"/input>
+        </div>
+
+        <p>Valor de venda</p>
+        <input id="valor-venda-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Valor da molicar</p>
+        <input id="valor-molicar-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Valor de entrada</p>
+        <input id="valor-entrada-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Valor financiado</p>
+        <input id="valor-financiado-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Banco aprovado</p>
+        <input id="banco-aprovado-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Condições aprovadas</p>
+        <input id="condicoes-aprovadas-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Indicação</p>
+        <input id="indicacao-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Data de conclusão</p>
+        <input id="data-conclusao-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Resposta de negativa de credito</p>
+        <input id="resposta-negativa-credito-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+
+        <p>Observações</p>
+        <textarea id="observacoes-pj" class="materialize-textarea"></textarea>
+
+        <!-- FIM DO VEICULO A FINANCIAR -->
+
       </form>
       <!-- Fim do formulario -->
 
+
+
+
+
+
+
+
+
+
+
+
+      <div class="divider"></div>
+
       <div class="center-align" style="margin-bottom: 25px; margin-top: 25px;">
-        <a class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
-        <a class="btn waves-effect"><i class="material-icons right">check</i>Concluir</a>
+        <a id="cancela-cadastro-pj" class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
+        <a id="conclui-cadastro-pj" class="btn waves-effect"><i class="material-icons right">check</i>Concluir</a>
       </div>
     </div>
-  </div> <!-- Fim do Modal de cadastro PJ -->
+  </div>
+  <!-- Fim do Modal de cadastro PJ -->
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- MODAL CADASTRO PF -->
+  <div id="pf-form" style="overflow: scroll; display: none;"> 
+    <div class="form-body container">
+      
+      <!-- Cabeçalho indicando a qual escopo pertence o form-->
+      <h3>Formulario de cadastro de PF</h3>
+
+      <!-- Inicio do formulario-->
+      <form>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- Dados cadastrais -->
+        <h4 style="color: teal;">Dados cadastrais</h4>
+        <div class="divider"></div>
+        
+        <p>Nome completo</p> 
+        <input id="nome-completo-pf" placeholder="Nome completo" class="validate"/input>
+
+        <p>CPF</p>
+        <input id="CPF-pf" placeholder="000.000.000-00" class="validate"/input>
+
+        <p>E-Mail</p>
+        <input id="email-pf" placeholder="E-Mail" class="validate"/input>
+
+        <p>CNPJ (caso possua empresa)</p>
+        <div style="display: flex;">
+          <input id="cnpj-pf" placeholder="00.000.000/0000-00" class="validate"/input><a class="btn waves-effect" id="add-cpf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <!-- Começo da lista de CNPJ's registrados-->
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>CNPJ's registrados:</b></p>
+          <ul class="browser-default" id="cnpj-pego">
+            <li>00.000.000/0000-00</li>
+            <li>00.000.000/0000-00</li>
+            <li>00.000.000/0000-00</li>
+          </ul>
+        </div>
+        <!-- Fim da lista de CNPJ's registrados -->
+
+        <p>RG</p>
+        <input id="RG-pf" placeholder="00.000.000-0" class="validate"/input>
+
+        <p>Data de nascimento</p>
+        <input id="data-nascimento-pf" placeholder="DD/MM/AAAA" class="validate"/input>
+
+        <p>Estado civil</p>
+        <input id="estado-civil-pf" placeholder="Estado civil" class="validate"/input>
+
+        <p>Naturalidade</p>
+        <input id="naturalidade-pf" placeholder="Brasileiro" class="validate"/input>
+
+        <p>Nome do pai</p>
+        <input id="nome-pai-pf" placeholder="Nome do pai" class="validate"/input>
+
+        <p>Nome da mãe</p>
+        <input id="nome-mae-pf" placeholder="Nome da mãe" class="validate"/input>
+        <!-- Fim dos dados cadastrais -->
+
+
+
+
+
+
+
+
+
+
+        <!-- Dados Bancarios -->
+        <h4 style="color: teal;">Dados Bancários</h4>
+        <div class="divider"></div>
+
+        <p>Banco</p>
+        <input id="banco-pf" placeholder="Banco" class="validate"/input>
+
+        <p>Agência</p>
+        <input id="agencia-pf" placeholder="Agencia" class="validate"/input>
+
+        <p>Conta Corrente</p>
+        <div class="input-field align-center" style="display: flex;">
+          <p>Numero</p>
+          <input id="numero-conta-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>Digito</p>
+          <input id="digito-conta-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Tempo de conta</p>
+        <input id="tempo-conta-pf" placeholder="Agencia" class="validate"/input>
+
+        <p>Telefone da agência</p>
+        <input id="telefone-agencia-pf" placeholder="Agencia" class="validate"/input>
+        <!-- Fim dos Dados Bancarios -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- DADOS DE ENDEREÇO PF -->
+        
+        <h4 style="color: teal;">Endereço</h4>
+        <div class="divider"></div>
+
+
+        <!-- ENDEREÇO ATUAL -->
+        <h5>Endereço atual</h5>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>CEP</p>
+          <input id="CEP-endereco-atual-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>CIDADE</p>
+          <input id="cidade-endereco-atual-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-endereco-atual-pf" placeholder="Rua" class="validate"/input>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>Bairro</p>
+          <input id="bairro-endereco-atual-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>Numero</p>
+          <input id="numero-endereco-atual-pf" placeholder="000" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Telefone fixo</p>
+        <input id="telefone-fixo-pf" placeholder="Telefone fixo" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-pf" placeholder="Celular" class="validate"/input>
+
+        <p>Tempo residencial</p>
+        <input id="tempo-residencia-atual-pf" placeholder="" class="validate"/input>
+
+        <div style="display: flex;">
+          <p>Imovel próprio?</p>
+          <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+            <label>
+              <input id="imovel-proprio-pf-sim" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Sim</span>
+            </label>
+            <label>
+              <input id="imovel-proprio-pf-nao" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+
+        <p>Valor do imovel</p>
+        <input id="valor-imovel-residencia-atual-pf" placeholder="" class="validate"/input>
+
+        <!-- FIM DO ENDEREÇO ATUAL -->
+
+
+
+
+
+
+
+        <!-- ENDEREÇO ANTERIOR -->
+
+        <h5>Endereço anterior</h5>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>CEP</p>
+          <input id="CEP-endereco-anterior-pf" placeholder="00000-000" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>CIDADE</p>
+          <input id="cidade-endereco-anterior-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-endereco-anterior-pf" placeholder="Rua" class="validate"/input>
+
+        <div class="input-field align-center" style="display: flex;">
+          <p>Bairro</p>
+          <input id="bairro-endereco-anterior-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <p>Numero</p>
+          <input id="numero-endereco-anterior-pf" placeholder="000" class="validate parted-input" style="margin-left: 10px;"/input>
+        </div>
+
+        <p>Tempo de residência</p>
+        <input id="tempo-residencia-anterior-pf" placeholder="" class="validate"/input>
+
+        <!-- FIM DO ENDEREÇO ANTERIOR -->
+
+
+        <!-- FIM DOS DADOS DE ENDEREÇO PF -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ONDE PRESTA SERVIÇOS -->
+        <h4 style="color: teal;">Onde presta serviços</h4>
+        <div class="divider"></div>
+
+
+        <!-- EMPRESA ATUAL -->
+        <h5 style="color: teal;">Empresas atuais</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-atual-pf" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-atual-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 4fr 1fr 6fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-atual-pf" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-atual-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <p>Tempo de serviço</p>
+        <input id="tempo-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <p>Faturamento atual</p>
+        <input id="faturamento-atual-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <p>Faturamento futuro</p>
+        <input id="faturamento-atual-empresa-atual-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-atual-pf"><i class="tiny material-icons">add</i></a>
+        </div>
+            <!-- LISTA DAS EMPRESAS REGISTRADAS-->
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Empresas atuais registradas:</b></p>
+              <ul class="browser-default" id="empresas-atuais-pego-pf">
+                <li>Empresa qualquer</li>
+                <li>Empresa qualquer</li>
+                <li>Empresa qualquer</li>
+              </ul>
+            </div>
+            <!-- FIM DA LISTA DAS EMPRESAS REGISTRADAS -->
+
+        <!-- FIM DAS EMPRESAS ATUAIS-->
+
+
+
+
+
+
+
+
+
+
+        <!-- EMPRESAS ANTERIORES-->
+        <h5 style="color: teal;">Empresas anteriores</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-anterior-pf" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-anterior-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-anterior-pf" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-anterior-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <p>Tempo de serviço</p>
+        <input id="tempo-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <p>Salário</p>
+        <input id="salario-empresa-anterior-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-anterior-pf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
+          <p><b>Empresas anteriores registradas:</b></p>
+          <ul class="browser-default" id="empresas-anterior-pego-pf">
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+          </ul>
+        </div>
+        <!-- FIM DAS EMPRESAS ANTERIORES -->
+
+
+
+
+
+
+
+
+
+        <!-- EMPRESAS FUTURAS -->
+
+        <h5 style="color: teal;">Empresas futuras</h5>
+
+        <p>Nome da empresa</p>
+        <input id="nome-empresa-futura-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>CEP</p>
+          <input id="cep-empresa-futura-pf" placeholder="" class="validate"/input>
+          <p>Cidade</p>
+          <input id="cidade-empresa-futura-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Rua</p>
+        <input id="rua-empresa-futura-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Bairro</p>
+          <input id="bairro-empresa-futura-pf" placeholder="" class="validate"/input>
+          <p>Numero</p>
+          <input id="numero-empresa-futura-pf" placeholder="" class="validate"/input>
+        </div>
+
+        <p>Telefone Fixo</p>
+        <input id="telefone-fixo-empresa-futura-pf" placeholder="" class="validate"/input>
+
+        <p>Celular</p>
+        <input id="celular-empresa-futura-pf" placeholder="" class="validate"/input>
+
+        <p>Salário</p>
+        <input id="salario-empresa-futura-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-empresa-futura-pf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Empresas futuras registradas:</b></p>
+          <ul class="browser-default" id="empresas-futura-pego-pf">
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+            <li>Empresa qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DAS EMPRESAS FUTURAS -->
+        
+        <!-- Fim do Onde presta serviços -->
+
+
+
+
+
+
+
+        <!-- FROTA DE VEICULOS -->
+
+        <h4 style="color: teal;">Frota de veiculos</h4>
+        <div class="divider"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Marca</p>
+          <input id="marca-veiculo-frota-pf" placeholder="'ford'" class="validate"/input>
+          <p>Modelo</p>
+          <input id="modelo-veiculo-frota-pf" placeholder="'focus'" class="validate"/input>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Ano</p>
+          <input id="ano-veiculo-frota-pf" placeholder="'2015'" class="validate"/input>
+          <p>Placa</p>
+          <input id="placa-veiculo-frota-pf" placeholder="'AAA-0000'" class="validate"/input>
+        </div>
+
+        <p>Tempo em nome</p>
+        <input id="tempo-em-nome-veiculo-frota-pf" placeholder="'2015'" class="validate"/input>
+
+
+        <div style="display: flex;">
+          <p>Quitado?</p>
+          <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+            <label>
+              <input id="quitado-veiculo-frota-pf" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Sim</span>
+            </label>
+            <label>
+              <input id="nao-quitado-veiculo-frota-pf" type="checkbox" class="filled-in" checked="unchecked" />
+              <span>Não</span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-veiculo-frota-pf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Veiculos da frota registrados:</b></p>
+          <ul class="browser-default" id="veiculos-frota-pego-pf">
+            <li>Um carro qualquer</li>
+            <li>Um carro qualquer</li>
+            <li>Um carro qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DA FROTA DE VEICULOS -->
+
+
+
+
+
+
+
+
+        <!-- REFERENCIA COMERCIAL -->
+        
+        <h4 style="color: teal;">Referencia pessoal</h4>
+        <div class="divider"></div>
+
+        <p>Nome</p>
+        <input id="nome-referencia-pessoal-pf" placeholder="" class="validate"/input>
+        <p>Telefone fixo</p>
+        <input id="telefone-fixo-referencia-pessoal-pf" placeholder="" class="validate"/input>
+        <p>Celular</p>
+        <input id="telefone-fixo-referencia-pessoal-pf" placeholder="" class="validate"/input>
+
+        <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+          <a class="btn waves-effect" id="add-referencia-pessoal-pf"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+          <p><b>Referencias pessoais registradas:</b></p>
+          <ul class="browser-default" id="referencia-pessoal-pego-pf">
+            <li>Uma empresa qualquer</li>
+            <li>Uma empresa qualquer</li>
+            <li>Uma empresa qualquer</li>
+          </ul>
+        </div>
+
+        <!-- FIM DA REFERENCIA COMERCIAL -->
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- VEICULO A FINANCIAR -->
+
+        <h4 style="color: teal;">Veiculo a financiar</h4>
+        <div class="divider"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Marca</p>
+          <input id="marca-veiculo-a-financiar-pf" placeholder="'ford'" class="validate"/input>
+          <p>Modelo</p>
+          <input id="modelo-veiculo-a-financiar-pf" placeholder="'focus'" class="validate"/input>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+          <p>Ano</p>
+          <input id="ano-veiculo-a-financiar-pf" placeholder="'2015'" class="validate"/input>
+          <p>Placa</p>
+          <input id="placa-veiculo-a-financiar-pf" placeholder="'AAA-0000'" class="validate"/input>
+        </div>
+
+        <p>Valor de venda</p>
+        <input id="valor-venda-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Valor da molicar</p>
+        <input id="valor-molicar-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Valor de entrada</p>
+        <input id="valor-entrada-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Valor financiado</p>
+        <input id="valor-financiado-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Banco aprovado</p>
+        <input id="banco-aprovado-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Condições aprovadas</p>
+        <input id="condicoes-aprovadas-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Indicação</p>
+        <input id="indicacao-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Data de conclusão</p>
+        <input id="data-conclusao-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Resposta de negativa de credito</p>
+        <input id="resposta-negativa-credito-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+
+        <p>Observações</p>
+        <textarea id="observacoes-pf" class="materialize-textarea"></textarea>
+
+        <!-- FIM DO VEICULO A FINANCIAR -->
+
+      </form>
+      <!-- Fim do formulario -->
+
+
+
+
+
+
+
+
+
+
+
+      <div class="divider"></div>
+
+      <div class="center-align" style="margin-bottom: 25px; margin-top: 25px;">
+        <a id="cancela-cadastro-pf" class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
+        <a id="conclui-cadastro-pf" class="btn waves-effect"><i class="material-icons right">check</i>Concluir</a>
+      </div>
+    </div>
+  </div>
+  <!-- FIM DO MODAL CADASTRO PF -->
+
+
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
 
   <script src="./app.js"></script>
-  <script src="./scripts/script.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="./scripts/enableForms.js"></script>
+  <script src="./scripts/renderCards.js"></script>
+  <script src="./scripts/cadastraPJ.js"></script>
+  <script src="./scripts/cadastraPF.js"></script>
   </body>
 </html>
