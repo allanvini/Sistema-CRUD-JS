@@ -1,13 +1,13 @@
 let cancelaCadastroPJ = document.getElementById('cancela-cadastro-pj');
 let finalizaCadastroPJ = document.getElementById('conclui-cadastro-pj');
 
-let cpfContainer = document.getElementById('cpf-pego');
-let faturamentoContainer = document.getElementById('faturamento-pego');
-let empresaAtualContainer = document.getElementById('empresas-atuais-pego-pj');
-let empresaAnteriorContainer = document.getElementById('empresas-anterior-pego-pj');
-let empresaFuturaContainer = document.getElementById('empresas-futura-pego-pj');
-let veiculosFrotaContainer = document.getElementById('veiculos-frota-pego-pj');
-let referenciaComercialContainer = document.getElementById('referencia-comercial-pego-pj');
+let cpfContainerPJ = document.getElementById('cpf-pego');
+let faturamentoContainerPJ = document.getElementById('faturamento-pego');
+let empresaAtualContainerPJ = document.getElementById('empresas-atuais-pego-pj');
+let empresaAnteriorContainerPJ = document.getElementById('empresas-anterior-pego-pj');
+let empresaFuturaContainerPJ = document.getElementById('empresas-futura-pego-pj');
+let veiculosFrotaContainerPJ = document.getElementById('veiculos-frota-pego-pj');
+let referenciaComercialContainerPJ = document.getElementById('referencia-comercial-pego-pj');
 
 
 let socioMajoritarioState = null;
@@ -20,13 +20,13 @@ let socioMajoritarioState = null;
         document.getElementById('socio-assina-sim').checked = false;
     });
 
-let veiculoQuitadoState = null;
+let veiculoQuitadoStatePJ = null;
     document.getElementById('quitado-veiculo-frota-pj').addEventListener('click', ()=>{
-        veiculoQuitadoState = true;
+        veiculoQuitadoStatePJ = true;
         document.getElementById('nao-quitado-veiculo-frota-pj').checked = false;
     });
     document.getElementById('nao-quitado-veiculo-frota-pj').addEventListener('click', ()=>{
-        veiculoQuitadoState = false;
+        veiculoQuitadoStatePJ = false;
         document.getElementById('quitado-veiculo-frota-pj').checked = false;
     })
 
@@ -35,7 +35,7 @@ let cpfSociosPJ = [];
         cpfSociosPJ.push(document.getElementById('cpfs-empresa').value);
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderCPF(cpfContainer,cpfSociosPJ);
+        renderCPFPJ(cpfContainerPJ,cpfSociosPJ);
 
 
         document.getElementById('cpfs-empresa').value = '';
@@ -51,7 +51,7 @@ let faturamentosPJ = [];
         })
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderFaturamento(faturamentoContainer,faturamentosPJ);
+        renderFaturamentoPJ(faturamentoContainerPJ,faturamentosPJ);
 
         document.getElementById('mes-faturamento').value = "";
         document.getElementById('ano-faturamento').value = "";
@@ -76,7 +76,7 @@ let empresasAtuaisPJ = [];
         });
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderEmpresasAtuais(empresaAtualContainer, empresasAtuaisPJ);
+        renderEmpresasAtuaisPJ(empresaAtualContainerPJ, empresasAtuaisPJ);
 
         document.getElementById('nome-empresa-atual').value = "";
         document.getElementById('cep-empresa-atual-pj').value = "";
@@ -108,7 +108,7 @@ let empresasAnterioresPJ = [];
         });
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderEmpresasAnteriores(empresaAnteriorContainer, empresasAnterioresPJ);
+        renderEmpresasAnterioresPJ(empresaAnteriorContainerPJ, empresasAnterioresPJ);
 
         document.getElementById('nome-empresa-anterior-pj').value = "";
         document.getElementById('cep-empresa-anterior-pj').value = "";
@@ -138,7 +138,7 @@ let empresasFuturasPJ = [];
         });
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderEmpresasFuturas(empresaFuturaContainer, empresasFuturasPJ);
+        renderEmpresasFuturasPJ(empresaFuturaContainerPJ, empresasFuturasPJ);
 
         document.getElementById('nome-empresa-futura-pj').value = "";
         document.getElementById('cep-empresa-futura-pj').value = "";
@@ -159,18 +159,18 @@ let frotaDeVeiculosPJ = [];
             ano : document.getElementById('ano-veiculo-frota-pj').value,
             placa : document.getElementById('placa-veiculo-frota-pj').value,
             tempoEmNome : document.getElementById('tempo-em-nome-veiculo-frota-pj').value,
-            quitado : veiculoQuitadoState
+            quitado : veiculoQuitadoStatePJ
         })
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderFrota(veiculosFrotaContainer, frotaDeVeiculosPJ);
+        renderFrotaPJ(veiculosFrotaContainerPJ, frotaDeVeiculosPJ);
 
         document.getElementById('marca-veiculo-frota-pj').value = "";
         document.getElementById('modelo-veiculo-frota-pj').value = "";
         document.getElementById('ano-veiculo-frota-pj').value = "";
         document.getElementById('placa-veiculo-frota-pj').value = "";
         document.getElementById('tempo-em-nome-veiculo-frota-pj').value = "";
-        veiculoQuitadoState = null;
+        veiculoQuitadoStatePJ = null;
         document.getElementById('quitado-veiculo-frota-pj').checked = false;
         document.getElementById('nao-quitado-veiculo-frota-pj').checked = false;
     })
@@ -183,7 +183,7 @@ let referenciaComercialPJ = [];
         })
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
-        renderReferenciaComercial(referenciaComercialContainer,referenciaComercialPJ);
+        renderReferenciaComercialPJ(referenciaComercialContainerPJ,referenciaComercialPJ);
 
         document.getElementById('nome-empresa-referencia-comercial-pj').value = "";
         document.getElementById('telefone-empresa-referencia-comercial-pj').value = "";
@@ -257,7 +257,7 @@ finalizaCadastroPJ.addEventListener('click',()=>{
         }
     } // fim do objeto
 
-    limpaCampos();
+    limpaCamposPJ();
     console.log(newPJ);
     document.getElementById('pj-form').style.display = "none";
 
@@ -265,10 +265,10 @@ finalizaCadastroPJ.addEventListener('click',()=>{
 
 cancelaCadastroPJ.addEventListener('click', ()=>{
     document.getElementById('pj-form').style.display = "none";
-    limpaCampos();
+    limpaCamposPJ();
 })
 
-function limpaCampos(){
+function limpaCamposPJ(){
     document.getElementById('razao-social').value = "";
     document.getElementById('cnpj-empresa').value = "";
     document.getElementById('email-empresa').value = "";
@@ -313,7 +313,7 @@ function limpaCampos(){
     document.getElementById('quitado-veiculo-frota-pj').checked = false;
     document.getElementById('nao-quitado-veiculo-frota-pj').checked = false;
     socioMajoritarioState = null;
-    veiculoQuitadoState = null;
+    veiculoQuitadoStatePJ = null;
     cpfSociosPJ = [];
     faturamentosPJ = [];
     empresasAtuaisPJ = [];
@@ -321,21 +321,21 @@ function limpaCampos(){
     empresasFuturasPJ = [];
     frotaDeVeiculosPJ = [];
     referenciaComercialPJ = [];
-    cpfContainer.innerHTML = "";
-    faturamentoContainer.innerHTML = "";
-    empresaAtualContainer.innerHTML = "";
-    empresaAnteriorContainer.innerHTML = "";
-    empresaFuturaContainer.innerHTML = "";
-    veiculosFrotaContainer.innerHTML = "";
-    referenciaComercialContainer.innerHTML = "";
+    cpfContainerPJ.innerHTML = "";
+    faturamentoContainerPJ.innerHTML = "";
+    empresaAtualContainerPJ.innerHTML = "";
+    empresaAnteriorContainerPJ.innerHTML = "";
+    empresaFuturaContainerPJ.innerHTML = "";
+    veiculosFrotaContainerPJ.innerHTML = "";
+    referenciaComercialContainerPJ.innerHTML = "";
 }
 
-function deleteCPFFromArray(pos){
+function deleteCPFFromArrayPJ(pos){
     cpfSociosPJ.splice(pos, 1);
-    renderCPF(cpfContainer,cpfSociosPJ);
+    renderCPFPJ(cpfContainerPJ,cpfSociosPJ);
 }
 
-function renderCPF (container, data){
+function renderCPFPJ (container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -350,7 +350,7 @@ function renderCPF (container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteCPFFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteCPFFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -359,12 +359,12 @@ function renderCPF (container, data){
     })
 }
 
-function deleteFaturamentoFromArray(pos){
+function deleteFaturamentoFromArrayPJ(pos){
     faturamentosPJ.splice(pos, 1);
-    renderFaturamento(faturamentoContainer,faturamentosPJ)
+    renderFaturamentoPJ(faturamentoContainerPJ,faturamentosPJ)
 }
 
-function renderFaturamento(container, data){
+function renderFaturamentoPJ(container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -379,7 +379,7 @@ function renderFaturamento(container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteFaturamentoFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteFaturamentoFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -388,12 +388,12 @@ function renderFaturamento(container, data){
     })
 }
 
-function deleteEmpresaAtualFromArray(pos){
+function deleteEmpresaAtualFromArrayPJ(pos){
     empresasAtuaisPJ.splice(pos, 1);
-    renderEmpresasAtuais(empresaAtualContainer, empresasAtuaisPJ);
+    renderEmpresasAtuaisPJ(empresaAtualContainerPJ, empresasAtuaisPJ);
 }
 
-function renderEmpresasAtuais(container, data){
+function renderEmpresasAtuaisPJ(container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -408,7 +408,7 @@ function renderEmpresasAtuais(container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaAtualFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaAtualFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -418,12 +418,12 @@ function renderEmpresasAtuais(container, data){
     })
 }
 
-function deleteEmpresaAnteriorFromArray(pos){
+function deleteEmpresaAnteriorFromArrayPJ(pos){
     empresasAnterioresPJ.splice(pos, 1);
-    renderEmpresasAnteriores(empresaAnteriorContainer, empresasAnterioresPJ)
+    renderEmpresasAnterioresPJ(empresaAnteriorContainerPJ, empresasAnterioresPJ)
 }
 
-function renderEmpresasAnteriores (container, data){
+function renderEmpresasAnterioresPJ (container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -438,7 +438,7 @@ function renderEmpresasAnteriores (container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaAnteriorFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaAnteriorFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -447,12 +447,12 @@ function renderEmpresasAnteriores (container, data){
     })
 }
 
-function deleteEmpresaFuturaFromArray(pos){
+function deleteEmpresaFuturaFromArrayPJ(pos){
     empresasFuturasPJ.splice(pos, 1);
-    renderEmpresasFuturas(empresaFuturaContainer, empresasFuturasPJ);
+    renderEmpresasFuturasPJ(empresaFuturaContainerPJ, empresasFuturasPJ);
 }
 
-function renderEmpresasFuturas(container, data){
+function renderEmpresasFuturasPJ(container, data){
     container.innerHTML = "";
 
     data.forEach(element =>{
@@ -467,7 +467,7 @@ function renderEmpresasFuturas(container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaFuturaFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaFuturaFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -478,12 +478,12 @@ function renderEmpresasFuturas(container, data){
 
 }
 
-function deleteFrotaFromArray(pos){
+function deleteFrotaFromArrayPJ(pos){
     frotaDeVeiculosPJ.splice(pos, 1);
-    renderFrota(veiculosFrotaContainer, frotaDeVeiculosPJ);
+    renderFrotaPJ(veiculosFrotaContainerPJ, frotaDeVeiculosPJ);
 }
 
-function renderFrota(container, data){
+function renderFrotaPJ(container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -507,7 +507,7 @@ function renderFrota(container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteFrotaFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteFrotaFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -517,12 +517,12 @@ function renderFrota(container, data){
     })
 }
 
-function deleteReferenciaComercialFromArray(pos){
+function deleteReferenciaComercialFromArrayPJ(pos){
     referenciaComercialPJ.splice(pos, 1);
-    renderReferenciaComercial(referenciaComercialContainer,referenciaComercialPJ)
+    renderReferenciaComercialPJ(referenciaComercialContainerPJ,referenciaComercialPJ)
 }
 
-function renderReferenciaComercial(container, data){
+function renderReferenciaComercialPJ(container, data){
     container.innerHTML = "";
 
     data.forEach(element =>{
@@ -537,15 +537,12 @@ function renderReferenciaComercial(container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteReferenciaComercialFromArray(${pos})`);
+        del.setAttribute('onclick', `deleteReferenciaComercialFromArrayPJ(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
 
         container.appendChild(li);
     })
-
-
-
-
+    
 }
