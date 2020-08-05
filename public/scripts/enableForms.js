@@ -1,10 +1,10 @@
-let cadastrarNovo = document.getElementById('cadastrar-novo');
+let cadastraNovoPf = document.getElementById('cadastrar-novo-pf');
+let cadastraNovoPj = document.getElementById('cadastrar-novo-pj');
 
-cadastrarNovo.addEventListener('click', ()=>{
-    if (document.getElementById('PJ').style.borderBottom === 'solid 2px blue'){
-        document.getElementById('pj-form').style.display = 'block';
-    }
-    if (document.getElementById('PF').style.borderBottom === 'solid 2px blue') {
-        document.getElementById('pf-form').style.display = 'block';
-    }
-});
+cadastraNovoPf.addEventListener('click', ()=>{
+    document.getElementById('pf-form').style.display = "block";
+})
+
+cadastraNovoPj.addEventListener('click', ()=>{
+    document.getElementById('pj-form').style.display = "block";
+})

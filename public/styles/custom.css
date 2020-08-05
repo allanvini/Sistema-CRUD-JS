@@ -1,3 +1,7 @@
+body {
+    background-image: url('./assets/background.jpg');
+}
+
 .container{
     justify-content: center;
     display: grid;
@@ -78,4 +82,8 @@
 
 .parted-input {
     width: 100px;
+}
+
+#greetings {
+    text-shadow: 0px 0px 5px rgba(0,0,0, 0.5);
 }

@@ -75,9 +75,14 @@
 
 
 
-    <div style="display: grid; grid-template-columns: 6fr 6fr; grid-gap: 10px; margin-top: 10px; margin-bottom: 20px;">
-      <a id="cadastrar-novo" class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO-->
-      <a id="mostrar-mais" class="btn waves-effect"><i class="material-icons right">add</i>Mostrar Mais</a> <!-- BOTÃO INFERIOR DE AÇÃO DE MOSTRAR MAIS CARDS-->
+    <div id="actions-pf" style="display: grid; grid-template-columns: 6fr 6fr; grid-gap: 10px; margin-top: 10px; margin-bottom: 20px; display: none;">
+      <a id="cadastrar-novo-pf" class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO PARA PF-->
+      <a id="mostrar-mais-pf" class="btn waves-effect"><i class="material-icons right">add</i>Mostrar Mais</a> <!-- BOTÃO INFERIOR DE AÇÃO DE MOSTRAR MAIS CARDS DE PF-->
+    </div>
+
+    <div id="actions-pj" style="display: grid; grid-template-columns: 6fr 6fr; grid-gap: 10px; margin-top: 10px; margin-bottom: 20px; display: none;">
+      <a id="cadastrar-novo-pj" class="btn waves-effect"><i class="material-icons right">add</i>Cadastrar Novo</a> <!-- BOTÃO INFERIOR DE AÇÃO DE CADASTRO PARA PJ-->
+      <a id="mostrar-mais-pj" class="btn waves-effect"><i class="material-icons right">add</i>Mostrar Mais</a> <!-- BOTÃO INFERIOR DE AÇÃO DE MOSTRAR MAIS CARDS DE PJ-->
     </div>
       
 
@@ -96,7 +101,7 @@
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- Inicio do modal de cadastro PJ -->
-  <div id="pj-form" style="overflow: scroll; display: none;"> 
+  <div id="pj-form" style="overflow: scroll; display: none; overflow-x: hidden;"> 
     <div class="form-body container">
       
       <!-- Cabeçalho indicando a qual escopo pertence o form-->
@@ -138,9 +143,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>CPF's registrados:</b></p>
           <ul class="browser-default" id="cpf-pego">
-            <li>000.000.000-00</li>
-            <li>000.000.000-00</li>
-            <li>000.000.000-00</li>
+            <!-- AQUI SERÃO RENDERIZADOS OS CPF'S PEGOS-->
           </ul>
         </div>
         <!-- Fim da lista de CPFs registrados -->
@@ -153,15 +156,15 @@
         
         <div style="display: grid; grid-template-columns: 1fr 1fr;">
           <p>Numero de funcionarios registrados</p>
-          <input id="capital-social-empresa" placeholder="Funcionarios registrados" class="validate"/input>
+          <input id="numero-funcionarios-registrados" placeholder="Funcionarios registrados" class="validate"/input>
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo" placeholder="Telefone" class="validate"/input>
+        <input id="telefone-fixo-pj" placeholder="Telefone" class="validate"/input>
 
         <div class="input-field align-center" style="display: flex;">
           <p>CEP</p>
-          <input id="CEP-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+          <input id="cep-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
           <p>Cidade</p>
           <input id="cidade-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
         </div>
@@ -237,11 +240,11 @@
           <p>O sócio majoritário assina sozinho?</p>
           <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
             <label>
-              <input id="socio-assina-sim" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="socio-assina-sim" type="checkbox"/>
               <span>Sim</span>
             </label>
             <label>
-              <input id="socio-assina-nao" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="socio-assina-nao" type="checkbox" />
               <span>Não</span>
             </label>
           </div>
@@ -308,9 +311,7 @@
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Ultimos faturamentos registrados:</b></p>
               <ul class="browser-default" id="faturamento-pego">
-                <li>12/2019 - R$ 3500,00</li>
-                <li>11/2019 - R$ 3500,00</li>
-                <li>10/2019 - R$ 3500,00</li>
+                <!-- AQUI SERÃO RENDERIZADOS OS FATURAMENTOS REGISTRADOS -->
               </ul>
             </div>
             <!-- Fim da Lista de faturamentos registrados-->
@@ -366,7 +367,7 @@
         <input id="faturamento-atual-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-atual-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="faturamento-futuro-empresa-atual-pj" placeholder="" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-atual-pj"><i class="tiny material-icons">add</i></a>
@@ -375,9 +376,7 @@
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Empresas atuais registradas:</b></p>
               <ul class="browser-default" id="empresas-atuais-pego-pj">
-                <li>Empresa qualquer</li>
-                <li>Empresa qualquer</li>
-                <li>Empresa qualquer</li>
+                <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ATUAIS REGISTRADAS -->
               </ul>
             </div>
             <!-- FIM DA LISTA DAS EMPRESAS REGISTRADAS -->
@@ -435,9 +434,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
           <p><b>Empresas anteriores registradas:</b></p>
           <ul class="browser-default" id="empresas-anterior-pego-pj">
-            <li>Empresa qualquer</li>
-            <li>Empresa qualquer</li>
-            <li>Empresa qualquer</li>
+            <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ANTERIORES REGISTRADAS-->>
           </ul>
         </div>
         <!-- FIM DAS EMPRESAS ANTERIORES -->
@@ -490,9 +487,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>Empresas futuras registradas:</b></p>
           <ul class="browser-default" id="empresas-futura-pego-pj">
-            <li>Empresa qualquer</li>
-            <li>Empresa qualquer</li>
-            <li>Empresa qualquer</li>
+            <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS FUTURAS REGISTRADAS -->
           </ul>
         </div>
 
@@ -533,11 +528,11 @@
           <p>Quitado?</p>
           <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
             <label>
-              <input id="quitado-veiculo-frota-pj" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="quitado-veiculo-frota-pj" type="checkbox"/>
               <span>Sim</span>
             </label>
             <label>
-              <input id="nao-quitado-veiculo-frota-pj" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="nao-quitado-veiculo-frota-pj" type="checkbox"/>
               <span>Não</span>
             </label>
           </div>
@@ -550,9 +545,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>Veiculos da frota registrados:</b></p>
           <ul class="browser-default" id="veiculos-frota-pego-pj">
-            <li>Um carro qualquer</li>
-            <li>Um carro qualquer</li>
-            <li>Um carro qualquer</li>
+            <!-- AQUI SERÃO RENDERIZADOS OS VEICULOS DA FROTA REGISTRADOS -->
           </ul>
         </div>
 
@@ -582,9 +575,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>Referencias comerciais registradas:</b></p>
           <ul class="browser-default" id="referencia-comercial-pego-pj">
-            <li>Uma empresa qualquer</li>
-            <li>Uma empresa qualquer</li>
-            <li>Uma empresa qualquer</li>
+            <!-- AQUI SERÃO RENDERIZADOS AS REFERENCIAS COMERCIAIS REGISTRADAS -->
           </ul>
         </div>
 
@@ -728,7 +719,7 @@
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
   <!-- MODAL CADASTRO PF -->
-  <div id="pf-form" style="overflow: scroll; display: none;"> 
+  <div id="pf-form" style="overflow: scroll; display: none; overflow-x: hidden;"> 
     <div class="form-body container">
       
       <!-- Cabeçalho indicando a qual escopo pertence o form-->
@@ -763,16 +754,14 @@
 
         <p>CNPJ (caso possua empresa)</p>
         <div style="display: flex;">
-          <input id="cnpj-pf" placeholder="00.000.000/0000-00" class="validate"/input><a class="btn waves-effect" id="add-cpf"><i class="tiny material-icons">add</i></a>
+          <input id="cnpj-pf" placeholder="00.000.000/0000-00" class="validate"/input><a class="btn waves-effect" id="add-cnpj"><i class="tiny material-icons">add</i></a>
         </div>
 
         <!-- Começo da lista de CNPJ's registrados-->
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
           <p><b>CNPJ's registrados:</b></p>
           <ul class="browser-default" id="cnpj-pego">
-            <li>00.000.000/0000-00</li>
-            <li>00.000.000/0000-00</li>
-            <li>00.000.000/0000-00</li>
+            <!-- AQUI SERÃO RENDERIZADOS OS CNPJ's CADASTRADOS-->
           </ul>
         </div>
         <!-- Fim da lista de CNPJ's registrados -->
@@ -884,11 +873,11 @@
           <p>Imovel próprio?</p>
           <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
             <label>
-              <input id="imovel-proprio-pf-sim" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="imovel-proprio-pf-sim" type="checkbox"/>
               <span>Sim</span>
             </label>
             <label>
-              <input id="imovel-proprio-pf-nao" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="imovel-proprio-pf-nao" type="checkbox"/>
               <span>Não</span>
             </label>
           </div>
@@ -1158,11 +1147,11 @@
           <p>Quitado?</p>
           <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
             <label>
-              <input id="quitado-veiculo-frota-pf" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="quitado-veiculo-frota-pf" type="checkbox"/>
               <span>Sim</span>
             </label>
             <label>
-              <input id="nao-quitado-veiculo-frota-pf" type="checkbox" class="filled-in" checked="unchecked" />
+              <input id="nao-quitado-veiculo-frota-pf" type="checkbox">
               <span>Não</span>
             </label>
           </div>
@@ -1323,7 +1312,9 @@
   <script src="./app.js"></script>
   <script src="./scripts/enableForms.js"></script>
   <script src="./scripts/renderCards.js"></script>
-  <script src="./scripts/cadastraPJ.js"></script>
-  <script src="./scripts/cadastraPF.js"></script>
+  <script src="./scripts/selecionaPJ.js"></script>
+  <script src="./scripts/selecionaPF.js"></script>
+  <script src="./scripts/pfFormController.js"></script>
+  <script src="./scripts/pjFormController.js"></script>
   </body>
 </html>
