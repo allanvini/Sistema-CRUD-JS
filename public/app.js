@@ -14,6 +14,7 @@ var config =  {
   var firestore = firebase.firestore()
 
   function createPJ(pjData){
+    console.log(pjData);
     const docRef = firestore.doc(`PJ/${pjData.dadosCadastrais.CNPJ}`)
     var anos = [];
     var marcas = [];

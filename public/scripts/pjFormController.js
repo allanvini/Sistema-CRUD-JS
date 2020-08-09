@@ -199,7 +199,7 @@ finalizaCadastroPJ.addEventListener('click',()=>{
             razaoSocial : document.getElementById('razao-social').value,
             CNPJ : document.getElementById('cnpj-empresa').value,
             email : document.getElementById('email-empresa').value,
-            cpfSocios : cpfSociosPJ,
+            CPF : cpfSociosPJ,
             dataAbertura : document.getElementById('data-abertura-empresa').value,
             capitalSocial : document.getElementById('capital-social-empresa').value,
             numeroFuncionariosRegistrados : document.getElementById('numero-funcionarios-registrados').value,
@@ -257,9 +257,12 @@ finalizaCadastroPJ.addEventListener('click',()=>{
         }
     } // fim do objeto
 
+    createPJ(newPJ);
+
     limpaCamposPJ();
-    console.log(newPJ);
     document.getElementById('pj-form').style.display = "none";
+
+
 
 })
 

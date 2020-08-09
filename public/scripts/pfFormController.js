@@ -2,6 +2,11 @@ let cancelaCadastroPF = document.getElementById('cancela-cadastro-pf');
 let finalizaCadastroPF = document.getElementById('conclui-cadastro-pf');
 
 let cnpjContainerPF = document.getElementById('cnpj-pego');
+let empresasAtuaisContainerPF = document.getElementById('empresas-atuais-pego-pf');
+let empresasAnterioresContainerPF = document.getElementById('empresas-anterior-pego-pf');
+let empresasFuturasContainerPF = document.getElementById('empresas-futura-pego-pf');
+let veiculosFrotaContainerPF = document.getElementById('veiculos-frota-pego-pf');
+let referenciaPessoalContainerPF = document.getElementById('referencia-pessoal-pego-pf');
 
 let cnpjCadastrados = [];
     document.getElementById('add-cnpj').addEventListener('click',()=>{
@@ -39,6 +44,18 @@ let cnpjCadastrados = [];
         })
     }
 
+let veiculoQuitadoFrotaStatePF = null;
+    document.getElementById('quitado-veiculo-frota-pf').addEventListener('click',()=>{
+        veiculoQuitadoFrotaStatePF = true;
+        console.log(veiculoQuitadoFrotaStatePF);
+        document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
+    });
+    document.getElementById('nao-quitado-veiculo-frota-pf').addEventListener('click',()=>{
+        veiculoQuitadoFrotaStatePF = false;
+        console.log(veiculoQuitadoFrotaStatePF);
+        document.getElementById('quitado-veiculo-frota-pf').checked = false;
+    });
+
 let imovelProprioStatePF = null;
     document.getElementById('imovel-proprio-pf-sim').addEventListener('click',()=>{
         imovelProprioStatePF = true;
@@ -53,6 +70,250 @@ cancelaCadastroPF.addEventListener('click', ()=>{
     document.getElementById('pf-form').style.display = "none";
     limpaCamposPF();
 })
+
+let empresasAtuaisPF = [];
+    document.getElementById('add-empresa-atual-pf').addEventListener('click',()=>{
+        empresasAtuaisPF.push({
+            nomeDaEmpresa : document.getElementById('nome-empresa-atual-pf').value,
+            cep : document.getElementById('cep-empresa-atual-pf').value,
+            cidade : document.getElementById('cidade-empresa-atual-pf').value,
+            rua : document.getElementById('rua-empresa-atual-pf').value,
+            bairro : document.getElementById('bairro-empresa-atual-pf').value,
+            numero : document.getElementById('numero-empresa-atual-pf').value,
+            telefoneFixo : document.getElementById('telefone-fixo-empresa-atual-pf').value,
+            celular : document.getElementById('celular-empresa-atual-pf').value,
+            tempoDeServico : document.getElementById('tempo-empresa-atual-pf').value,
+            faturamentoAtual : document.getElementById('faturamento-atual-empresa-atual-pf').value,
+            faturamentoFuturo : document.getElementById('faturamento-futuro-empresa-atual-pf').value
+        })
+
+        //FUNÇÃO QUE RENDERIZA OS CADASTROS JA FEITOS
+        renderizaEmpresasAtuaisPF(empresasAtuaisContainerPF, empresasAtuaisPF);
+
+        document.getElementById('nome-empresa-atual-pf').value = "";
+        document.getElementById('cep-empresa-atual-pf').value = "";
+        document.getElementById('cidade-empresa-atual-pf').value = "";
+        document.getElementById('rua-empresa-atual-pf').value = "";
+        document.getElementById('bairro-empresa-atual-pf').value = "";
+        document.getElementById('numero-empresa-atual-pf').value = "";
+        document.getElementById('telefone-fixo-empresa-atual-pf').value = "";
+        document.getElementById('celular-empresa-atual-pf').value = "";
+        document.getElementById('tempo-empresa-atual-pf').value = "";
+        document.getElementById('faturamento-atual-empresa-atual-pf').value = "";
+        document.getElementById('faturamento-futuro-empresa-atual-pf').value = "";
+    })
+
+    function deleteEmpresaAtualFromArrayPF(pos){
+        empresasAtuaisPF.splice(pos,1);
+        renderizaEmpresasAtuaisPF(empresasAtuaisContainerPF,empresasAtuaisPF);
+    }
+
+    function renderizaEmpresasAtuaisPF(container,data){
+        container.innerHTML = "";
+
+        data.forEach(element=>{
+            let li = document.createElement('li');
+            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Tempo : ${element.tempoDeServico} / Faturamento : ${element.faturamentoAtual}`);
+
+            let pos = data.indexOf(element);
+
+            let icon = document.createTextNode("X");
+
+            let del = document.createElement('a');
+            del.setAttribute('class', 'btn-small');
+            del.style.marginLeft = "10px";
+            del.appendChild(icon);
+            del.setAttribute('onclick', `deleteEmpresaAtualFromArrayPF(${pos})`);
+
+            li.appendChild(content);
+            li.appendChild(del);
+
+            container.appendChild(li);
+        })
+
+    }
+
+let empresasAnterioresPF = [];
+    document.getElementById('add-empresa-anterior-pf').addEventListener('click',()=>{
+        empresasAnterioresPF.push({
+            nomeDaEmpresa : document.getElementById('nome-empresa-anterior-pf').value,
+            cep : document.getElementById('cep-empresa-anterior-pf').value,
+            cidade : document.getElementById('cidade-empresa-anterior-pf').value,
+            rua : document.getElementById('rua-empresa-anterior-pf').value,
+            bairro : document.getElementById('bairro-empresa-anterior-pf').value,
+            numero : document.getElementById('numero-empresa-anterior-pf').value,
+            telefoneFixo : document.getElementById('telefone-fixo-empresa-anterior-pf').value,
+            celular : document.getElementById('celular-empresa-anterior-pf').value,
+            tempoDeServico : document.getElementById('tempo-empresa-anterior-pf').value,
+            salario : document.getElementById('salario-empresa-anterior-pf').value
+        })
+
+        // FUNÇÃO QUE RENDERIZA AS EMPRESAS ANTERIORES CADASTRADAS
+        renderEmpresasAnterioresPF(empresasAnterioresContainerPF,empresasAnterioresPF);
+
+        document.getElementById('nome-empresa-anterior-pf').value = "";
+        document.getElementById('cep-empresa-anterior-pf').value = "";
+        document.getElementById('cidade-empresa-anterior-pf').value = "";
+        document.getElementById('rua-empresa-anterior-pf').value = "";
+        document.getElementById('bairro-empresa-anterior-pf').value = "";
+        document.getElementById('numero-empresa-anterior-pf').value = "";
+        document.getElementById('telefone-fixo-empresa-anterior-pf').value = "";
+        document.getElementById('celular-empresa-anterior-pf').value = "";
+        document.getElementById('tempo-empresa-anterior-pf').value = "";
+        document.getElementById('salario-empresa-anterior-pf').value = "";
+    })
+
+    function deleteEmpresaAnteriorFromArrayPF(pos){
+        empresasAnterioresPF.splice(pos, 1);
+        renderEmpresasAnterioresPF(empresasAnterioresContainerPF,empresasAnterioresPF);
+    }
+
+    function renderEmpresasAnterioresPF (container,data){
+        container.innerHTML = "";
+
+        data.forEach(element=>{
+            let li = document.createElement('li');
+            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Tempo : ${element.tempoDeServico} / Faturamento : ${element.salario}`);
+
+            let pos = data.indexOf(element);
+
+            let icon = document.createTextNode("X");
+
+            let del = document.createElement('a');
+            del.setAttribute('class', 'btn-small');
+            del.style.marginLeft = "10px";
+            del.appendChild(icon);
+            del.setAttribute('onclick', `deleteEmpresaAnteriorFromArrayPF(${pos})`);
+
+            li.appendChild(content);
+            li.appendChild(del);
+
+            container.appendChild(li);
+        })
+    }
+
+let empresasFuturasPF = [];
+    document.getElementById('add-empresa-futura-pf').addEventListener('click',()=>{
+        empresasFuturasPF.push({
+            nomeDaEmpresa : document.getElementById('nome-empresa-futura-pf').value,
+            cep : document.getElementById('cep-empresa-futura-pf').value,
+            cidade : document.getElementById('cidade-empresa-futura-pf').value,
+            rua : document.getElementById('rua-empresa-futura-pf').value,
+            bairro : document.getElementById('bairro-empresa-futura-pf').value,
+            numero : document.getElementById('numero-empresa-futura-pf').value,
+            telefoneFixo : document.getElementById('telefone-fixo-empresa-futura-pf').value,
+            celular : document.getElementById('celular-empresa-futura-pf').value,
+            salario : document.getElementById('salario-empresa-futura-pf').value
+        })
+
+        // FUNÇÃO QUE RENDERIZA AS EMPRESAS FUTURAS CADASTRADAS
+        renderEmpresasFuturasPF (empresasFuturasContainerPF,empresasFuturasPF)
+
+        document.getElementById('nome-empresa-futura-pf').value = "";
+        document.getElementById('cep-empresa-futura-pf').value = "";
+        document.getElementById('cidade-empresa-futura-pf').value = "";
+        document.getElementById('rua-empresa-futura-pf').value = "";
+        document.getElementById('bairro-empresa-futura-pf').value = "";
+        document.getElementById('numero-empresa-futura-pf').value = "";
+        document.getElementById('telefone-fixo-empresa-futura-pf').value = "";
+        document.getElementById('celular-empresa-futura-pf').value = "";
+        document.getElementById('salario-empresa-futura-pf').value = "";
+
+    })
+
+    function deleteEmpresaFuturaFromArrayPF(pos){
+        empresasFuturasPF.splice(pos,1);
+        renderEmpresasFuturasPF (empresasFuturasContainerPF,empresasFuturasPF);
+    }
+
+    function renderEmpresasFuturasPF(container,data){
+        container.innerHTML = "";
+
+        data.forEach(element=>{
+            let li = document.createElement('li');
+            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Salario : ${element.salario}`);
+
+            let pos = data.indexOf(element);
+
+            let icon = document.createTextNode("X");
+
+            let del = document.createElement('a');
+            del.setAttribute('class', 'btn-small');
+            del.style.marginLeft = "10px";
+            del.appendChild(icon);
+            del.setAttribute('onclick', `deleteEmpresaFuturaFromArrayPF(${pos})`);
+
+            li.appendChild(content);
+            li.appendChild(del);
+
+            container.appendChild(li);
+        })
+    }
+
+
+let frotaDeVeiculosPF = [];
+    document.getElementById('add-veiculo-frota-pf').addEventListener('click',()=>{
+        frotaDeVeiculosPF.push({
+            marca : document.getElementById('marca-veiculo-frota-pf').value,
+            modelo : document.getElementById('modelo-veiculo-frota-pf').value,
+            ano : document.getElementById('ano-veiculo-frota-pf').value,
+            placa : document.getElementById('placa-veiculo-frota-pf').value,
+            tempoEmNome : document.getElementById('tempo-em-nome-veiculo-frota-pf').value,
+            quitado : veiculoQuitadoFrotaStatePF
+        })
+
+        //FUNÇÃO QUE RENDERIZA A FROTA CADASTRADA
+        renderFrotaDeVeiculosPF(veiculosFrotaContainerPF, frotaDeVeiculosPF);
+        console.log(frotaDeVeiculosPF)
+
+        document.getElementById('marca-veiculo-frota-pf').value = "";
+        document.getElementById('modelo-veiculo-frota-pf').value = "";
+        document.getElementById('ano-veiculo-frota-pf').value = "";
+        document.getElementById('placa-veiculo-frota-pf').value = "";
+        document.getElementById('tempo-em-nome-veiculo-frota-pf').value = "";
+        document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
+        document.getElementById('quitado-veiculo-frota-pf').checked = false;
+        veiculoQuitadoFrotaState = null;
+
+    })
+
+    function deleteVeiculoFrotaFromArray(pos){
+        frotaDeVeiculosPF.splice(pos,1);
+        renderFrotaDeVeiculosPF(veiculosFrotaContainerPF, frotaDeVeiculosPF);
+    }
+
+    function renderFrotaDeVeiculosPF(container,data){
+        container.innerHTML = "";
+
+        data.forEach(element=>{
+            let quitado;
+            if (element.quitado){
+                quitado = "Sim"
+            } else {
+                quitado = "Não"
+            }
+
+            let li = document.createElement('li');
+            let content = document.createTextNode(`Marca: ${element.marca} / Modelo: ${element.modelo} / Ano: ${element.ano} / Quitado?: ${quitado} `);
+
+            let pos = data.indexOf(element);
+
+            let icon = document.createTextNode("X");
+
+            let del = document.createElement('a');
+            del.setAttribute('class', 'btn-small');
+            del.style.marginLeft = "10px";
+            del.appendChild(icon);
+            del.setAttribute('onclick', `deleteVeiculoFrotaFromArray(${pos})`);
+
+            li.appendChild(content);
+            li.appendChild(del);
+
+            container.appendChild(li);
+        })
+    }
+
+    
 
 finalizaCadastroPF.addEventListener('click', ()=>{
     let newPF = {
@@ -81,15 +342,23 @@ finalizaCadastroPF.addEventListener('click', ()=>{
         endereco : {
             enderecoAtual : {
                 cep : document.getElementById('CEP-endereco-atual-pf').value,
-                cidade,
-                rua,
-                bairro,
-                numero,
-                telefoneFixo,
-                celular,
-                tempoResidencial,
+                cidade : document.getElementById('cidade-endereco-atual-pf').value,
+                rua : document.getElementById('rua-endereco-atual-pf').value,
+                bairro : document.getElementById('bairro-endereco-atual-pf').value,
+                numero : document.getElementById('numero-endereco-atual-pf').value,
+                telefoneFixo : document.getElementById('telefone-fixo-pf').value,
+                celular : document.getElementById('celular-pf').value,
+                tempoResidencial : document.getElementById('tempo-residencia-atual-pf').value,
                 imovelProprio : imovelProprioStatePF,
-                valorDoImovel
+                valorDoImovel : document.getElementById('valor-imovel-residencia-atual-pf').value
+            },
+            enderecoAnterior : {
+                cep : document.getElementById('CEP-endereco-anterior-pf').value,
+                cidade : document.getElementById('').value,
+                rua : document.getElementById('rua-endereco-anterior-pf').value,
+                bairro : document.getElementById('bairro-endereco-anterior-pf').value,
+                numero : document.getElementById('numero-endereco-anterior-pf').value,
+                tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf').value
             }
         }
     }
@@ -117,4 +386,20 @@ function limpaCamposPF(){
     document.getElementById('imovel-proprio-pf-sim').checked = false;
     document.getElementById('imovel-proprio-pf-nao').checked = false;
     imovelProprioStatePF = null;
+    document.getElementById('cidade-endereco-atual-pf').value = "";
+    document.getElementById('rua-endereco-atual-pf').value = "";
+    document.getElementById('bairro-endereco-atual-pf').value = "";
+    document.getElementById('numero-endereco-atual-pf').value = "";
+    document.getElementById('telefone-fixo-pf').value = "";
+    document.getElementById('celular-pf').value = "";
+    document.getElementById('tempo-residencia-atual-pf').value = "";
+    document.getElementById('valor-imovel-residencia-atual-pf').value = "";
+    document.getElementById('CEP-endereco-anterior-pf').value = "";
+    document.getElementById('rua-endereco-anterior-pf').value = "";
+    document.getElementById('bairro-endereco-anterior-pf').value = "";
+    document.getElementById('numero-endereco-anterior-pf').value = "";
+    document.getElementById('tempo-residencia-anterior-pf').value = "";
+    document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
+    document.getElementById('quitado-veiculo-frota-pf').checked = false;
+    veiculoQuitadoFrotaState = null;
 }
