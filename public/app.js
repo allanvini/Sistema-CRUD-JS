@@ -13,6 +13,7 @@ var config =  {
   firebase.initializeApp(config);
   var firestore = firebase.firestore()
 
+  //PJ Functions
   function createPJ(pjData){
     console.log(pjData);
     const docRef = firestore.doc(`PJ/${pjData.dadosCadastrais.CNPJ}`)
@@ -48,38 +49,36 @@ var config =  {
         FILTROS: filtros,
         pjData
     }).then(function(){
-        console.log("saved")
+        return true
     }).catch(function(error){
-        console.log(error)
-    })
-  }
-
-  function createPF(pfData){
-    const docRef = firestore.doc(`PF/${pfData.dadosCadastrais.CPF}`)
-    docRef.set({
-        CPF: pfData.dadosCadastrais.CPF,
-
-    }).then(function(){
-        console.log("saved")
-    }).catch(function(error){
-        console.log(error)
+        return error
     })
   }
 
   function getPJ(cpnj){
-
       firestore.collection("PJ").where("CNPJ", "==", cpnj)
       .get()
       .then(function(querySnapshot) {
           querySnapshot.forEach(function(doc) {
               // doc.data() is never undefined for query doc snapshots
               console.log(doc.id, " => ", doc.data());
+              return doc.data()
           });
       })
       .catch(function(error) {
           console.log("Error getting documents: ", error);
+          return false
       });
 
+  }
+
+  function deletePJ(document){
+    firestore.collection("PJ").doc(document).delete().then(function() {
+        console.log("Document successfully deleted!");
+        return true
+    }).catch(function(error) {
+        return false
+    });
   }
 
   function getPJByCPF(cpf){
@@ -89,10 +88,12 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
 
   }
@@ -103,10 +104,12 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
   }
 
@@ -116,9 +119,78 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
+            return doc.data()
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
+        return false
     });
+  }
+
+  
+  //PF Functions
+
+  function createPF(pfData){
+    const docRef = firestore.doc(`PF/${pfData.dadosCadastrais.CPF}`)
+
+    let filtros = [...pfData.dadosCadastrais.CNPJ, pfData.dadosCadastrais.CPF];
+    console.log(filtros)
+    docRef.set({
+        CPF: pfData.dadosCadastrais.CPF,
+        FILTROS: filtros,
+        pfData
+    }).then(function(){
+        console.log("saved")
+    }).catch(function(error){
+        console.log(error)
+    })
+  }
+  
+  function getPFByFilter(CPF=0, CNPJ=0){
+    firestore.collection("PF").where('FILTROS', 'array-contains-any',
+    [CPF, CNPJ])
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id, " => ", doc.data());
+            return doc.data()
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        return false
+    });
+
+  }
+
+  function getAllPF(page=25){
+    firestore.collection("PF").limit(page)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            console.log(doc.id, " => ", doc.data());
+            return doc.data()
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+        return false
+    });
+  }
+
+  function deletePF(document){
+    firestore.collection("PF").doc(document).delete().then(function() {
+        console.log("Document successfully deleted!");
+        return true
+    }).catch(function(error) {
+        return false
+    });
+  }
+
+  function auth(email, password){
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+        return false  
+      });
+      return true
   }
