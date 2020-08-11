@@ -1,7 +1,6 @@
-function renderCards(container, data){
+function renderCardsPJ(container, data){
 
     container.innerHTML = "";
-
     /**
      * HTML Template
      * 
@@ -18,18 +17,15 @@ function renderCards(container, data){
           <a href="#">This is a link</a>
         </div>
       </div>
-
      */
-
     data.forEach(element => {
-
         let cardDescription = document.createElement('p');
-            let cardDescriptionContent = document.createTextNode(element.descricao);
+            let cardDescriptionContent = document.createTextNode(`CNPJ: ${element.pjData.dadosCadastrais.CNPJ} Email: ${element.pjData.dadosCadastrais.email}`);
             cardDescription.appendChild(cardDescriptionContent);
 
         let cardTitle = document.createElement('span');
             cardTitle.setAttribute('class', 'card-title');
-            let cardTitleContent = document.createTextNode(element.titulo);
+            let cardTitleContent = document.createTextNode(element.pjData.dadosCadastrais.razaoSocial);
             cardTitle.appendChild(cardTitleContent);
 
         let cardDataContainer = document.createElement('div');

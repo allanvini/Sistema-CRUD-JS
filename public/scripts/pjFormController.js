@@ -32,7 +32,7 @@ let veiculoQuitadoStatePJ = null;
 
 let cpfSociosPJ = [];
     document.getElementById('add-cpf').addEventListener('click', ()=>{
-        cpfSociosPJ.push(document.getElementById('cpfs-empresa').value);
+        cpfSociosPJ.push(document.getElementById('cpfs-empresa').value.replace(/[^\d]+/g,''));
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
         renderCPFPJ(cpfContainerPJ,cpfSociosPJ);
@@ -197,7 +197,7 @@ finalizaCadastroPJ.addEventListener('click',()=>{
     let newPJ = {
         dadosCadastrais : {
             razaoSocial : document.getElementById('razao-social').value,
-            CNPJ : document.getElementById('cnpj-empresa').value,
+            CNPJ : document.getElementById('cnpj-empresa').value.replace(/[^\d]+/g,''),
             email : document.getElementById('email-empresa').value,
             CPF : cpfSociosPJ,
             dataAbertura : document.getElementById('data-abertura-empresa').value,
@@ -343,6 +343,7 @@ function renderCPFPJ (container, data){
 
     data.forEach(element => {
         let li = document.createElement('li');
+
         let content = document.createTextNode(element);
 
         let pos = data.indexOf(element);

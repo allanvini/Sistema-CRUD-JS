@@ -14,6 +14,9 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    
 
 
    </head>
@@ -131,14 +134,14 @@
         <input id="razao-social" placeholder="Razão social" class="validate"/input>
 
         <p>CNPJ</p>
-        <input id="cnpj-empresa" placeholder="CNPJ" class="validate"/input>
+        <input id="cnpj-empresa" placeholder="00.000.000/0000-00" class="validate cnpj"/input>
 
         <p>E-Mail</p>
-        <input id="email-empresa" placeholder="E-Mail" class="validate"/input>
+        <input type="email" id="email-empresa" placeholder="exemplo@gmail.com" class="validate"/input>
 
         <p>CPF's dos sócios</p>
         <div style="display: flex;">
-          <input id="cpfs-empresa" placeholder="CPF" class="validate"/input><a class="btn waves-effect" id="add-cpf"><i class="tiny material-icons">add</i></a>
+          <input type="text" id="cpfs-empresa" placeholder="000.000.000-00" class="validate cpf"/input><a class="btn waves-effect" id="add-cpf"><i class="tiny material-icons">add</i></a>
         </div>
 
         <!-- Começo da lista de CPF's registrados-->
@@ -151,28 +154,28 @@
         <!-- Fim da lista de CPFs registrados -->
 
         <p>Data de abertura</p>
-        <input id="data-abertura-empresa" placeholder="Data de abertira" class="validate"/input>
+        <input id="data-abertura-empresa" placeholder="00/00/0000" class="validate data"/input>
 
         <p>Capital Social</p>
-        <input id="capital-social-empresa" placeholder="Capital social" class="validate"/input>
+        <input id="capital-social-empresa" placeholder="R$ 00.000,00" class="validate"/input>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr;">
           <p>Numero de funcionarios registrados</p>
-          <input id="numero-funcionarios-registrados" placeholder="Funcionarios registrados" class="validate"/input>
+          <input id="numero-funcionarios-registrados" placeholder="00" class="validate"/input>
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-pj" placeholder="Telefone" class="validate"/input>
+        <input id="telefone-fixo-pj" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <div class="input-field align-center" style="display: flex;">
           <p>CEP</p>
-          <input id="cep-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
+          <input id="cep-empresa" placeholder="00000-000" class="validate cep" style="margin-left: 10px;"/input>
           <p>Cidade</p>
           <input id="cidade-empresa" placeholder="" class="validate" style="margin-left: 10px;"/input>
         </div>
 
         <p>Rua</p>
-        <input id="rua-empresa" placeholder="Rua" class="validate"/input>
+        <input id="rua-empresa" placeholder="" class="validate"/input>
 
         <div class="input-field align-center" style="display: flex;">
           <p>Bairro</p>
@@ -210,10 +213,10 @@
         </div>
 
         <p>Tempo de conta</p>
-        <input id="tempo-conta-empresa" placeholder="Agencia" class="validate"/input>
+        <input id="tempo-conta-empresa" placeholder="Ex: 2 anos" class="validate"/input>
 
         <p>Telefone da agência</p>
-        <input id="telefone-agencia-empresa" placeholder="Agencia" class="validate"/input>
+        <input id="telefone-agencia-empresa" placeholder="(00) 0000-0000" class="validate telefone"/input>
         <!-- Fim dos Dados Bancarios -->
 
 
@@ -274,10 +277,10 @@
         <input id="escritorio-contador-empresa" placeholder="Escritório" class="validate"/input>
 
         <p>Telefone fixo</p>
-        <input id="telefone-fixo-contador-empresa" placeholder="Telefone Fixo" class="validate"/input>
+        <input id="telefone-fixo-contador-empresa" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-contador-empresa" placeholder="Celular" class="validate"/input>
+        <input id="celular-contador-empresa" placeholder="(00) 00000-0000" class="validate telefone"/input>
         <!-- Fim dos dados do Contador-->
 
 
@@ -306,7 +309,7 @@
 
         <div class="input-field" style="display: grid; grid-template-columns: 1fr 10fr 1fr; align-items: inherit;">
           <p>Valor</p>
-          <input id="valor-faturamento" placeholder="R$" class="validate"/input>
+          <input id="valor-faturamento" placeholder="R$ 00.000,00" class="validate"/input>
           <a class="btn waves-effect" id="add-faturamento"><i class="tiny material-icons">add</i></a>
         </div>
             <!-- Lista de faturamentos registrados-->
@@ -341,7 +344,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-atual-pj" placeholder="" class="validate"/input>
+          <input id="cep-empresa-atual-pj" placeholder="00000-000" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-atual-pj" placeholder="" class="validate"/input>
         </div>
@@ -357,19 +360,19 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-atual-pj" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="celular-empresa-atual-pj" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-atual-pj" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Faturamento atual</p>
-        <input id="faturamento-atual-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-futuro-empresa-atual-pj" placeholder="" class="validate"/input>
+        <input id="faturamento-futuro-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-atual-pj"><i class="tiny material-icons">add</i></a>
@@ -402,7 +405,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-anterior-pj" placeholder="" class="validate"/input>
+          <input id="cep-empresa-anterior-pj" placeholder="" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-anterior-pj" placeholder="" class="validate"/input>
         </div>
@@ -418,16 +421,16 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-anterior-pj" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-anterior-pj" placeholder="" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-anteriorpj" placeholder="" class="validate"/input>
+        <input id="celular-empresa-anteriorpj" placeholder="" class="validate telefone"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-anterior-pj" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-anterior-pj" placeholder="Ex: 2 anos" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-anterior-pj" placeholder="" class="validate"/input>
+        <input id="salario-empresa-anterior-pj" placeholder="R$ 00.000,00" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-anterior-pj"><i class="tiny material-icons">add</i></a>
@@ -436,7 +439,7 @@
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
           <p><b>Empresas anteriores registradas:</b></p>
           <ul class="browser-default" id="empresas-anterior-pego-pj">
-            <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ANTERIORES REGISTRADAS-->>
+            <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ANTERIORES REGISTRADAS-->
           </ul>
         </div>
         <!-- FIM DAS EMPRESAS ANTERIORES -->
@@ -458,7 +461,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-futura-pj" placeholder="" class="validate"/input>
+          <input id="cep-empresa-futura-pj" placeholder="" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-futura-pj" placeholder="" class="validate"/input>
         </div>
@@ -474,10 +477,10 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-futura-pj" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-futura-pj" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-futura-pj" placeholder="" class="validate"/input>
+        <input id="celular-empresa-futura-pj" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Salário</p>
         <input id="salario-empresa-futura-pj" placeholder="" class="validate"/input>
@@ -519,11 +522,11 @@
           <p>Ano</p>
           <input id="ano-veiculo-frota-pj" placeholder="'2015'" class="validate"/input>
           <p>Placa</p>
-          <input id="placa-veiculo-frota-pj" placeholder="'AAA-0000'" class="validate"/input>
+          <input id="placa-veiculo-frota-pj" placeholder="'AAA-0000'" class="validate placa"/input>
         </div>
 
         <p>Tempo em nome</p>
-        <input id="tempo-em-nome-veiculo-frota-pj" placeholder="'2015'" class="validate"/input>
+        <input id="tempo-em-nome-veiculo-frota-pj" placeholder="Ex: 5 anos" class="validate"/input>
 
 
         <div style="display: flex;">
@@ -568,7 +571,7 @@
         <p>Empresa</p>
         <input id="nome-empresa-referencia-comercial-pj" placeholder="" class="validate"/input>
         <p>Telefone</p>
-        <input id="telefone-empresa-referencia-comercial-pj" placeholder="" class="validate"/input>
+        <input id="telefone-empresa-referencia-comercial-pj" placeholder="" class="validate telefone"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-referencia-comercial-pj"><i class="tiny material-icons">add</i></a>
@@ -610,7 +613,7 @@
           <p>Ano</p>
           <input id="ano-veiculo-a-financiar-pj" placeholder="'2015'" class="validate"/input>
           <p>Placa</p>
-          <input id="placa-veiculo-a-financiar-pj" placeholder="'AAA-0000'" class="validate"/input>
+          <input id="placa-veiculo-a-financiar-pj" placeholder="'AAA-0000'" class="validate placa"/input>
         </div>
 
         <p>Valor de venda</p>
@@ -635,7 +638,7 @@
         <input id="indicacao-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
 
         <p>Data de conclusão</p>
-        <input id="data-conclusao-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <input id="data-conclusao-veiculo-a-financiar-pj" placeholder="" class="validate data"/input>
 
         <p>Resposta de negativa de credito</p>
         <input id="resposta-negativa-credito-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
@@ -749,14 +752,14 @@
         <input id="nome-completo-pf" placeholder="Nome completo" class="validate"/input>
 
         <p>CPF</p>
-        <input id="CPF-pf" placeholder="000.000.000-00" class="validate"/input>
+        <input id="CPF-pf" placeholder="000.000.000-00" class="validate cpf"/input>
 
         <p>E-Mail</p>
-        <input id="email-pf" placeholder="E-Mail" class="validate"/input>
+        <input type="email" id="email-pf" placeholder="E-Mail" class="validate"/input>
 
         <p>CNPJ (caso possua empresa)</p>
         <div style="display: flex;">
-          <input id="cnpj-pf" placeholder="00.000.000/0000-00" class="validate"/input><a class="btn waves-effect" id="add-cnpj"><i class="tiny material-icons">add</i></a>
+          <input id="cnpj-pf" placeholder="00.000.000/0000-00" class="validate cnpj"/input><a class="btn waves-effect" id="add-cnpj"><i class="tiny material-icons">add</i></a>
         </div>
 
         <!-- Começo da lista de CNPJ's registrados-->
@@ -769,10 +772,10 @@
         <!-- Fim da lista de CNPJ's registrados -->
 
         <p>RG</p>
-        <input id="RG-pf" placeholder="00.000.000-0" class="validate"/input>
+        <input id="RG-pf" placeholder="00.000.000-0" class="validate rg"/input>
 
         <p>Data de nascimento</p>
-        <input id="data-nascimento-pf" placeholder="DD/MM/AAAA" class="validate"/input>
+        <input id="data-nascimento-pf" placeholder="DD/MM/AAAA" class="validate data"/input>
 
         <p>Estado civil</p>
         <input id="estado-civil-pf" placeholder="Estado civil" class="validate"/input>
@@ -815,10 +818,10 @@
         </div>
 
         <p>Tempo de conta</p>
-        <input id="tempo-conta-pf" placeholder="Agencia" class="validate"/input>
+        <input id="tempo-conta-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Telefone da agência</p>
-        <input id="telefone-agencia-pf" placeholder="Agencia" class="validate"/input>
+        <input id="telefone-agencia-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
         <!-- Fim dos Dados Bancarios -->
 
 
@@ -847,7 +850,7 @@
 
         <div class="input-field align-center" style="display: flex;">
           <p>CEP</p>
-          <input id="CEP-endereco-atual-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+          <input id="CEP-endereco-atual-pf" placeholder="" class="validate parted-input cep" style="margin-left: 10px;"/input>
           <p>CIDADE</p>
           <input id="cidade-endereco-atual-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
         </div>
@@ -863,13 +866,13 @@
         </div>
 
         <p>Telefone fixo</p>
-        <input id="telefone-fixo-pf" placeholder="Telefone fixo" class="validate"/input>
+        <input id="telefone-fixo-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-pf" placeholder="Celular" class="validate"/input>
+        <input id="celular-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Tempo residencial</p>
-        <input id="tempo-residencia-atual-pf" placeholder="" class="validate"/input>
+        <input id="tempo-residencia-atual-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <div style="display: flex;">
           <p>Imovel próprio?</p>
@@ -902,7 +905,7 @@
 
         <div class="input-field align-center" style="display: flex;">
           <p>CEP</p>
-          <input id="CEP-endereco-anterior-pf" placeholder="00000-000" class="validate parted-input" style="margin-left: 10px;"/input>
+          <input id="CEP-endereco-anterior-pf" placeholder="00000-000" class="validate parted-input cep" style="margin-left: 10px;"/input>
           <p>CIDADE</p>
           <input id="cidade-endereco-anterior-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
         </div>
@@ -914,11 +917,11 @@
           <p>Bairro</p>
           <input id="bairro-endereco-anterior-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
           <p>Numero</p>
-          <input id="numero-endereco-anterior-pf" placeholder="000" class="validate parted-input" style="margin-left: 10px;"/input>
+          <input id="numero-endereco-anterior-pf" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
         </div>
 
         <p>Tempo de residência</p>
-        <input id="tempo-residencia-anterior-pf" placeholder="" class="validate"/input>
+        <input id="tempo-residencia-anterior-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <!-- FIM DO ENDEREÇO ANTERIOR -->
 
@@ -954,7 +957,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-atual-pf" placeholder="" class="validate"/input>
+          <input id="cep-empresa-atual-pf" placeholder="00000-000" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-atual-pf" placeholder="" class="validate"/input>
         </div>
@@ -970,19 +973,19 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-atual-pf" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-atual-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-atual-pf" placeholder="" class="validate"/input>
+        <input id="celular-empresa-atual-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-atual-pf" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-atual-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Faturamento atual</p>
-        <input id="faturamento-atual-empresa-atual-pf" placeholder="" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-futuro-empresa-atual-pf" placeholder="" class="validate"/input>
+        <input id="faturamento-futuro-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-atual-pf"><i class="tiny material-icons">add</i></a>
@@ -1015,7 +1018,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-anterior-pf" placeholder="" class="validate"/input>
+          <input id="cep-empresa-anterior-pf" placeholder="00000-000" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-anterior-pf" placeholder="" class="validate"/input>
         </div>
@@ -1031,16 +1034,16 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-anterior-pf" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-anterior-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-anterior-pf" placeholder="" class="validate"/input>
+        <input id="celular-empresa-anterior-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Tempo de serviço</p>
-        <input id="tempo-empresa-anterior-pf" placeholder="" class="validate"/input>
+        <input id="tempo-empresa-anterior-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-anterior-pf" placeholder="" class="validate"/input>
+        <input id="salario-empresa-anterior-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-anterior-pf"><i class="tiny material-icons">add</i></a>
@@ -1071,7 +1074,7 @@
 
         <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
           <p>CEP</p>
-          <input id="cep-empresa-futura-pf" placeholder="" class="validate"/input>
+          <input id="cep-empresa-futura-pf" placeholder="00000-000" class="validate cep"/input>
           <p>Cidade</p>
           <input id="cidade-empresa-futura-pf" placeholder="" class="validate"/input>
         </div>
@@ -1087,13 +1090,13 @@
         </div>
 
         <p>Telefone Fixo</p>
-        <input id="telefone-fixo-empresa-futura-pf" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-empresa-futura-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
 
         <p>Celular</p>
-        <input id="celular-empresa-futura-pf" placeholder="" class="validate"/input>
+        <input id="celular-empresa-futura-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-futura-pf" placeholder="" class="validate"/input>
+        <input id="salario-empresa-futura-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-futura-pf"><i class="tiny material-icons">add</i></a>
@@ -1132,11 +1135,11 @@
           <p>Ano</p>
           <input id="ano-veiculo-frota-pf" placeholder="'2015'" class="validate"/input>
           <p>Placa</p>
-          <input id="placa-veiculo-frota-pf" placeholder="'AAA-0000'" class="validate"/input>
+          <input id="placa-veiculo-frota-pf" placeholder="'AAA-0000'" class="validate placa"/input>
         </div>
 
         <p>Tempo em nome</p>
-        <input id="tempo-em-nome-veiculo-frota-pf" placeholder="'2015'" class="validate"/input>
+        <input id="tempo-em-nome-veiculo-frota-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
 
         <div style="display: flex;">
@@ -1181,9 +1184,9 @@
         <p>Nome</p>
         <input id="nome-referencia-pessoal-pf" placeholder="" class="validate"/input>
         <p>Telefone fixo</p>
-        <input id="telefone-fixo-referencia-pessoal-pf" placeholder="" class="validate"/input>
+        <input id="telefone-fixo-referencia-pessoal-pf" placeholder="(00) 0000-0000" class="validate telefone"/input>
         <p>Celular</p>
-        <input id="telefone-fixo-referencia-pessoal-pf" placeholder="" class="validate"/input>
+        <input id="celular-referencia-pessoal-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-referencia-pessoal-pf"><i class="tiny material-icons">add</i></a>
@@ -1225,20 +1228,20 @@
           <p>Ano</p>
           <input id="ano-veiculo-a-financiar-pf" placeholder="'2015'" class="validate"/input>
           <p>Placa</p>
-          <input id="placa-veiculo-a-financiar-pf" placeholder="'AAA-0000'" class="validate"/input>
+          <input id="placa-veiculo-a-financiar-pf" placeholder="'AAA-0000'" class="validate placa"/input>
         </div>
 
         <p>Valor de venda</p>
-        <input id="valor-venda-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <input id="valor-venda-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Valor da molicar</p>
-        <input id="valor-molicar-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <input id="valor-molicar-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Valor de entrada</p>
-        <input id="valor-entrada-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <input id="valor-entrada-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Valor financiado</p>
-        <input id="valor-financiado-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <input id="valor-financiado-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
 
         <p>Banco aprovado</p>
         <input id="banco-aprovado-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
@@ -1250,7 +1253,7 @@
         <input id="indicacao-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
 
         <p>Data de conclusão</p>
-        <input id="data-conclusao-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <input id="data-conclusao-veiculo-a-financiar-pf" placeholder="" class="validate data"/input>
 
         <p>Resposta de negativa de credito</p>
         <input id="resposta-negativa-credito-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
@@ -1303,10 +1306,21 @@
 
   <script src="./app.js"></script>
   <script src="./scripts/enableForms.js"></script>
-  <script src="./scripts/renderCards.js"></script>
+  <script src="./scripts/renderCardsPJ.js"></script>
   <script src="./scripts/selecionaPJ.js"></script>
   <script src="./scripts/selecionaPF.js"></script>
   <script src="./scripts/pfFormController.js"></script>
   <script src="./scripts/pjFormController.js"></script>
+  <script>
+    $(document).ready(function($){
+      $('.telefone').mask('(00) 0000-00000', {reverse: false});
+      $('.cep').mask('00000-000', {reverse: true})
+      $('.cpf').mask('000.000.000-00', {reverse: true})
+      $('.cnpj').mask('00.000.000/0000-00', {reverse: true})
+      $('.data').mask('00/00/0000', {reverse: true})
+      $('.placa').mask('AAA-9999', {reverse: true})
+      $('.rg').mask('00.000.000-0', {reverse: true})
+    })
+  </script>
   </body>
 </html>

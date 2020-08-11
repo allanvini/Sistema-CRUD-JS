@@ -11,15 +11,17 @@ let referenciaPessoalContainerPF = document.getElementById('referencia-pessoal-p
 let cnpjCadastrados = [];
     document.getElementById('add-cnpj').addEventListener('click',()=>{
         let newCNPJ = document.getElementById('cnpj-pf')
-        cnpjCadastrados.push(newCNPJ.value);
+        cnpjCadastrados.push(newCNPJ.value.replace(/[^\d]+/g,''));
         newCNPJ.value = "";
 
         renderCnpjPF (cnpjContainerPF, cnpjCadastrados);
     })
+
     function deleteCnpjFromArray (pos){
         cnpjCadastrados.splice(pos,1);
-        renderCnpjPF(cnpjContainerPF);
+        renderCnpjPF(cnpjContainerPF,cnpjCadastrados);
     }
+
     function renderCnpjPF (container, data){
         container.innerHTML = "";
 
@@ -313,15 +315,59 @@ let frotaDeVeiculosPF = [];
         })
     }
 
+let referenciaPessoalPF = [];
+    document.getElementById('add-referencia-pessoal-pf').addEventListener('click',()=>{
+        referenciaPessoalPF.push({
+            nome : document.getElementById('nome-referencia-pessoal-pf').value,
+            telefoneFixo : document.getElementById('telefone-fixo-referencia-pessoal-pf').value,
+            celular : document.getElementById('celular-referencia-pessoal-pf').value
+        })
+
+        //FUNÇÃO QUE RENDERIZA OS CADASTROS
+        renderReferenciaPessoal(referenciaPessoalContainerPF,referenciaPessoalPF)
+
+        document.getElementById('nome-referencia-pessoal-pf').value = "";
+        document.getElementById('telefone-fixo-referencia-pessoal-pf').value = "";
+        document.getElementById('celular-referencia-pessoal-pf').value = "";
+    })
+
+    function deletaReferenciaPessoalFromArray(pos){
+        referenciaPessoalPF.splice(pos,1);
+        renderReferenciaPessoal(referenciaPessoalContainerPF,referenciaPessoalPF);
+    }
+
+    function renderReferenciaPessoal(container,data){
+        container.innerHTML = "";
+
+        data.forEach(element=>{
+            let li = document.createElement('li');
+            let content = document.createTextNode(`Nome: ${element.nome} / Fixo: ${element.telefoneFixo} / Cel: ${element.celular}`);
+
+            let pos = data.indexOf(element);
+
+            let icon = document.createTextNode("X");
+
+            let del = document.createElement('a');
+            del.setAttribute('class', 'btn-small');
+            del.style.marginLeft = "10px";
+            del.appendChild(icon);
+            del.setAttribute('onclick', `deletaReferenciaPessoalFromArray(${pos})`);
+
+            li.appendChild(content);
+            li.appendChild(del);
+
+            container.appendChild(li);
+        })
+    }
     
 
 finalizaCadastroPF.addEventListener('click', ()=>{
     let newPF = {
         dadosCadastrais : {
             nomeCompleto : document.getElementById('nome-completo-pf').value,
-            CPF : document.getElementById('CPF-pf').value,
+            CPF : document.getElementById('CPF-pf').value.replace(/[^\d]+/g,''),
             email : document.getElementById('email-pf').value,
-            cnpjEmpresas : cnpjCadastrados,
+            CNPJEmpresas : cnpjCadastrados,
             RG : document.getElementById('RG-pf').value,
             dataDeNascimento : document.getElementById('data-nascimento-pf').value,
             estadoCivil : document.getElementById('estado-civil-pf').value,
@@ -354,16 +400,41 @@ finalizaCadastroPF.addEventListener('click', ()=>{
             },
             enderecoAnterior : {
                 cep : document.getElementById('CEP-endereco-anterior-pf').value,
-                cidade : document.getElementById('').value,
+                cidade : document.getElementById('cidade-endereco-anterior-pf').value,
                 rua : document.getElementById('rua-endereco-anterior-pf').value,
                 bairro : document.getElementById('bairro-endereco-anterior-pf').value,
                 numero : document.getElementById('numero-endereco-anterior-pf').value,
                 tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf').value
+            },
+            ondePrestaServicos : {
+                empresasAtuais : empresasAtuaisPF,
+                empresasAnteriores : empresasAnterioresPF,
+                empresasFuturas : empresasFuturasPF
+            },
+            frotaDeVeiculos : frotaDeVeiculosPF,
+            veiculoAFinanciar : {
+                marca : document.getElementById('marca-veiculo-a-financiar-pf').value,
+                modelo : document.getElementById('modelo-veiculo-a-financiar-pf').value,
+                ano : document.getElementById('ano-veiculo-a-financiar-pf').value,
+                placa : document.getElementById('placa-veiculo-a-financiar-pf').value,
+                valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf').value,
+                valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf').value,
+                valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf').value,
+                valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf').value,
+                bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf').value,
+                condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf').value,
+                indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf').value,
+                dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf').value,
+                respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf').value,
+                observacoes : document.getElementById('observacoes-pf').value
             }
         }
     }
 
+    createPF(newPF);
+
     limpaCamposPF();
+    document.getElementById('pf-form').style.display = "none";
 })
 
 function limpaCamposPF(){
@@ -402,4 +473,18 @@ function limpaCamposPF(){
     document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
     document.getElementById('quitado-veiculo-frota-pf').checked = false;
     veiculoQuitadoFrotaState = null;
+    document.getElementById('marca-veiculo-a-financiar-pf').value = "";
+    document.getElementById('modelo-veiculo-a-financiar-pf').value = "";
+    document.getElementById('ano-veiculo-a-financiar-pf').value = "";
+    document.getElementById('placa-veiculo-a-financiar-pf').value = "";
+    document.getElementById('valor-venda-veiculo-a-financiar-pf').value = "";
+    document.getElementById('valor-molicar-veiculo-a-financiar-pf').value = "";
+    document.getElementById('valor-entrada-veiculo-a-financiar-pf').value = "";
+    document.getElementById('valor-financiado-veiculo-a-financiar-pf').value = "";
+    document.getElementById('banco-aprovado-veiculo-a-financiar-pf').value = "";
+    document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf').value = "";
+    document.getElementById('indicacao-veiculo-a-financiar-pf').value = "";
+    document.getElementById('data-conclusao-veiculo-a-financiar-pf').value = "";
+    document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf').value = "";
+    document.getElementById('observacoes-pf').value = "";
 }
