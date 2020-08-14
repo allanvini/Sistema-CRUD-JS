@@ -192,7 +192,7 @@ let referenciaComercialPJ = [];
 
 
 
-finalizaCadastroPJ.addEventListener('click',()=>{
+finalizaCadastroPJ.addEventListener('click',async ()=>{
 
     let newPJ = {
         dadosCadastrais : {
@@ -258,6 +258,10 @@ finalizaCadastroPJ.addEventListener('click',()=>{
     } // fim do objeto
 
     createPJ(newPJ);
+
+    const cardsData = await getAllPJ(6);
+
+    renderCardsPJ(cardsContainerPJ,cardsData);
 
     limpaCamposPJ();
     document.getElementById('pj-form').style.display = "none";

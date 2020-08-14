@@ -51,6 +51,25 @@ body {
     border-radius: 3px;
 }
 
+.card {
+    height: 225px;
+}
+
+.card-content {
+    text-align: left;
+}
+
+.card .card-action {
+    padding: 12px 24px;
+}
+
+.card .card-title{
+    font-weight: 500;
+    text-align: center;
+    font-size: 26px;
+    color: #fffc8b;
+}
+
 #pj-form{
     width: 100vw;
     height: 100vh;
@@ -63,6 +82,17 @@ body {
 }
 
 #pf-form{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0, 0.5);
+    z-index: 2000;
+    padding-bottom: 10px;
+}
+
+#modal-visualizacao {
     width: 100vw;
     height: 100vh;
     position: fixed;

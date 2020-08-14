@@ -113,19 +113,21 @@ var config =  {
     });
   }
 
-  function getAllPJ(page=25){
-    firestore.collection("PJ").limit(page)
+  async function getAllPJ(page=25){
+    let retorno = [];
+    await firestore.collection("PJ").limit(page)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            console.log(doc.id, " => ", doc.data());
-            return doc.data()
+            //console.log(doc.id, " => ", doc.data());
+            retorno.push(doc.data())
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
         return false
     });
+    return retorno;
   }
 
   
@@ -164,19 +166,21 @@ var config =  {
 
   }
 
-  function getAllPF(page=25){
-    firestore.collection("PF").limit(page)
+  async function getAllPF(page=25){
+    let retorno = []
+    await firestore.collection("PF").limit(page)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            console.log(doc.id, " => ", doc.data());
-            return doc.data()
+            //console.log(doc.id, " => ", doc.data());
+            retorno.push(doc.data());
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
         return false
     });
+    return retorno;
   }
 
   function deletePF(document){

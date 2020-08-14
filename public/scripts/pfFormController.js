@@ -49,12 +49,10 @@ let cnpjCadastrados = [];
 let veiculoQuitadoFrotaStatePF = null;
     document.getElementById('quitado-veiculo-frota-pf').addEventListener('click',()=>{
         veiculoQuitadoFrotaStatePF = true;
-        console.log(veiculoQuitadoFrotaStatePF);
         document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
     });
     document.getElementById('nao-quitado-veiculo-frota-pf').addEventListener('click',()=>{
         veiculoQuitadoFrotaStatePF = false;
-        console.log(veiculoQuitadoFrotaStatePF);
         document.getElementById('quitado-veiculo-frota-pf').checked = false;
     });
 
@@ -266,7 +264,6 @@ let frotaDeVeiculosPF = [];
 
         //FUNÇÃO QUE RENDERIZA A FROTA CADASTRADA
         renderFrotaDeVeiculosPF(veiculosFrotaContainerPF, frotaDeVeiculosPF);
-        console.log(frotaDeVeiculosPF)
 
         document.getElementById('marca-veiculo-frota-pf').value = "";
         document.getElementById('modelo-veiculo-frota-pf').value = "";
@@ -367,7 +364,7 @@ finalizaCadastroPF.addEventListener('click', ()=>{
             nomeCompleto : document.getElementById('nome-completo-pf').value,
             CPF : document.getElementById('CPF-pf').value.replace(/[^\d]+/g,''),
             email : document.getElementById('email-pf').value,
-            CNPJEmpresas : cnpjCadastrados,
+            CNPJ : cnpjCadastrados,
             RG : document.getElementById('RG-pf').value,
             dataDeNascimento : document.getElementById('data-nascimento-pf').value,
             estadoCivil : document.getElementById('estado-civil-pf').value,
