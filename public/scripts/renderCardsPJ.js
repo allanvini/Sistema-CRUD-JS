@@ -97,7 +97,9 @@ function renderCardsPJ(container, data){
             cardButtonVisualize.setAttribute('href', '#');
             let cardButtonVisualizeContent = document.createTextNode('Visualizar');
 
-            cardButtonVisualize.setAttribute('onclick', `visualizePJ${element}`);
+            let pos = data.indexOf(element);
+
+            cardButtonVisualize.setAttribute('onclick', `visualizePJ(${pos})`);
 
             cardButtonVisualize.appendChild(cardButtonVisualizeContent);
 
@@ -126,11 +128,4 @@ function renderCardsPJ(container, data){
 
     
     
-}
-
-function visualizePJ (data){
-    console.log("estou funcionando!");
-    console.log(data.pjData.dadosCadastrais.razaoSocial);
-
-
 }

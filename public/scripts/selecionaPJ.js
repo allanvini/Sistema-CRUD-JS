@@ -3,7 +3,7 @@ let cardsContainerPJ = document.getElementById('cards-container');
 
 PJ.addEventListener('click', async ()=>{
 
-    const cardsData = await getAllPJ(6);
+    cardsData = await getAllPJ(6);
 
 
     renderCardsPJ(cardsContainerPJ,cardsData);

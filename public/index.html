@@ -100,6 +100,85 @@
     
   </div> <!-- FIM DA DIV APP -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -698,6 +777,111 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -1344,6 +1528,105 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -1352,11 +1635,587 @@
 
   <!-- FORM DE VISUALIZAÇÃO E EDIÇÃO-->
 
-  <div id="modal-visualizacao" style="overflow: scroll; display: none; overflow-x: hidden;">
-      <!-- SERA RENDERIZADO AQUI O FORM -->
+  <div id="modal-visualizacao-PJ" style="overflow: scroll; display: none; overflow-x: hidden;">
+      <!-- FORM DE VISUALIZAÇÃO DE PJ -->
+
+      <div id="pj-view" style="overflow: scroll; display: none; overflow-x: hidden;"> 
+        <div class="form-body container">
+          
+          <!-- Cabeçalho indicando a qual escopo pertence o form-->
+          <h3 id = "titulo-pj-view">Vizualização de Pessoa Jurídica</h3>
+    
+          <!-- Inicio do formulario-->
+          <form>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- Dados cadastrais -->
+            <h4 style="color: teal;">Dados cadastrais</h4>
+            <div class="divider"></div>
+            
+            <p>Razão Social</p> 
+            <input id="razao-social-pj-view" placeholder="Razão social" class="validate"/input>
+    
+            <p>CNPJ</p>
+            <input id="cnpj-empresa-view" placeholder="00.000.000/0000-00" class="validate cnpj"/input>
+    
+            <p>E-Mail</p>
+            <input type="email" id="email-empresa-view" placeholder="exemplo@gmail.com" class="validate"/input>
+    
+            <p>CPF's dos sócios</p>
+            <div style="display: flex;">
+              <input type="text" id="cpfs-empresa-view" placeholder="000.000.000-00" class="validate cpf"/input><a class="btn waves-effect" id="add-cpf-view"><i class="tiny material-icons">add</i></a>
+            </div>
+    
+            <!-- Começo da lista de CPF's registrados-->
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>CPF's registrados:</b></p>
+              <ul class="browser-default" id="cpf-pego-view">
+
+                <!-- AQUI SERÃO RENDERIZADOS OS CPF'S PEGOS-->
+
+              </ul>
+            </div>
+            <!-- Fim da lista de CPFs registrados -->
+    
+            <p>Data de abertura</p>
+            <input id="data-abertura-empresa-view" placeholder="00/00/0000" class="validate data"/input>
+    
+            <p>Capital Social</p>
+            <input id="capital-social-empresa-view" placeholder="R$ 00.000,00" class="validate"/input>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr;">
+              <p>Numero de funcionarios registrados</p>
+              <input id="numero-funcionarios-registrados-view" placeholder="00" class="validate"/input>
+            </div>
+    
+            <p>Telefone Fixo</p>
+            <input id="telefone-fixo-pj-viewk" placeholder="(00) 0000-0000" class="validate telefone"/input>
+    
+            <div class="input-field align-center" style="display: flex;">
+              <p>CEP</p>
+              <input id="cep-empresa-view" placeholder="00000-000" class="validate cep" style="margin-left: 10px;"/input>
+              <p>Cidade</p>
+              <input id="cidade-empresa-view" placeholder="" class="validate" style="margin-left: 10px;"/input>
+            </div>
+    
+            <p>Rua</p>
+            <input id="rua-empresa-view" placeholder="" class="validate"/input>
+    
+            <div class="input-field align-center" style="display: flex;">
+              <p>Bairro</p>
+              <input id="bairro-empresa-view" placeholder="" class="validate" style="margin-left: 10px;"/input>
+              <p>Numero</p>
+              <input id="numero-empresa-view" placeholder="" class="validate" style="margin-left: 10px;"/input>
+            </div>
+            <!-- Fim dos dados cadastrais -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- Dados Bancarios -->
+            <h4 style="color: teal;">Dados Bancários</h4>
+            <div class="divider"></div>
+    
+            <p>Banco</p>
+            <input id="banco-empresa-view" placeholder="Banco" class="validate"/input>
+    
+            <p>Agência</p>
+            <input id="agencia-empresa-view" placeholder="Agencia" class="validate"/input>
+    
+            <p>Conta Corrente</p>
+            <div class="input-field align-center" style="display: flex;">
+              <p>Numero</p>
+              <input id="numero-conta-empresa-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+              <p>Digito</p>
+              <input id="digito-conta-empresa-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+            </div>
+    
+            <p>Tempo de conta</p>
+            <input id="tempo-conta-empresa-view" placeholder="Ex: 2 anos" class="validate"/input>
+    
+            <p>Telefone da agência</p>
+            <input id="telefone-agencia-empresa-view" placeholder="(00) 0000-0000" class="validate telefone"/input>
+            <!-- Fim dos Dados Bancarios -->
+    
+    
+    
+    
+    
+    
+          
+    
+    
+    
+            <!-- Dados dos sócios -->
+            <h4 style="color: teal;">Sócios</h4>
+            <div class="divider"></div>
+    
+            <div style="display: grid; grid-template-columns: 1fr 1fr">
+              <p>Porcentagem do sócio majoritário</p>
+              <input id="porcentagem-socio-majoritario-empresa-view" placeholder="%" class="validate" style="width: 50px;"/input>
+    
+              <p>Demais sócios</p>
+              <input id="porcentagem-demais-socios-empresa-view" placeholder="%" class="validate" style="width: 50px;"/input>
+            </div>
+    
+            
+            <div style="display: flex">
+              <p>O sócio majoritário assina sozinho?</p>
+              <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+                <label>
+                  <input id="socio-assina-sim-view" type="checkbox"/>
+                  <span>Sim</span>
+                </label>
+                <label>
+                  <input id="socio-assina-nao-view" type="checkbox" />
+                  <span>Não</span>
+                </label>
+              </div>
+            </div>
+            <!-- Fim dos Dados dos sócios -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- Dados do contador -->
+            <h4 style="color: teal;">Contador</h4>
+            <div class="divider"></div>
+    
+            <p>Nome do contador</p>
+            <input id="nome-contador-empresa-view" placeholder="Nome" class="validate"/input>
+    
+            <p>Escritório</p>
+            <input id="escritorio-contador-empresa-view" placeholder="Escritório" class="validate"/input>
+    
+            <p>Telefone fixo</p>
+            <input id="telefone-fixo-contador-empresa-view" placeholder="(00) 0000-0000" class="validate telefone"/input>
+    
+            <p>Celular</p>
+            <input id="celular-contador-empresa-view" placeholder="(00) 00000-0000" class="validate telefone"/input>
+            <!-- Fim dos dados do Contador-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- Dados de faturamento -->
+            <h4 style="color: teal;">Faturamento</h4>
+            <div class="divider"></div>
+    
+            <div class="input-field align-center" style="display: flex;">
+              <p>Mes</p>
+              <input id="mes-faturamento-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+              <p>Ano</p>
+              <input id="ano-faturamento-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
+            </div>
+    
+            <div class="input-field" style="display: grid; grid-template-columns: 1fr 10fr 1fr; align-items: inherit;">
+              <p>Valor</p>
+              <input id="valor-faturamento-view" placeholder="R$ 00.000,00" class="validate"/input>
+              <a class="btn waves-effect" id="add-faturamento-view"><i class="tiny material-icons">add</i></a>
+            </div>
+                <!-- Lista de faturamentos registrados-->
+                <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+                  <p><b>Ultimos faturamentos registrados:</b></p>
+                  <ul class="browser-default" id="faturamento-pego-view">
+
+                    <!-- AQUI SERÃO RENDERIZADOS OS FATURAMENTOS REGISTRADOS -->
+
+                  </ul>
+                </div>
+                <!-- Fim da Lista de faturamentos registrados-->
+            
+            <!-- Fim dos Dados de faturamento -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- Onde presta serviços -->
+            <h4 style="color: teal;">Onde presta serviços</h4>
+            <div class="divider"></div>
+    
+    
+            <!-- EMPRESA ATUAL -->
+            <h5 style="color: teal;">Empresas atuais</h5>
+    
+            <p>Nome da empresa</p>
+            <input id="nome-empresa-atual-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>CEP</p>
+              <input id="cep-empresa-atual-pj-view" placeholder="00000-000" class="validate cep"/input>
+              <p>Cidade</p>
+              <input id="cidade-empresa-atual-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Rua</p>
+            <input id="rua-empresa-atual-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 4fr 1fr 6fr;">
+              <p>Bairro</p>
+              <input id="bairro-empresa-atual-pj-view" placeholder="" class="validate"/input>
+              <p>Numero</p>
+              <input id="numero-empresa-atual-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Telefone Fixo</p>
+            <input id="telefone-fixo-empresa-atual-pj-view" placeholder="(00) 0000-0000" class="validate telefone"/input>
+    
+            <p>Celular</p>
+            <input id="celular-empresa-atual-pj-view" placeholder="(00) 00000-0000" class="validate telefone"/input>
+    
+            <p>Tempo de serviço</p>
+            <input id="tempo-empresa-atual-pj-view" placeholder="Ex: 5 anos" class="validate"/input>
+    
+            <p>Faturamento atual</p>
+            <input id="faturamento-atual-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+    
+            <p>Faturamento futuro</p>
+            <input id="faturamento-futuro-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+              <a class="btn waves-effect" id="add-empresa-atual-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+                <!-- LISTA DAS EMPRESAS REGISTRADAS-->
+                <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+                  <p><b>Empresas atuais registradas:</b></p>
+                  <ul class="browser-default" id="empresas-atuais-pego-pj-view">
+
+                    <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ATUAIS REGISTRADAS -->
+
+                  </ul>
+                </div>
+                <!-- FIM DA LISTA DAS EMPRESAS REGISTRADAS -->
+    
+            <!-- FIM DAS EMPRESAS ATUAIS-->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- EMPRESAS ANTERIORES-->
+            <h5 style="color: teal;">Empresas anteriores</h5>
+    
+            <p>Nome da empresa</p>
+            <input id="nome-empresa-anterior-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>CEP</p>
+              <input id="cep-empresa-anterior-pj-view" placeholder="" class="validate cep"/input>
+              <p>Cidade</p>
+              <input id="cidade-empresa-anterior-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Rua</p>
+            <input id="rua-empresa-anterior-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Bairro</p>
+              <input id="bairro-empresa-anterior-pj-view" placeholder="" class="validate"/input>
+              <p>Numero</p>
+              <input id="numero-empresa-anterior-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Telefone Fixo</p>
+            <input id="telefone-fixo-empresa-anterior-pj-view" placeholder="" class="validate telefone"/input>
+    
+            <p>Celular</p>
+            <input id="celular-empresa-anteriorpj-view" placeholder="" class="validate telefone"/input>
+    
+            <p>Tempo de serviço</p>
+            <input id="tempo-empresa-anterior-pj-view" placeholder="Ex: 2 anos" class="validate"/input>
+    
+            <p>Salário</p>
+            <input id="salario-empresa-anterior-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+              <a class="btn waves-effect" id="add-empresa-anterior-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+    
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
+              <p><b>Empresas anteriores registradas:</b></p>
+              <ul class="browser-default" id="empresas-anterior-pego-pj-view">
+
+                <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS ANTERIORES REGISTRADAS-->
+
+              </ul>
+            </div>
+            <!-- FIM DAS EMPRESAS ANTERIORES -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- EMPRESAS FUTURAS -->
+    
+            <h5 style="color: teal;">Empresas futuras</h5>
+    
+            <p>Nome da empresa</p>
+            <input id="nome-empresa-futura-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>CEP</p>
+              <input id="cep-empresa-futura-pj-view" placeholder="" class="validate cep"/input>
+              <p>Cidade</p>
+              <input id="cidade-empresa-futura-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Rua</p>
+            <input id="rua-empresa-futura-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Bairro</p>
+              <input id="bairro-empresa-futura-pj-view" placeholder="" class="validate"/input>
+              <p>Numero</p>
+              <input id="numero-empresa-futura-pj-view" placeholder="" class="validate"/input>
+            </div>
+    
+            <p>Telefone Fixo</p>
+            <input id="telefone-fixo-empresa-futura-pj-view" placeholder="(00) 0000-0000" class="validate telefone"/input>
+    
+            <p>Celular</p>
+            <input id="celular-empresa-futura-pj-view" placeholder="(00) 00000-0000" class="validate telefone"/input>
+    
+            <p>Salário</p>
+            <input id="salario-empresa-futura-pj-view" placeholder="" class="validate"/input>
+    
+            <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+              <a class="btn waves-effect" id="add-empresa-futura-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+    
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Empresas futuras registradas:</b></p>
+              <ul class="browser-default" id="empresas-futura-pego-pj-view">
+                <!-- AQUI SERÃO RENDERIZADAS AS EMPRESAS FUTURAS REGISTRADAS -->
+              </ul>
+            </div>
+    
+            <!-- FIM DAS EMPRESAS FUTURAS -->
+            
+            <!-- Fim do Onde presta serviços -->
+    
+    
+    
+    
+    
+    
+    
+            <!-- FROTA DE VEICULOS -->
+    
+            <h4 style="color: teal;">Frota de veiculos</h4>
+            <div class="divider"></div>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Marca</p>
+              <input id="marca-veiculo-frota-pj-view" placeholder="'ford'" class="validate"/input>
+              <p>Modelo</p>
+              <input id="modelo-veiculo-frota-pj-view" placeholder="'focus'" class="validate"/input>
+            </div>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Ano</p>
+              <input id="ano-veiculo-frota-pj-view" placeholder="'2015'" class="validate"/input>
+              <p>Placa</p>
+              <input id="placa-veiculo-frota-pj-view" placeholder="'AAA-0000'" class="validate placa"/input>
+            </div>
+    
+            <p>Tempo em nome</p>
+            <input id="tempo-em-nome-veiculo-frota-pj-view" placeholder="Ex: 5 anos" class="validate"/input>
+    
+    
+            <div style="display: flex;">
+              <p>Quitado?</p>
+              <div style="display: grid; grid-template-columns: 1fr; margin-left: 5%;">
+                <label>
+                  <input id="quitado-veiculo-frota-pj-view" type="checkbox"/>
+                  <span>Sim</span>
+                </label>
+                <label>
+                  <input id="nao-quitado-veiculo-frota-pj-view" type="checkbox"/>
+                  <span>Não</span>
+                </label>
+              </div>
+            </div>
+    
+            <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+              <a class="btn waves-effect" id="add-veiculo-frota-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+    
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Veiculos da frota registrados:</b></p>
+              <ul class="browser-default" id="veiculos-frota-pego-pj-view">
+                <!-- AQUI SERÃO RENDERIZADOS OS VEICULOS DA FROTA REGISTRADOS -->
+              </ul>
+            </div>
+    
+            <!-- FIM DA FROTA DE VEICULOS -->
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- REFERENCIA COMERCIAL -->
+            
+            <h4 style="color: teal;">Referencia comercial</h4>
+            <div class="divider"></div>
+    
+            <p>Empresa</p>
+            <input id="nome-empresa-referencia-comercial-pj-view" placeholder="" class="validate"/input>
+            <p>Telefone</p>
+            <input id="telefone-empresa-referencia-comercial-pj-view" placeholder="" class="validate telefone"/input>
+    
+            <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
+              <a class="btn waves-effect" id="add-referencia-comercial-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+    
+            <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
+              <p><b>Referencias comerciais registradas:</b></p>
+              <ul class="browser-default" id="referencia-comercial-pego-pj-view">
+                <!-- AQUI SERÃO RENDERIZADOS AS REFERENCIAS COMERCIAIS REGISTRADAS -->
+              </ul>
+            </div>
+    
+            <!-- FIM DA REFERENCIA COMERCIAL -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+            <!-- VEICULO A FINANCIAR -->
+    
+            <h4 style="color: teal;">Veiculo a financiar</h4>
+            <div class="divider"></div>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Marca</p>
+              <input id="marca-veiculo-a-financiar-pj-view" placeholder="'ford'" class="validate"/input>
+              <p>Modelo</p>
+              <input id="modelo-veiculo-a-financiar-pj-view" placeholder="'focus'" class="validate"/input>
+            </div>
+    
+            <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
+              <p>Ano</p>
+              <input id="ano-veiculo-a-financiar-pj-view" placeholder="'2015'" class="validate"/input>
+              <p>Placa</p>
+              <input id="placa-veiculo-a-financiar-pj-view" placeholder="'AAA-0000'" class="validate placa"/input>
+            </div>
+    
+            <p>Valor de venda</p>
+            <input id="valor-venda-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Valor da molicar</p>
+            <input id="valor-molicar-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Valor de entrada</p>
+            <input id="valor-entrada-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Valor financiado</p>
+            <input id="valor-financiado-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Banco aprovado</p>
+            <input id="banco-aprovado-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Condições aprovadas</p>
+            <input id="condicoes-aprovadas-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Indicação</p>
+            <input id="indicacao-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Data de conclusão</p>
+            <input id="data-conclusao-veiculo-a-financiar-pj-view" placeholder="" class="validate data"/input>
+    
+            <p>Resposta de negativa de credito</p>
+            <input id="resposta-negativa-credito-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+    
+            <p>Observações</p>
+            <textarea id="observacoes-pj-view" class="materialize-textarea"></textarea>
+    
+            <!-- FIM DO VEICULO A FINANCIAR -->
+    
+          </form>
+          <!-- Fim do formulario -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+          <div class="divider"></div>
+    
+          <div class="center-align" style="margin-bottom: 25px; margin-top: 25px;">
+            <a id="fecha-view-pj" class="btn waves-effect"><i class="material-icons right">close</i>Sair</a>
+            <a id="exclui-cadastro-pj" class="btn waves-effect"><i class="material-icons right">check</i>Excluir</a>
+            <a id="imprime-registro-pj" class="btn waves-effect"><i class="material-icons right">close</i>Imprimir</a>
+            <a id="envia-email-pj" class="btn waves-effect"><i class="material-icons right">check</i>Email</a>
+          </div>
+        </div>
+      </div>
+
   </div>
 
-  <!-- FIM DO FORM DE VISUALIZAÇÃO E EDIÇÃO-->
+  <!-- FIM DO FORM DE VISUALIZAÇÃO E EDIÇÃO DE PJ-->
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
@@ -1375,6 +2234,9 @@
 
 
   <script src="./app.js"></script>
+  <script src="./scripts/data.js"></script>
+  <script src="./scripts/viewPF.js"></script>
+  <script src="./scripts/viewPJ.js"></script>
   <script src="./scripts/enableForms.js"></script>
   <script src="./scripts/renderCardsPJ.js"></script>
   <script src="./scripts/renderCardsPF.js"></script>

@@ -3,7 +3,7 @@ let cardsContainerPF = document.getElementById('cards-container');
 
 PF.addEventListener('click', async ()=>{
 
-    const cardsData = await getAllPF(6);
+    cardsData = await getAllPF(6);
 
 
     renderCardsPF(cardsContainerPF,cardsData);
