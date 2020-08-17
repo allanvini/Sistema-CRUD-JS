@@ -1642,7 +1642,7 @@
         <div class="form-body container">
           
           <!-- Cabeçalho indicando a qual escopo pertence o form-->
-          <h3 id = "titulo-pj-view">Vizualização de Pessoa Jurídica</h3>
+          <h3 id = "titulo-pj-view"></h3>
     
           <!-- Inicio do formulario-->
           <form>
@@ -1670,11 +1670,17 @@
     
             <p>E-Mail</p>
             <input type="email" id="email-empresa-view" placeholder="exemplo@gmail.com" class="validate"/input>
-    
+            
+
+            <!--
+
             <p>CPF's dos sócios</p>
             <div style="display: flex;">
               <input type="text" id="cpfs-empresa-view" placeholder="000.000.000-00" class="validate cpf"/input><a class="btn waves-effect" id="add-cpf-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+            
     
             <!-- Começo da lista de CPF's registrados-->
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
@@ -1699,7 +1705,7 @@
             </div>
     
             <p>Telefone Fixo</p>
-            <input id="telefone-fixo-pj-viewk" placeholder="(00) 0000-0000" class="validate telefone"/input>
+            <input id="telefone-fixo-pj-view" placeholder="(00) 0000-0000" class="validate telefone"/input>
     
             <div class="input-field align-center" style="display: flex;">
               <p>CEP</p>
@@ -1833,7 +1839,9 @@
             <!-- Dados de faturamento -->
             <h4 style="color: teal;">Faturamento</h4>
             <div class="divider"></div>
-    
+            
+            <!--
+
             <div class="input-field align-center" style="display: flex;">
               <p>Mes</p>
               <input id="mes-faturamento-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
@@ -1846,6 +1854,10 @@
               <input id="valor-faturamento-view" placeholder="R$ 00.000,00" class="validate"/input>
               <a class="btn waves-effect" id="add-faturamento-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+
+            
                 <!-- Lista de faturamentos registrados-->
                 <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
                   <p><b>Ultimos faturamentos registrados:</b></p>
@@ -1871,10 +1883,12 @@
             <h4 style="color: teal;">Onde presta serviços</h4>
             <div class="divider"></div>
     
-    
+
             <!-- EMPRESA ATUAL -->
             <h5 style="color: teal;">Empresas atuais</h5>
-    
+
+            <!--
+
             <p>Nome da empresa</p>
             <input id="nome-empresa-atual-view" placeholder="" class="validate"/input>
     
@@ -1913,6 +1927,10 @@
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-atual-pj-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+    
+
                 <!-- LISTA DAS EMPRESAS REGISTRADAS-->
                 <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
                   <p><b>Empresas atuais registradas:</b></p>
@@ -1937,7 +1955,10 @@
     
             <!-- EMPRESAS ANTERIORES-->
             <h5 style="color: teal;">Empresas anteriores</h5>
-    
+
+
+            <!--
+
             <p>Nome da empresa</p>
             <input id="nome-empresa-anterior-pj-view" placeholder="" class="validate"/input>
     
@@ -1973,6 +1994,10 @@
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-anterior-pj-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+    
+            
     
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);">
               <p><b>Empresas anteriores registradas:</b></p>
@@ -1995,7 +2020,10 @@
             <!-- EMPRESAS FUTURAS -->
     
             <h5 style="color: teal;">Empresas futuras</h5>
-    
+
+
+            <!--
+
             <p>Nome da empresa</p>
             <input id="nome-empresa-futura-pj-view" placeholder="" class="validate"/input>
     
@@ -2028,6 +2056,10 @@
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-futura-pj-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+    
+            
     
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Empresas futuras registradas:</b></p>
@@ -2049,8 +2081,10 @@
             <!-- FROTA DE VEICULOS -->
     
             <h4 style="color: teal;">Frota de veiculos</h4>
-            <div class="divider"></div>
-    
+            <div class="divider" style="margin-bottom: 10px;"></div>
+
+            <!--
+
             <div style="display: grid; grid-template-columns: 1fr 5fr 1fr 5fr;">
               <p>Marca</p>
               <input id="marca-veiculo-frota-pj-view" placeholder="'ford'" class="validate"/input>
@@ -2086,6 +2120,10 @@
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-veiculo-frota-pj-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+    
+            
     
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Veiculos da frota registrados:</b></p>
@@ -2107,7 +2145,9 @@
             
             <h4 style="color: teal;">Referencia comercial</h4>
             <div class="divider"></div>
-    
+
+            <!--
+
             <p>Empresa</p>
             <input id="nome-empresa-referencia-comercial-pj-view" placeholder="" class="validate"/input>
             <p>Telefone</p>
@@ -2116,6 +2156,10 @@
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-referencia-comercial-pj-view"><i class="tiny material-icons">add</i></a>
             </div>
+
+            -->
+    
+            
     
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Referencias comerciais registradas:</b></p>
@@ -2206,9 +2250,9 @@
     
           <div class="center-align" style="margin-bottom: 25px; margin-top: 25px;">
             <a id="fecha-view-pj" class="btn waves-effect"><i class="material-icons right">close</i>Sair</a>
-            <a id="exclui-cadastro-pj" class="btn waves-effect"><i class="material-icons right">check</i>Excluir</a>
-            <a id="imprime-registro-pj" class="btn waves-effect"><i class="material-icons right">close</i>Imprimir</a>
-            <a id="envia-email-pj" class="btn waves-effect"><i class="material-icons right">check</i>Email</a>
+            <a id="exclui-cadastro-pj" class="btn waves-effect"><i class="material-icons right">delete_forever</i>Excluir</a>
+            <a id="imprime-registro-pj" class="btn waves-effect"><i class="material-icons right">local_printshop</i>Imprimir</a>
+            <a id="envia-email-pj" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
           </div>
         </div>
       </div>
