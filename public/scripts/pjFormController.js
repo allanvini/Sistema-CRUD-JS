@@ -347,8 +347,16 @@ function renderCPFPJ (container, data){
 
     data.forEach(element => {
         let li = document.createElement('li');
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+
+        let cpf = document.createElement('span');
+            cpf.setAttribute('class','cpf')
 
         let content = document.createTextNode(element);
+            cpf.appendChild(content);
 
         let pos = data.indexOf(element);
 
@@ -360,7 +368,7 @@ function renderCPFPJ (container, data){
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteCPFFromArrayPJ(${pos})`);
 
-        li.appendChild(content);
+        li.appendChild(cpf);
         li.appendChild(del);
 
         container.appendChild(li);
@@ -377,7 +385,31 @@ function renderFaturamentoPJ(container, data){
 
     data.forEach(element => {
         let li = document.createElement('li');
-        let content = document.createTextNode(`Mes: ${element.mes} / ano: ${element.ano} / valor: ${element.valor}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+
+        let content = document.createElement('div');
+        
+
+        let mes = document.createElement('p');
+            mesValue = document.createTextNode(`Mes: ${element.mes}`);
+            mes.appendChild(mesValue);
+
+        let ano = document.createElement('p')
+            anoValue = document.createTextNode(`Ano: ${element.ano}`);
+            ano.appendChild(anoValue);
+
+        let valor = document.createElement('p')
+            valorValue = document.createTextNode(`Valor: ${element.valor}`);
+            valor.appendChild(valorValue);
+
+
+        content.appendChild(mes);
+        content.appendChild(ano);
+        content.appendChild(valor);
+
 
         let pos = data.indexOf(element);
 
@@ -406,7 +438,67 @@ function renderEmpresasAtuaisPJ(container, data){
 
     data.forEach(element => {
         let li = document.createElement('li');
-        let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Tempo : ${element.tempoDeServico} / Faturamento : ${element.faturamentoAtual}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+        let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let tempoDeServico = document.createElement('p');
+                tempoDeServicoValue = document.createTextNode(`Tempo De Serviço: ${element.tempoDeServico}`);
+                tempoDeServico.appendChild(tempoDeServicoValue);
+
+            let faturamentoAtual = document.createElement('p');
+                faturamentoAtualValue = document.createTextNode(`Faturamento atual: ${element.faturamentoAtual}`);
+                faturamentoAtual.appendChild(faturamentoAtualValue);
+
+            let faturamentoFuturo = document.createElement('p');
+                faturamentoFuturoValue = document.createTextNode(`Faturamento futuro: ${element.faturamentoFuturo}`);
+                faturamentoFuturo.appendChild(faturamentoFuturoValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(tempoDeServico);
+            content.appendChild(faturamentoAtual);
+            content.appendChild(faturamentoFuturo);
 
         let pos = data.indexOf(element);
 
@@ -436,7 +528,62 @@ function renderEmpresasAnterioresPJ (container, data){
 
     data.forEach(element => {
         let li = document.createElement('li');
-        let content = document.createTextNode(`Nome: ${element.nomeDaEmpresa} / Tempo: ${element.tempoDeServico} / Salário: ${element.salario}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+        let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let tempoDeServico = document.createElement('p');
+                tempoDeServicoValue = document.createTextNode(`Tempo De Serviço: ${element.tempoDeServico}`);
+                tempoDeServico.appendChild(tempoDeServicoValue);
+
+            let salario = document.createElement('p');
+                salarioValue = document.createTextNode(`Salário: ${element.salario}`);
+                salario.appendChild(salarioValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(tempoDeServico);
+            content.appendChild(salario);
         
         let pos = data.indexOf(element);
 
@@ -465,7 +612,57 @@ function renderEmpresasFuturasPJ(container, data){
 
     data.forEach(element =>{
         let li = document.createElement('li');
-        let content = document.createTextNode(`Nome: ${element.nomeDaEmpresa} / Salário: ${element.salario}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+        let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let salario = document.createElement('p');
+                salarioValue = document.createTextNode(`Salário: ${element.salario}`);
+                salario.appendChild(salarioValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(salario);
 
         let pos = data.indexOf(element);
 
@@ -505,7 +702,43 @@ function renderFrotaPJ(container, data){
         }
 
         let li = document.createElement('li');
-        let content = document.createTextNode(`Marca: ${element.marca} / Modelo: ${element.modelo} / Ano: ${element.ano} / Quitado? : ${quitado}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+        let content = document.createElement('div');
+
+            let marca = document.createElement('p');
+                marcaValue = document.createTextNode(`Marca: ${element.marca}`);
+                marca.appendChild(marcaValue);
+
+            let modelo = document.createElement('p')
+                modeloValue = document.createTextNode(`Modeolo: ${element.modelo}`);
+                modelo.appendChild(modeloValue);
+
+            let ano = document.createElement('p');
+                anoValue = document.createTextNode(`Ano: ${element.ano}`);
+                ano.appendChild(anoValue);
+
+            let placa = document.createElement('p');
+                placaValue = document.createTextNode(`Placa: ${element.placa}`);
+                placa.appendChild(placaValue);
+
+            let tempoEmNome = document.createElement('p');
+                tempoEmNomeValue = document.createTextNode(`Tempo em nome: ${element.tempoEmNome}`);
+                tempoEmNome.appendChild(tempoEmNomeValue);
+
+            let veiculoQuitado = document.createElement('p');
+                veiculoQuitadoValue = document.createTextNode(`Quitado: ${quitado}`);
+                veiculoQuitado.appendChild(veiculoQuitadoValue);
+
+
+            content.appendChild(marca)
+            content.appendChild(modelo);
+            content.appendChild(ano);
+            content.appendChild(placa);
+            content.appendChild(tempoEmNome);
+            content.appendChild(veiculoQuitado);
 
         let pos = data.indexOf(element);
 
@@ -535,7 +768,23 @@ function renderReferenciaComercialPJ(container, data){
 
     data.forEach(element =>{
         let li = document.createElement('li');
-        let content = document.createTextNode(`Empresa: ${element.empresa} / Telefone: ${element.telefone}`);
+            li.style.border = "solid 1px black";
+            li.style.margin = "5px";
+            li.style.borderRadius = "5px";
+            li.style.padding = "5px";
+        let content = document.createElement('div');
+
+            let empresa = document.createElement('p');
+                empresaValue = document.createTextNode(`Empresa: ${element.empresa}`);
+                empresa.appendChild(empresaValue);
+
+            let telefone = document.createElement('p')
+                telefoneValue = document.createTextNode(`Telefone: ${element.telefone}`);
+                telefone.appendChild(telefoneValue);
+
+
+            content.appendChild(empresa);
+            content.appendChild(telefone);
 
         let pos = data.indexOf(element);
 

@@ -4,8 +4,6 @@ function renderCardsPF(container, data){
 
     data.forEach(element => {
 
-        console.log(element)
-
 
         ///////////////////////////////////////////////////////////////////////////
 
@@ -121,13 +119,16 @@ function renderCardsPF(container, data){
             let cardButtonVisualizeContent = document.createTextNode('Visualizar');
             cardButtonVisualize.appendChild(cardButtonVisualizeContent);
 
+            let pos = data.indexOf(element);
+            cardButtonVisualize.setAttribute('onclick', `visualizePF(${pos})`);
+
             ///////////////////////////////////////////////////////////////////////////
 
             ///////////////////////////////////////////////////////////////////////////
 
         let cardActionButtonsContainer = document.createElement('div');
             cardActionButtonsContainer.setAttribute('class', 'card-action');
-            cardActionButtonsContainer.setAttribute('style', 'display: grid; grid-template-columns: 12fr;');
+            //cardActionButtonsContainer.setAttribute('style', 'display: grid; grid-template-columns: 12fr;');
             cardActionButtonsContainer.appendChild(cardButtonVisualize);
 
             ///////////////////////////////////////////////////////////////////////////

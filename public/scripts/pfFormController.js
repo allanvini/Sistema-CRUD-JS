@@ -27,7 +27,16 @@ let cnpjCadastrados = [];
 
         data.forEach(element=>{
             let li = document.createElement('li');
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let cnpj = document.createElement('span');
+                cnpj.setAttribute('class','cnpj')
+
             let content = document.createTextNode(element);
+                cnpj.appendChild(content);
 
             let pos = data.indexOf(element);
 
@@ -39,7 +48,7 @@ let cnpjCadastrados = [];
             del.appendChild(icon);
             del.setAttribute('onclick', `deleteCnpjFromArray(${pos})`);
 
-            li.appendChild(content);
+            li.appendChild(cnpj);
             li.appendChild(del);
 
             container.appendChild(li);
@@ -113,7 +122,68 @@ let empresasAtuaisPF = [];
 
         data.forEach(element=>{
             let li = document.createElement('li');
-            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Tempo : ${element.tempoDeServico} / Faturamento : ${element.faturamentoAtual}`);
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let tempoDeServico = document.createElement('p');
+                tempoDeServicoValue = document.createTextNode(`Tempo De Serviço: ${element.tempoDeServico}`);
+                tempoDeServico.appendChild(tempoDeServicoValue);
+
+            let faturamentoAtual = document.createElement('p');
+                faturamentoAtualValue = document.createTextNode(`Faturamento atual: ${element.faturamentoAtual}`);
+                faturamentoAtual.appendChild(faturamentoAtualValue);
+
+            let faturamentoFuturo = document.createElement('p');
+                faturamentoFuturoValue = document.createTextNode(`Faturamento futuro: ${element.faturamentoFuturo}`);
+                faturamentoFuturo.appendChild(faturamentoFuturoValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(tempoDeServico);
+            content.appendChild(faturamentoAtual);
+            content.appendChild(faturamentoFuturo);
 
             let pos = data.indexOf(element);
 
@@ -173,7 +243,63 @@ let empresasAnterioresPF = [];
 
         data.forEach(element=>{
             let li = document.createElement('li');
-            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Tempo : ${element.tempoDeServico} / Faturamento : ${element.salario}`);
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let tempoDeServico = document.createElement('p');
+                tempoDeServicoValue = document.createTextNode(`Tempo De Serviço: ${element.tempoDeServico}`);
+                tempoDeServico.appendChild(tempoDeServicoValue);
+
+            let salario = document.createElement('p');
+                salarioValue = document.createTextNode(`Salário: ${element.salario}`);
+                salario.appendChild(salarioValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(tempoDeServico);
+            content.appendChild(salario);
 
             let pos = data.indexOf(element);
 
@@ -231,7 +357,58 @@ let empresasFuturasPF = [];
 
         data.forEach(element=>{
             let li = document.createElement('li');
-            let content = document.createTextNode(`Nome : ${element.nomeDaEmpresa} / Salario : ${element.salario}`);
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let content = document.createElement('div');
+
+            let cep = document.createElement('p');
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
+                cep.appendChild(cepValue);
+
+            let nomeDaEmpresa = document.createElement('p')
+                nomeDaEmpresaValue = document.createTextNode(`Nome da empresa: ${element.nomeDaEmpresa}`);
+                nomeDaEmpresa.appendChild(nomeDaEmpresaValue);
+
+            let cidade = document.createElement('p');
+                cidadeValue = document.createTextNode(`Cidade: ${element.cidade}`);
+                cidade.appendChild(cidadeValue);
+
+            let rua = document.createElement('p');
+                ruaValue = document.createTextNode(`Rua: ${element.rua}`);
+                rua.appendChild(ruaValue);
+
+            let bairro = document.createElement('p');
+                bairroValue = document.createTextNode(`Bairro: ${element.bairro}`);
+                bairro.appendChild(bairroValue);
+
+            let numero = document.createElement('p');
+                numeroValue = document.createTextNode(`Número: ${element.numero}`);
+                numero.appendChild(numeroValue);
+
+            let telefoneFixo = document.createElement('p');
+                telefoneFixoValue = document.createTextNode(`Telefone: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p');
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+            let salario = document.createElement('p');
+                salarioValue = document.createTextNode(`Salário: ${element.salario}`);
+                salario.appendChild(salarioValue);
+
+            content.appendChild(nomeDaEmpresa)
+            content.appendChild(cidade);
+            content.appendChild(bairro);
+            content.appendChild(rua);
+            content.appendChild(numero);
+            content.appendChild(cep);
+            content.appendChild(celular);
+            content.appendChild(telefoneFixo);
+            content.appendChild(salario);
 
             let pos = data.indexOf(element);
 
@@ -293,7 +470,44 @@ let frotaDeVeiculosPF = [];
             }
 
             let li = document.createElement('li');
-            let content = document.createTextNode(`Marca: ${element.marca} / Modelo: ${element.modelo} / Ano: ${element.ano} / Quitado?: ${quitado} `);
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let content = document.createElement('div');
+
+            let marca = document.createElement('p');
+                marcaValue = document.createTextNode(`Marca: ${element.marca}`);
+                marca.appendChild(marcaValue);
+
+            let modelo = document.createElement('p')
+                modeloValue = document.createTextNode(`Modeolo: ${element.modelo}`);
+                modelo.appendChild(modeloValue);
+
+            let ano = document.createElement('p');
+                anoValue = document.createTextNode(`Ano: ${element.ano}`);
+                ano.appendChild(anoValue);
+
+            let placa = document.createElement('p');
+                placaValue = document.createTextNode(`Placa: ${element.placa}`);
+                placa.appendChild(placaValue);
+
+            let tempoEmNome = document.createElement('p');
+                tempoEmNomeValue = document.createTextNode(`Tempo em nome: ${element.tempoEmNome}`);
+                tempoEmNome.appendChild(tempoEmNomeValue);
+
+            let veiculoQuitado = document.createElement('p');
+                veiculoQuitadoValue = document.createTextNode(`Quitado: ${quitado}`);
+                veiculoQuitado.appendChild(veiculoQuitadoValue);
+
+
+            content.appendChild(marca)
+            content.appendChild(modelo);
+            content.appendChild(ano);
+            content.appendChild(placa);
+            content.appendChild(tempoEmNome);
+            content.appendChild(veiculoQuitado);
 
             let pos = data.indexOf(element);
 
@@ -338,7 +552,30 @@ let referenciaPessoalPF = [];
 
         data.forEach(element=>{
             let li = document.createElement('li');
-            let content = document.createTextNode(`Nome: ${element.nome} / Fixo: ${element.telefoneFixo} / Cel: ${element.celular}`);
+                li.style.border = "solid 1px black";
+                li.style.margin = "5px";
+                li.style.borderRadius = "5px";
+                li.style.padding = "5px";
+
+            let content = document.createElement('div');
+            
+
+            let nome = document.createElement('p');
+                nomeValue = document.createTextNode(`Nome: ${element.nome}`);
+                nome.appendChild(nomeValue);
+
+            let telefoneFixo = document.createElement('p')
+                telefoneFixoValue = document.createTextNode(`TelefoneFixo: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p')
+                celularValue = document.createTextNode(`Telefone: ${element.celular}`);
+                celular.appendChild(celularValue);
+
+
+            content.appendChild(nome);
+            content.appendChild(telefoneFixo);
+            content.appendChild(celular);
 
             let pos = data.indexOf(element);
 
@@ -402,29 +639,30 @@ finalizaCadastroPF.addEventListener('click', ()=>{
                 bairro : document.getElementById('bairro-endereco-anterior-pf').value,
                 numero : document.getElementById('numero-endereco-anterior-pf').value,
                 tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf').value
-            },
-            ondePrestaServicos : {
-                empresasAtuais : empresasAtuaisPF,
-                empresasAnteriores : empresasAnterioresPF,
-                empresasFuturas : empresasFuturasPF
-            },
-            frotaDeVeiculos : frotaDeVeiculosPF,
-            veiculoAFinanciar : {
-                marca : document.getElementById('marca-veiculo-a-financiar-pf').value,
-                modelo : document.getElementById('modelo-veiculo-a-financiar-pf').value,
-                ano : document.getElementById('ano-veiculo-a-financiar-pf').value,
-                placa : document.getElementById('placa-veiculo-a-financiar-pf').value,
-                valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf').value,
-                valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf').value,
-                valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf').value,
-                valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf').value,
-                bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf').value,
-                condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf').value,
-                indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf').value,
-                dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf').value,
-                respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf').value,
-                observacoes : document.getElementById('observacoes-pf').value
             }
+        },
+        ondePrestaServicos : {
+            empresasAtuais : empresasAtuaisPF,
+            empresasAnteriores : empresasAnterioresPF,
+            empresasFuturas : empresasFuturasPF
+        },
+        referenciaPessoal: referenciaPessoalPF,
+        frotaDeVeiculos : frotaDeVeiculosPF,
+        veiculoAFinanciar : {
+            marca : document.getElementById('marca-veiculo-a-financiar-pf').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pf').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pf').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pf').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf').value,
+            observacoes : document.getElementById('observacoes-pf').value
         }
     }
 

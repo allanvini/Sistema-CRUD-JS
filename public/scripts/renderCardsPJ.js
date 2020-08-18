@@ -96,12 +96,10 @@ function renderCardsPJ(container, data){
         let cardButtonVisualize = document.createElement('a');
             cardButtonVisualize.setAttribute('href', '#');
             let cardButtonVisualizeContent = document.createTextNode('Visualizar');
+            cardButtonVisualize.appendChild(cardButtonVisualizeContent);
 
             let pos = data.indexOf(element);
-
             cardButtonVisualize.setAttribute('onclick', `visualizePJ(${pos})`);
-
-            cardButtonVisualize.appendChild(cardButtonVisualizeContent);
 
             ///////////////////////////////////////////////////////////////////////////
 
