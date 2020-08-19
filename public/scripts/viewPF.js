@@ -949,7 +949,7 @@ document.getElementById('atualiza-cadastro-pf').addEventListener('click', async 
 document.getElementById('exclui-cadastro-pf').addEventListener('click',async ()=>{
     let ID = document.getElementById('CPF-pf-view').value.replace(/[^\d]+/g,'');
 
-    deletePF(ID);
+    await deletePF(ID);
 
     cardsData = await getAllPF(6);
     renderCardsPF(cardsContainerPF,cardsData);
