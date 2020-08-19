@@ -22,9 +22,50 @@
    </head>
   <body>
 
-  <div id= "app" class="container valign-wrapper center-align">
 
-    <h2 id="greetings" class="center-align">Olá</h2> <!-- SAUDAÇÕES AO USUARIO -->
+
+
+    <div class="container valign-wrapper center-align" id="login-form">
+      <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+        <h3>Login</h3>
+        <form class="col s12" method="post">
+          <div class='row'>
+            <div class='col s12'>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='email' name='email' id='email-login' />
+              <label for='email'>Insira seu email</label>
+            </div>
+          </div>
+
+          <div class='row'>
+            <div class='input-field col s12'>
+              <input class='validate' type='password' name='password' id='password-login' />
+              <label for='password'>Insira sua senha</label>
+            </div>
+          </div>
+
+          <br />
+          <center>
+            <div class='row'>
+              <a id='login-send' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</a>
+            </div>
+          </center>
+        </form>
+      </div>
+    </div>
+
+
+
+
+
+
+  <div id= "app" class="container valign-wrapper center-align" style="display: none">
+
+    <h2 id="greetings" class="center-align">Olá marli</h2> <!-- SAUDAÇÕES AO USUARIO -->
 
     <!-- DIV DO MENU SUPERIOR-->
     <div id="menu">
@@ -2778,7 +2819,7 @@
   
   
   
-          <!-- REFERENCIA COMERCIAL -->
+          <!-- REFERENCIA PESSOAL -->
           
           <h4 style="color: teal;">Referencia pessoal</h4>
           <div class="divider"></div>
@@ -2801,7 +2842,7 @@
             </ul>
           </div>
   
-          <!-- FIM DA REFERENCIA COMERCIAL -->
+          <!-- FIM DA REFERENCIA PESSOAL -->
   
   
   
@@ -2917,6 +2958,7 @@
 
 
   <script src="./app.js"></script>
+  <script src="./scripts/loginScript.js"></script>
   <script src="./scripts/data.js"></script>
   <script src="./scripts/viewPF.js"></script>
   <script src="./scripts/viewPJ.js"></script>
@@ -2927,6 +2969,7 @@
   <script src="./scripts/selecionaPF.js"></script>
   <script src="./scripts/pfFormController.js"></script>
   <script src="./scripts/pjFormController.js"></script>
+  <script src="./scripts/showMore.js"></script>
 
   <script>
     $(document).ready(function($){

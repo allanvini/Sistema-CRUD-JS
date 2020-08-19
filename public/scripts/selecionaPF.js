@@ -2,6 +2,7 @@ let PF = document.getElementById('PF');
 let cardsContainerPF = document.getElementById('cards-container');
 
 PF.addEventListener('click', async ()=>{
+    clickCounter = 1;
 
     cardsData = await getAllPF(6);
 

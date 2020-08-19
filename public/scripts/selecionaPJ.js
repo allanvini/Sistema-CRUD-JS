@@ -2,6 +2,7 @@ let PJ = document.getElementById('PJ');
 let cardsContainerPJ = document.getElementById('cards-container');
 
 PJ.addEventListener('click', async ()=>{
+    clickCounter = 1;
 
     cardsData = await getAllPJ(6);
 

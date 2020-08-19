@@ -595,7 +595,7 @@ let referenciaPessoalPF = [];
     }
     
 
-finalizaCadastroPF.addEventListener('click', ()=>{
+finalizaCadastroPF.addEventListener('click', async ()=>{
     let newPF = {
         dadosCadastrais : {
             nomeCompleto : document.getElementById('nome-completo-pf').value,
@@ -667,6 +667,9 @@ finalizaCadastroPF.addEventListener('click', ()=>{
     }
 
     createPF(newPF);
+
+    cardsData = await getAllPF(6);
+    renderCardsPF(cardsContainerPF,cardsData);
 
     limpaCamposPF();
     document.getElementById('pf-form').style.display = "none";

@@ -1,10 +1,9 @@
 let cnpjContainerViewPF = document.getElementById('cnpj-pego-pf-view');
-let faturamentoContainerViewPF = document.getElementById('faturamento-pego-view');
-let empresaAtualContainerViewPF = document.getElementById('empresas-atuais-pego-pj-view');
-let empresaAnteriorContainerViewPF = document.getElementById('empresas-anterior-pego-pj-view');
-let empresaFuturaContainerViewPF = document.getElementById('empresas-futura-pego-pj-view');
-let frotaVeiculoContainerViewPF = document.getElementById('veiculos-frota-pego-pj-view');
-let referenciaPessoalContainerViewPF = document.getElementById('referencia-comercial-pego-pj-view');
+let empresaAtualContainerViewPF = document.getElementById('empresas-atuais-pego-pf-view');
+let empresaAnteriorContainerViewPF = document.getElementById('empresas-anterior-pego-pf-view');
+let empresaFuturaContainerViewPF = document.getElementById('empresas-futura-pego-pf-view');
+let frotaVeiculoContainerViewPF = document.getElementById('veiculos-frota-pego-pf-view');
+let referenciaPessoalContainerViewPF = document.getElementById('referencia-pessoal-pego-pf-view');
 
 let cnpjViewPF = [];
 let empresasAtuaisViewPF = [];
@@ -14,6 +13,7 @@ let frotaVeiculosViewPF = [];
 let referenciasPessoaisViewPF = [];
 
 let veiculoFrotaQuitadoViewPF;
+let imovelProprioViewPF;
 
 
 
@@ -27,11 +27,11 @@ function visualizePF (pos){
         nome.appendChild(nomeText);
 
     cnpjViewPF = PFAtual.pfData.dadosCadastrais.CNPJ;
-    empresasAtuaisViewPJ = PFAtual.pfData.ondePrestaServicos.empresasAtuais;
-    empresasAnterioresViewPJ = PFAtual.pfData.ondePrestaServicos.empresasAnteriores;
-    empresasFuturasViewPJ = PFAtual.pfData.ondePrestaServicos.empresasFuturas;
-    frotaVeiculosViewPJ = PFAtual.pfData.frotaDeVeiculos;
-    referenciasComerciaisViewPJ = PFAtual.pfData.referenciaPessoal;
+    empresasAtuaisViewPF = PFAtual.pfData.ondePrestaServicos.empresasAtuais;
+    empresasAnterioresViewPF = PFAtual.pfData.ondePrestaServicos.empresasAnteriores;
+    empresasFuturasViewPF = PFAtual.pfData.ondePrestaServicos.empresasFuturas;
+    frotaVeiculosViewPF = PFAtual.pfData.frotaDeVeiculos;
+    referenciasPessoaisViewPF = PFAtual.pfData.referenciaPessoal;
 
 
     document.getElementById('modal-visualizacao-PF').style.display = "block";
@@ -63,50 +63,74 @@ function visualizePF (pos){
     document.getElementById('rua-endereco-atual-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.rua;
     document.getElementById('bairro-endereco-atual-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.bairro;
     document.getElementById('numero-endereco-atual-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.numero;
+    document.getElementById('telefone-fixo-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.telefoneFixo;
+    document.getElementById('celular-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.celular;
+    document.getElementById('tempo-residencia-atual-pf-view').value = PFAtual.pfData.endereco.enderecoAtual.tempoResidencial
 
-    
+    imovelProprioViewPF = PFAtual.pfData.endereco.enderecoAtual.imovelProprio;
+
+    if(imovelProprioViewPF){
+        document.getElementById('imovel-proprio-pf-sim-view').checked = true;
+    } else {
+        document.getElementById('imovel-proprio-pf-nao-view').checked = false;
+    }
 
 
+    document.getElementById('CEP-endereco-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.cep;
+    document.getElementById('cidade-endereco-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.cidade;
+    document.getElementById('rua-endereco-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.rua;
+    document.getElementById('bairro-endereco-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.bairro;
+    document.getElementById('numero-endereco-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.numero;
+    document.getElementById('tempo-residencia-anterior-pf-view').value = PFAtual.pfData.endereco.enderecoAnterior.tempoDeResidencia;
 
-    renderFaturamentoPJView(faturamentoContainerViewPJ,faturamentosAtuaisViewPJ);
-    renderEmpresasAtuaisViewPJ(empresaAtualContainerViewPJ, empresasAtuaisViewPJ);
-    renderEmpresasAnterioresViewPJ(empresaAnteriorContainerViewPJ, empresasAnterioresViewPJ);
-    renderEmpresasFuturasViewPJ(empresaFuturaContainerViewPJ, empresasFuturasViewPJ);
+    renderEmpresasAtuaisViewPF(empresaAtualContainerViewPF, empresasAtuaisViewPF);
+    renderEmpresasAnterioresViewPF(empresaAnteriorContainerViewPF, empresasAnterioresViewPF);
+    renderEmpresasFuturasViewPF(empresaFuturaContainerViewPF, empresasFuturasViewPF);
+    renderFrotaViewPF (frotaVeiculoContainerViewPF,frotaVeiculosViewPF);
+    renderReferenciasPessoaisViewPF(referenciaPessoalContainerViewPF, referenciasPessoaisViewPF);
 
-    renderFrotaViewPJ (frotaVeiculoContainerViewPJ,frotaVeiculosViewPJ);
+
+    renderFrotaViewPF (frotaVeiculoContainerViewPJ,frotaVeiculosViewPJ);
             document.getElementById('quitado-veiculo-frota-pj-view').addEventListener('click',()=>{ 
-                veiculoFrotaQuitadoViewPJ = true;
+                veiculoFrotaQuitadoViewPF = true;
                 document.getElementById('nao-quitado-veiculo-frota-pj-view').checked = false;
             });
             document.getElementById('nao-quitado-veiculo-frota-pj-view').addEventListener('click',()=>{ 
-                veiculoFrotaQuitadoViewPJ = false;
+                veiculoFrotaQuitadoViewPF = false;
                 document.getElementById('quitado-veiculo-frota-pj-view').checked = false;
             });
 
-    renderReferenciasComerciaisViewPJ(referenciaComercialContainerViewPJ, referenciasComerciaisViewPJ);
+    
 
-    document.getElementById('marca-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.marca;
-    document.getElementById('modelo-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.modelo;
-    document.getElementById('ano-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.ano;
-    document.getElementById('placa-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.placa;
-    document.getElementById('valor-venda-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.valorDeVenda;
-    document.getElementById('valor-molicar-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.valorDaMolicar;
-    document.getElementById('valor-entrada-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.valorDeEntrada;
-    document.getElementById('valor-financiado-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.valorFinanciado;
-    document.getElementById('banco-aprovado-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.bancoAprovado;
-    document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.condicoesAprovadas;
-    document.getElementById('indicacao-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.indicacao;
-    document.getElementById('data-conclusao-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.dataDeConclusao;
-    document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pj-view').value = PFAtual.pfData.veiculoAFinanciar.respostaNegativaCredito;
-    document.getElementById('observacoes-pj-view').value = PFAtual.pfData.veiculoAFinanciar.observacoes;
+    document.getElementById('marca-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.marca;
+    document.getElementById('modelo-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.modelo;
+    document.getElementById('ano-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.ano;
+    document.getElementById('placa-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.placa;
+    document.getElementById('valor-venda-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.valorDeVenda;
+    document.getElementById('valor-molicar-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.valorDaMolicar;
+    document.getElementById('valor-entrada-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.valorDeEntrada;
+    document.getElementById('valor-financiado-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.valorFinanciado;
+    document.getElementById('banco-aprovado-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.bancoAprovado;
+    document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.condicoesAprovadas;
+    document.getElementById('indicacao-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.indicacao;
+    document.getElementById('data-conclusao-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.dataDeConclusao;
+    document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf-view').value = PFAtual.pfData.veiculoAFinanciar.respostaNegativaCredito;
+    document.getElementById('observacoes-pf-view').value = PFAtual.pfData.veiculoAFinanciar.observacoes;
 
 }
 
 
+document.getElementById('imovel-proprio-pf-sim-view').addEventListener('click',()=>{
+    imovelProprioViewPF = true;
+    document.getElementById('imovel-proprio-pf-nao-view').checked = false;
+})
+document.getElementById('imovel-proprio-pf-nao-view').addEventListener('click',()=>{
+    imovelProprioViewPF = false;
+    document.getElementById('imovel-proprio-pf-sim-view').checked = false;
+})
 
 
-
-function limpaViewPJ(){
+function limpaViewPF(){
     cnpjViewPF = [];
     empresasAtuaisViewPF = [];
     empresasAnterioresViewPF = [];
@@ -114,19 +138,20 @@ function limpaViewPJ(){
     frotaVeiculosViewPF = [];
     referenciasPessoaisViewPF = [];
     veiculoFrotaQuitadoViewPF = null;
+    imovelProprioViewPF = null;
 
     document.getElementById('modal-visualizacao-PF').style.display = "none";
     document.getElementById('pf-view').style.display = "none";
 
-    document.getElementById('titulo-pj-view').innerHTML = "";
+    document.getElementById('titulo-pf-view').innerHTML = "";
 }
 
 
 
 
-document.getElementById('fecha-view-pj').addEventListener('click',()=>{
+document.getElementById('fecha-view-pf').addEventListener('click',()=>{
     // limpar campos;
-    limpaViewPJ();
+    limpaViewPF();
 })
 
 
@@ -210,42 +235,42 @@ function renderCnpjPFView (container, data){
 
 
 
-document.getElementById('add-empresa-atual-pj-view').addEventListener('click',()=>{
-    empresasAtuaisViewPJ.push({
-        nomeDaEmpresa: document.getElementById('nome-empresa-atual-view').value,
-        CEP: document.getElementById('cep-empresa-atual-pj-view').value,
-        cidade: document.getElementById('cidade-empresa-atual-pj-view').value,
-        rua: document.getElementById('rua-empresa-atual-pj-view').value,
-        bairro: document.getElementById('bairro-empresa-atual-pj-view').value,
-        numero: document.getElementById('numero-empresa-atual-pj-view').value,
-        telefoneFixo: document.getElementById('telefone-fixo-empresa-atual-pj-view').value,
-        celular: document.getElementById('celular-empresa-atual-pj-view').value,
-        tempoDeServico: document.getElementById('tempo-empresa-atual-pj-view').value,
-        faturamentoAtual: document.getElementById('faturamento-atual-empresa-atual-pj-view').value,
-        faturamentoFuturo: document.getElementById('faturamento-futuro-empresa-atual-pj-view').value
+document.getElementById('add-empresa-atual-pf-view').addEventListener('click',()=>{
+    empresasAtuaisViewPF.push({
+        nomeDaEmpresa: document.getElementById('nome-empresa-atual-pf-view').value,
+        CEP: document.getElementById('cep-empresa-atual-pf-view').value,
+        cidade: document.getElementById('cidade-empresa-atual-pf-view').value,
+        rua: document.getElementById('rua-empresa-atual-pf-view').value,
+        bairro: document.getElementById('bairro-empresa-atual-pf-view').value,
+        numero: document.getElementById('numero-empresa-atual-pf-view').value,
+        telefoneFixo: document.getElementById('telefone-fixo-empresa-atual-pf-view').value,
+        celular: document.getElementById('celular-empresa-atual-pf-view').value,
+        tempoDeServico: document.getElementById('tempo-empresa-atual-pf-view').value,
+        faturamentoAtual: document.getElementById('faturamento-atual-empresa-atual-pf-view').value,
+        faturamentoFuturo: document.getElementById('faturamento-futuro-empresa-atual-pf-view').value
     })
 
-    document.getElementById('nome-empresa-atual-view').value = "";
-    document.getElementById('cep-empresa-atual-pj-view').value = "";
-    document.getElementById('cidade-empresa-atual-pj-view').value = "";
-    document.getElementById('rua-empresa-atual-pj-view').value = "";
-    document.getElementById('bairro-empresa-atual-pj-view').value = "";
-    document.getElementById('numero-empresa-atual-pj-view').value = "";
-    document.getElementById('telefone-fixo-empresa-atual-pj-view').value = "";
-    document.getElementById('celular-empresa-atual-pj-view').value = "";
-    document.getElementById('tempo-empresa-atual-pj-view').value = "";
-    document.getElementById('faturamento-atual-empresa-atual-pj-view').value = "";
-    document.getElementById('faturamento-futuro-empresa-atual-pj-view').value = "";
+    document.getElementById('nome-empresa-atual-pf-view').value = "";
+    document.getElementById('cep-empresa-atual-pf-view').value = "";
+    document.getElementById('cidade-empresa-atual-pf-view').value = "";
+    document.getElementById('rua-empresa-atual-pf-view').value = "";
+    document.getElementById('bairro-empresa-atual-pf-view').value = "";
+    document.getElementById('numero-empresa-atual-pf-view').value = "";
+    document.getElementById('telefone-fixo-empresa-atual-pf-view').value = "";
+    document.getElementById('celular-empresa-atual-pf-view').value = "";
+    document.getElementById('tempo-empresa-atual-pf-view').value = "";
+    document.getElementById('faturamento-atual-empresa-atual-pf-view').value = "";
+    document.getElementById('faturamento-futuro-empresa-atual-pf-view').value = "";
 
-    renderEmpresasAtuaisViewPJ(empresaAtualContainerViewPJ, empresasAtuaisViewPJ);
+    renderEmpresasAtuaisViewPF(empresaAtualContainerViewPF, empresasAtuaisViewPF);
 })
 
-function deleteEmpresaAtualViewPJ(pos){
-    empresasAtuaisViewPJ.splice(pos, 1);
-    renderEmpresasAtuaisViewPJ(empresaAtualContainerViewPJ, empresasAtuaisViewPJ);
+function deleteEmpresaAtualViewPF(pos){
+    empresasAtuaisViewPF.splice(pos, 1);
+    renderEmpresasAtuaisViewPF(empresaAtualContainerViewPF, empresasAtuaisViewPF);
 }
 
-function renderEmpresasAtuaisViewPJ(container,data){
+function renderEmpresasAtuaisViewPF(container,data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -321,7 +346,7 @@ function renderEmpresasAtuaisViewPJ(container,data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaAtualViewPJ(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaAtualViewPF(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -351,40 +376,40 @@ function renderEmpresasAtuaisViewPJ(container,data){
 
 
 
-document.getElementById('add-empresa-anterior-pj-view').addEventListener('click',()=>{
-    empresasAnterioresViewPJ.push({
-        nomeDaEmpresa: document.getElementById('nome-empresa-anterior-pj-view').value,
-        CEP: document.getElementById('cep-empresa-anterior-pj-view').value,
-        cidade: document.getElementById('cidade-empresa-anterior-pj-view').value,
-        rua: document.getElementById('rua-empresa-anterior-pj-view').value,
-        bairro: document.getElementById('bairro-empresa-anterior-pj-view').value,
-        numero: document.getElementById('numero-empresa-anterior-pj-view').value,
-        telefoneFixo: document.getElementById('telefone-fixo-empresa-anterior-pj-view').value,
-        celular: document.getElementById('celular-empresa-anteriorpj-view').value,
-        tempoDeServico: document.getElementById('tempo-empresa-anterior-pj-view').value,
-        salario: document.getElementById('salario-empresa-anterior-pj-view').value,
+document.getElementById('add-empresa-anterior-pf-view').addEventListener('click',()=>{
+    empresasAnterioresViewPF.push({
+        nomeDaEmpresa: document.getElementById('nome-empresa-anterior-pf-view').value,
+        CEP: document.getElementById('cep-empresa-anterior-pf-view').value,
+        cidade: document.getElementById('cidade-empresa-anterior-pf-view').value,
+        rua: document.getElementById('rua-empresa-anterior-pf-view').value,
+        bairro: document.getElementById('bairro-empresa-anterior-pf-view').value,
+        numero: document.getElementById('numero-empresa-anterior-pf-view').value,
+        telefoneFixo: document.getElementById('telefone-fixo-empresa-anterior-pf-view').value,
+        celular: document.getElementById('celular-empresa-anterior-pf-view').value,
+        tempoDeServico: document.getElementById('tempo-empresa-anterior-pf-view').value,
+        salario: document.getElementById('salario-empresa-anterior-pf-view').value,
     })
 
-    document.getElementById('nome-empresa-anterior-pj-view').value = "";
-    document.getElementById('cep-empresa-anterior-pj-view').value = "";
-    document.getElementById('cidade-empresa-anterior-pj-view').value = "";
-    document.getElementById('rua-empresa-anterior-pj-view').value = "";
-    document.getElementById('bairro-empresa-anterior-pj-view').value = "";
-    document.getElementById('numero-empresa-anterior-pj-view').value = "";
-    document.getElementById('telefone-fixo-empresa-anterior-pj-view').value = "";
-    document.getElementById('celular-empresa-anteriorpj-view').value = "";
-    document.getElementById('tempo-empresa-anterior-pj-view').value = "";
-    document.getElementById('salario-empresa-anterior-pj-view').value = "";
+    document.getElementById('nome-empresa-anterior-pf-view').value = "";
+    document.getElementById('cep-empresa-anterior-pf-view').value = "";
+    document.getElementById('cidade-empresa-anterior-pf-view').value = "";
+    document.getElementById('rua-empresa-anterior-pf-view').value = "";
+    document.getElementById('bairro-empresa-anterior-pf-view').value = "";
+    document.getElementById('numero-empresa-anterior-pf-view').value = "";
+    document.getElementById('telefone-fixo-empresa-anterior-pf-view').value = "";
+    document.getElementById('celular-empresa-anterior-pf-view').value = "";
+    document.getElementById('tempo-empresa-anterior-pf-view').value = "";
+    document.getElementById('salario-empresa-anterior-pf-view').value = "";
 
-    renderEmpresasAnterioresViewPJ(empresaAnteriorContainerViewPJ, empresasAnterioresViewPJ);
+    renderEmpresasAnterioresViewPF(empresaAnteriorContainerViewPF, empresasAnterioresViewPF);
 })
 
-function deleteEmpresaAnteriorViewPJ(pos){
-    empresasAnterioresViewPJ.splice(pos, 1);
-    renderEmpresasAnterioresViewPJ(empresaAnteriorContainerViewPJ, empresasAnterioresViewPJ);
+function deleteEmpresaAnteriorViewPF(pos){
+    empresasAnterioresViewPF.splice(pos, 1);
+    renderEmpresasAnterioresViewPJ(empresaAnteriorContainerViewPF, empresasAnterioresViewPF);
 }
 
-function renderEmpresasAnterioresViewPJ (container, data){
+function renderEmpresasAnterioresViewPF (container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -456,7 +481,7 @@ function renderEmpresasAnterioresViewPJ (container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaAnteriorViewPJ(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaAnteriorViewPF(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -486,38 +511,38 @@ function renderEmpresasAnterioresViewPJ (container, data){
 
 
 
-document.getElementById('add-empresa-futura-pj-view').addEventListener('click',()=>{
-    empresasFuturasViewPJ.push({
-        nomeDaEmpresa: document.getElementById('nome-empresa-futura-pj-view').value,
-        CEP: document.getElementById('cep-empresa-futura-pj-view').value,
-        cidade: document.getElementById('cidade-empresa-futura-pj-view').value,
-        rua: document.getElementById('rua-empresa-futura-pj-view').value,
-        bairro: document.getElementById('bairro-empresa-futura-pj-view').value,
-        numero: document.getElementById('numero-empresa-futura-pj-view').value,
-        telefoneFixo: document.getElementById('telefone-fixo-empresa-futura-pj-view').value,
-        celular: document.getElementById('celular-empresa-futura-pj-view').value,
-        salario: document.getElementById('salario-empresa-futura-pj-view').value,
+document.getElementById('add-empresa-futura-pf-view').addEventListener('click',()=>{
+    empresasFuturasViewPF.push({
+        nomeDaEmpresa: document.getElementById('nome-empresa-futura-pf-view').value,
+        CEP: document.getElementById('cep-empresa-futura-pf-view').value,
+        cidade: document.getElementById('cidade-empresa-futura-pf-view').value,
+        rua: document.getElementById('rua-empresa-futura-pf-view').value,
+        bairro: document.getElementById('bairro-empresa-futura-pf-view').value,
+        numero: document.getElementById('numero-empresa-futura-pf-view').value,
+        telefoneFixo: document.getElementById('telefone-fixo-empresa-futura-pf-view').value,
+        celular: document.getElementById('celular-empresa-futura-pf-view').value,
+        salario: document.getElementById('salario-empresa-futura-pf-view').value,
     })
 
-    document.getElementById('nome-empresa-futura-pj-view').value = "";
-    document.getElementById('cep-empresa-futura-pj-view').value = "";
-    document.getElementById('cidade-empresa-futura-pj-view').value = "";
-    document.getElementById('rua-empresa-anterior-pj-view').value = "";
-    document.getElementById('bairro-empresa-futura-pj-view').value = "";
-    document.getElementById('numero-empresa-futura-pj-view').value = "";
-    document.getElementById('telefone-fixo-empresa-futura-pj-view').value = "";
-    document.getElementById('celular-empresa-futura-pj-view').value = "";
-    document.getElementById('salario-empresa-futura-pj-view').value = "";
+    document.getElementById('nome-empresa-futura-pf-view').value = "";
+    document.getElementById('cep-empresa-futura-pf-view').value = "";
+    document.getElementById('cidade-empresa-futura-pf-view').value = "";
+    document.getElementById('rua-empresa-anterior-pf-view').value = "";
+    document.getElementById('bairro-empresa-futura-pf-view').value = "";
+    document.getElementById('numero-empresa-futura-pf-view').value = "";
+    document.getElementById('telefone-fixo-empresa-futura-pf-view').value = "";
+    document.getElementById('celular-empresa-futura-pf-view').value = "";
+    document.getElementById('salario-empresa-futura-pf-view').value = "";
 
-    renderEmpresasFuturasViewPJ(empresaFuturaContainerViewPJ, empresasFuturasViewPJ);
+    renderEmpresasFuturasViewPF(empresaFuturaContainerViewPF, empresasFuturasViewPF);
 })
 
-function deleteEmpresaFuturaViewPJ(pos){
-    empresasFuturasViewPJ.splice(pos, 1);
-    renderEmpresasFuturasViewPJ(empresaFuturaContainerViewPJ, empresasFuturasViewPJ);
+function deleteEmpresaFuturaViewPF(pos){
+    empresasFuturasViewPF.splice(pos, 1);
+    renderEmpresasFuturasViewPF(empresaFuturaContainerViewPF, empresasFuturasViewPF);
 }
 
-function renderEmpresasFuturasViewPJ (container, data){
+function renderEmpresasFuturasViewPF (container, data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -584,7 +609,7 @@ function renderEmpresasFuturasViewPJ (container, data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteEmpresaFuturaViewPJ(${pos})`);
+        del.setAttribute('onclick', `deleteEmpresaFuturaViewPF(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -613,35 +638,35 @@ function renderEmpresasFuturasViewPJ (container, data){
 
 
 
-document.getElementById('add-veiculo-frota-pj-view').addEventListener('click',()=>{
-    frotaVeiculosViewPJ.push({
-        ano: document.getElementById('ano-veiculo-frota-pj-view').value,
-        marca: document.getElementById('marca-veiculo-frota-pj-view').value,
-        modelo: document.getElementById('modelo-veiculo-frota-pj-view').value,
-        placa: document.getElementById('placa-veiculo-frota-pj-view').value,
-        quitado: veiculoFrotaQuitadoViewPJ,
-        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pj-view').value
+document.getElementById('add-veiculo-frota-pf-view').addEventListener('click',()=>{
+    frotaVeiculosViewPF.push({
+        ano: document.getElementById('ano-veiculo-frota-pf-view').value,
+        marca: document.getElementById('marca-veiculo-frota-pf-view').value,
+        modelo: document.getElementById('modelo-veiculo-frota-pf-view').value,
+        placa: document.getElementById('placa-veiculo-frota-pf-view').value,
+        quitado: veiculoFrotaQuitadoViewPF,
+        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pf-view').value
     })
 
-    renderFrotaViewPJ (frotaVeiculoContainerViewPJ,frotaVeiculosViewPJ);
+    renderFrotaViewPF (frotaVeiculoContainerViewPF,frotaVeiculosViewPF);
 
-    document.getElementById('ano-veiculo-frota-pj-view').value = "";
-    document.getElementById('marca-veiculo-frota-pj-view').value = "";
-    document.getElementById('modelo-veiculo-frota-pj-view').value = "";
-    document.getElementById('placa-veiculo-frota-pj-view').value = "";
-    document.getElementById('tempo-em-nome-veiculo-frota-pj-view').value = "";
-    document.getElementById('quitado-veiculo-frota-pj-view').checked = false;
-    document.getElementById('nao-quitado-veiculo-frota-pj-view').checked = false;
-    veiculoFrotaQuitadoViewPJ = null;
+    document.getElementById('ano-veiculo-frota-pf-view').value = "";
+    document.getElementById('marca-veiculo-frota-pf-view').value = "";
+    document.getElementById('modelo-veiculo-frota-pf-view').value = "";
+    document.getElementById('placa-veiculo-frota-pf-view').value = "";
+    document.getElementById('tempo-em-nome-veiculo-frota-pf-view').value = "";
+    document.getElementById('quitado-veiculo-frota-pf-view').checked = false;
+    document.getElementById('nao-quitado-veiculo-frota-pf-view').checked = false;
+    veiculoFrotaQuitadoViewPF = null;
 
 })
 
-function deleteFrotaViewPJ(pos){
-    frotaVeiculosViewPJ.splice(pos,1);
-    renderFrotaViewPJ (frotaVeiculoContainerViewPJ,frotaVeiculosViewPJ);
+function deleteFrotaViewPF(pos){
+    frotaVeiculosViewPF.splice(pos,1);
+    renderFrotaViewPF (frotaVeiculoContainerViewPF,frotaVeiculosViewPF);
 }
 
-function renderFrotaViewPJ(container,data){
+function renderFrotaViewPF(container,data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -702,7 +727,7 @@ function renderFrotaViewPJ(container,data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteFrotaViewPJ(${pos})`);
+        del.setAttribute('onclick', `deleteFrotaViewPF(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -737,27 +762,29 @@ function renderFrotaViewPJ(container,data){
 
 
 
-document.getElementById('add-referencia-comercial-pj-view').addEventListener('click',()=>{
-    referenciasComerciaisViewPJ.push({
-        empresa: document.getElementById('nome-empresa-referencia-comercial-pj-view').value,
-        telefone: document.getElementById('telefone-empresa-referencia-comercial-pj-view').value
+document.getElementById('add-referencia-pessoal-pf-view').addEventListener('click',()=>{
+    referenciasPessoaisViewPF.push({
+        nome: document.getElementById('nome-referencia-pessoal-pf-view').value,
+        telefoneFixo: document.getElementById('telefone-fixo-referencia-pessoal-pf-view').value,
+        celular: document.getElementById('celular-referencia-pessoal-pf-view').value
     })
 
-    document.getElementById('nome-empresa-referencia-comercial-pj-view').value = "";
-    document.getElementById('telefone-empresa-referencia-comercial-pj-view').value = "";
+    document.getElementById('nome-referencia-pessoal-pf-view').value = "";
+    document.getElementById('telefone-fixo-referencia-pessoal-pf-view').value = "";
+    document.getElementById('celular-referencia-pessoal-pf-view').value = "";
 
-    renderReferenciasComerciaisViewPJ(referenciaComercialContainerViewPJ, referenciasComerciaisViewPJ);
+    renderReferenciasPessoaisViewPF(referenciaPessoalContainerViewPF, referenciasPessoaisViewPF);
 })
 
-function deleteReferenciaComercialViewPJ(pos){
-    referenciasComerciaisViewPJ.splice(pos,1);
-    renderReferenciasComerciaisViewPJ(referenciaComercialContainerViewPJ, referenciasComerciaisViewPJ);
+function deleteReferenciaPessoalViewPF(pos){
+    referenciasPessoaisViewPF.splice(pos,1);
+    renderReferenciasPessoaisViewPF(referenciaPessoalContainerViewPF, referenciasPessoaisViewPF);
 }
 
 
 
 
-function renderReferenciasComerciaisViewPJ(container,data){
+function renderReferenciasPessoaisViewPF(container,data){
     container.innerHTML = "";
 
     data.forEach(element => {
@@ -770,17 +797,22 @@ function renderReferenciasComerciaisViewPJ(container,data){
         let content = document.createElement('div');
             
 
-            let empresa = document.createElement('p');
-                empresaValue = document.createTextNode(`Empresa: ${element.empresa}`);
-                empresa.appendChild(empresaValue);
+            let nome = document.createElement('p');
+                nomeValue = document.createTextNode(`Empresa: ${element.nome}`);
+                nome.appendChild(nomeValue);
 
-            let telefone = document.createElement('p')
-                telefoneValue = document.createTextNode(`Telefone: ${element.telefone}`);
-                telefone.appendChild(telefoneValue);
+            let telefoneFixo = document.createElement('p')
+                telefoneFixoValue = document.createTextNode(`Telefone Fixo: ${element.telefoneFixo}`);
+                telefoneFixo.appendChild(telefoneFixoValue);
+
+            let celular = document.createElement('p')
+                celularValue = document.createTextNode(`Celular: ${element.celular}`);
+                celular.appendChild(celularValue);
 
 
-            content.appendChild(empresa);
-            content.appendChild(telefone);
+            content.appendChild(nome);
+            content.appendChild(telefoneFixo)
+            content.appendChild(celular);;
 
         let pos = data.indexOf(element);
 
@@ -790,7 +822,7 @@ function renderReferenciasComerciaisViewPJ(container,data){
         del.setAttribute('class', 'btn-small');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
-        del.setAttribute('onclick', `deleteReferenciaComercialViewPJ(${pos})`);
+        del.setAttribute('onclick', `deleteReferenciaPessoalViewPF(${pos})`);
 
         li.appendChild(content);
         li.appendChild(del);
@@ -821,78 +853,85 @@ function renderReferenciasComerciaisViewPJ(container,data){
 
 
 
-document.getElementById('atualiza-cadastro-pj').addEventListener('click', async ()=>{
-    let updatedPJ = {
+document.getElementById('atualiza-cadastro-pf').addEventListener('click', async ()=>{
+    let updatedPF = {
         dadosCadastrais : {
-            razaoSocial : document.getElementById('razao-social-pj-view').value,
-            CNPJ : document.getElementById('cnpj-empresa-view').value.replace(/[^\d]+/g,''),
-            email : document.getElementById('email-empresa-view').value,
-            CPF : cnpjViewPF,
-            dataAbertura : document.getElementById('data-abertura-empresa-view').value,
-            capitalSocial : document.getElementById('capital-social-empresa-view').value,
-            numeroFuncionariosRegistrados : document.getElementById('numero-funcionarios-registrados-view').value,
-            telefoneFixo : document.getElementById('telefone-fixo-pj-view').value,
-            CEP : document.getElementById('cep-empresa-view').value,
-            cidade : document.getElementById('cidade-empresa-view').value,
-            rua : document.getElementById('rua-empresa-view').value,
-            bairro : document.getElementById('bairro-empresa-view').value,
-            numero : document.getElementById('numero-empresa-view').value
+            nomeCompleto : document.getElementById('nome-completo-pf-view').value,
+            CPF : document.getElementById('CPF-pf-view').value.replace(/[^\d]+/g,''),
+            email : document.getElementById('email-pf-view').value,
+            CNPJ : cnpjViewPF,
+            RG : document.getElementById('RG-pf-view').value,
+            dataDeNascimento : document.getElementById('data-nascimento-pf-view').value,
+            estadoCivil : document.getElementById('estado-civil-pf-view').value,
+            naturalidade : document.getElementById('naturalidade-pf-view').value,
+            nomeDoPai : document.getElementById('nome-pai-pf-view').value,
+            nomeDaMae : document.getElementById('nome-mae-pf-view').value
         },
         dadosBancarios : {
-            banco : document.getElementById('banco-empresa-view').value,
-            agencia : document.getElementById('agencia-empresa-view').value,
-            conta : {
-                numero : document.getElementById('numero-conta-empresa-view').value,
-                digito : document.getElementById('digito-conta-empresa-view').value
+            banco : document.getElementById('banco-pf-view').value,
+            agencia : document.getElementById('agencia-pf-view').value,
+            contaCorrente : {
+                numero : document.getElementById('numero-conta-pf-view').value,
+                digito : document.getElementById('digito-conta-pf-view').value,
             },
-            tempoConta : document.getElementById('tempo-conta-empresa-view').value,
-            telefoneAgencia : document.getElementById('telefone-agencia-empresa-view').value
+            tempoDeConta : document.getElementById('tempo-conta-pf-view').value,
+            telefoneDaAgencia : document.getElementById('telefone-agencia-pf-view').value
         },
-        socios : {
-            porcentagemSocioMajoritario : document.getElementById('porcentagem-socio-majoritario-empresa-view').value,
-            porcentagemDemaisSocios : document.getElementById('porcentagem-demais-socios-empresa-view').value,
-            socioMajoritarioAssinaSozinho : socioMajoritarioViewPJ
+        endereco : {
+            enderecoAtual : {
+                cep : document.getElementById('CEP-endereco-atual-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-atual-pf-view').value,
+                rua : document.getElementById('rua-endereco-atual-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-atual-pf-view').value,
+                numero : document.getElementById('numero-endereco-atual-pf-view').value,
+                telefoneFixo : document.getElementById('telefone-fixo-pf-view').value,
+                celular : document.getElementById('celular-pf-view').value,
+                tempoResidencial : document.getElementById('tempo-residencia-atual-pf-view').value,
+                imovelProprio : imovelProprioStatePF,
+                valorDoImovel : document.getElementById('valor-imovel-residencia-atual-pf').value
+            },
+            enderecoAnterior : {
+                cep : document.getElementById('CEP-endereco-anterior-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-anterior-pf-view').value,
+                rua : document.getElementById('rua-endereco-anterior-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-anterior-pf-view').value,
+                numero : document.getElementById('numero-endereco-anterior-pf-view').value,
+                tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf-view').value
+            }
         },
-        contador : {
-            nome : document.getElementById('nome-contador-empresa-view').value,
-            escritorio : document.getElementById('escritorio-contador-empresa-view').value,
-            telefoneFixo : document.getElementById('telefone-fixo-contador-empresa-view').value,
-            celular : document.getElementById('celular-contador-empresa-view').value
-        },
-        faturamento : faturamentosAtuaisViewPJ,
         ondePrestaServicos : {
-            empresasAtuais : empresasAtuaisViewPJ,
-            empresasAnteriores : empresasAnterioresViewPJ,
-            empresasFuturas : empresasFuturasViewPJ
+            empresasAtuais : empresasAtuaisViewPF,
+            empresasAnteriores : empresasAnterioresViewPF,
+            empresasFuturas : empresasFuturasViewPF
         },
-        frotaDeVeiculos : frotaVeiculosViewPJ,
-        referenciasComerciais : referenciasComerciaisViewPJ,
+        referenciaPessoal: referenciasPessoaisViewPF,
+        frotaDeVeiculos : frotaVeiculosViewPF,
         veiculoAFinanciar : {
-            marca : document.getElementById('marca-veiculo-a-financiar-pj-view').value,
-            modelo : document.getElementById('modelo-veiculo-a-financiar-pj-view').value,
-            ano : document.getElementById('ano-veiculo-a-financiar-pj-view').value,
-            placa : document.getElementById('placa-veiculo-a-financiar-pj-view').value,
-            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pj-view').value,
-            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pj-view').value,
-            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pj-view').value,
-            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pj-view').value,
-            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pj-view').value,
-            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pj-view').value,
-            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pj-view').value,
-            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pj-view').value,
-            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pj-view').value,
-            observacoes : document.getElementById('observacoes-pj-view').value
+            marca : document.getElementById('marca-veiculo-a-financiar-pf-view').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pf-view').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pf-view').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pf-view').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf-view').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf-view').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf-view').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf-view').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf-view').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf-view').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf-view').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf-view').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf-view').value,
+            observacoes : document.getElementById('observacoes-pf-view').value
         }
-    } // fim do objeto
+    }
 
     //let ID = updatedPJ.dadosCadastrais.CNPJ;
-    createPJ(updatedPJ);
+    await createPF(updatedPF);
 
-    cardsData = await getAllPJ(6);
-    renderCardsPJ(cardsContainerPJ,cardsData);
+    cardsData = await getAllPF(6);
+    renderCardsPF(cardsContainerPF,cardsData);
 
 
-    limpaViewPJ();
+    limpaViewPF();
 })
 
 
@@ -907,13 +946,12 @@ document.getElementById('atualiza-cadastro-pj').addEventListener('click', async 
 
 
 
-document.getElementById('exclui-cadastro-pj').addEventListener('click',async ()=>{
-    let ID = document.getElementById('cnpj-empresa-view').value.replace(/[^\d]+/g,'');
+document.getElementById('exclui-cadastro-pf').addEventListener('click',async ()=>{
+    let ID = document.getElementById('CPF-pf-view').value.replace(/[^\d]+/g,'');
 
-    deletePJ(ID);
+    deletePF(ID);
 
-    cardsData = await getAllPJ(6);
-    renderCardsPJ(cardsContainerPJ,cardsData);
-
-    limpaViewPJ();
+    cardsData = await getAllPF(6);
+    renderCardsPF(cardsContainerPF,cardsData);
+    limpaViewPF();
 })
