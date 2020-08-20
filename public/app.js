@@ -98,19 +98,21 @@ var config =  {
 
   }
 
-  function getPJFiltered(cnpj='', cpf='', ano='', modelo='', marca='', page=25){
-    firestore.collection("PJ").limit(page).where('FILTROS', 'array-contains-any', [cnpj, cpf, ano, modelo, marca])
+  async function getPJFiltered(cnpj='', cpf='', ano='', modelo='', marca='', page=25){
+    let retorno = [];
+    await firestore.collection("PJ").limit(page).where('FILTROS', 'array-contains-any', [cnpj, cpf, ano, modelo, marca])
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            console.log(doc.id, " => ", doc.data());
-            return doc.data()
+            //console.log(doc.id, " => ", doc.data());
+            retorno.push(doc.data());
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
         return false
     });
+    return retorno;
   }
 
   async function getAllPJ(page=25){

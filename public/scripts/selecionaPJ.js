@@ -6,7 +6,6 @@ PJ.addEventListener('click', async ()=>{
 
     cardsData = await getAllPJ(6);
 
-
     renderCardsPJ(cardsContainerPJ,cardsData);
 
     this.PJ.style.borderBottom = 'solid 2px blue';
