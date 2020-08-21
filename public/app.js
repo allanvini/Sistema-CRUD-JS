@@ -151,21 +151,23 @@ var config =  {
     })
   }
   
-  function getPFByFilter(CPF=0, CNPJ=0){
-    firestore.collection("PF").where('FILTROS', 'array-contains-any',
+  async function getPFByFilter(CPF=0, CNPJ=0){
+    let retorno = [];
+    await firestore.collection("PF").where('FILTROS', 'array-contains-any',
     [CPF, CNPJ])
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
-            return doc.data()
+            //return doc.data()
+            retorno.push(doc.data());
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
         return false
     });
-
+    return retorno;
   }
 
   async function getAllPF(page=25){

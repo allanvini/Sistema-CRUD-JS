@@ -675,6 +675,53 @@ finalizaCadastroPF.addEventListener('click', async ()=>{
     document.getElementById('pf-form').style.display = "none";
 })
 
+
+
+ document.getElementById('envia-email-pj').addEventListener('click', async ()=>{
+     /*
+     curl --request POST \
+    --url https://automate-heroku-renan.herokuapp.com/mail \
+    --header 'content-type: application/json' \
+    --data '{
+        "destino": "renanc433@gmail.com",
+        "assunto":"123",
+        "corpo":"<b>funcionou essa bucetona<br />"
+    }' 
+    */
+
+
+   await axios.post('https://automate-heroku-renan.herokuapp.com/mail',{
+        destino: "allanvinisilva@gmail.com",
+        assunto: "123",
+        corpo: "<h1>Funcionou</h1>"
+    })
+    .then((response)=>{
+        console.log(response);
+    }, (error)=>{
+        console.log(error);
+    });
+
+    await axios.get('https://api.github.com/users/allanvini').then((response) => {
+        console.log(response.data);
+        //console.log(response.status);
+        //console.log(response.statusText);
+        //console.log(response.headers);
+        //console.log(response.config);
+    });
+    
+ })
+
+
+
+
+
+
+
+
+
+
+
+
 function limpaCamposPF(){
     document.getElementById('nome-completo-pf').value = "";
     document.getElementById('CPF-pf').value = "";
