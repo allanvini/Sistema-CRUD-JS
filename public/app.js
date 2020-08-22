@@ -1,12 +1,13 @@
 
 var config =  {
-    apiKey: "AIzaSyAvvFdgrqb7ub97VKOueNE3j7XwzIY39z0",
-    authDomain: "marli-clients-manager.firebaseapp.com",
-    databaseURL: "https://marli-clients-manager.firebaseio.com",
-    projectId: "marli-clients-manager",
-    storageBucket: "marli-clients-manager.appspot.com",
-    messagingSenderId: "1051808743726",
-    appId: "1:1051808743726:web:2c62ed8e2149658e39babf"
+    apiKey: "AIzaSyBKSX0FJAIAC74IB_NJBQThtFht_Hctbn0",
+    authDomain: "marli-manager.firebaseapp.com",
+    databaseURL: "https://marli-manager.firebaseio.com",
+    projectId: "marli-manager",
+    storageBucket: "marli-manager.appspot.com",
+    messagingSenderId: "566023474141",
+    appId: "1:566023474141:web:cdd2582692f963f9820434",
+    measurementId: "G-G9M8BPGYN0"
   };
 
 
@@ -196,9 +197,12 @@ var config =  {
     });
   }
 
-  function auth(email, password){
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        return false  
+  async function auth(email, password){
+    let authorized = false
+     await firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+         authorized = true
+     }).catch(function(error) {
+        authorized = false  
       });
-      return true
+      return authorized
   }
