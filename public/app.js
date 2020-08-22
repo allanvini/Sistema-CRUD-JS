@@ -202,11 +202,7 @@ var config =  {
      await firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
          authorized = true
      }).catch(function(error) {
-<<<<<<< HEAD
-        authorized = false
-=======
         authorized = false  
->>>>>>> 2e227c7eb4581130f2b452cf94b7b4c3ed4c6583
       });
       return authorized
   }

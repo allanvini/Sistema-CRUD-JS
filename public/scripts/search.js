@@ -8,8 +8,6 @@ document.getElementById('search').addEventListener('click', async ()=>{
         MODELO = document.getElementById('model-query').value;
         MARCA = document.getElementById('brand-query').value;
 
-        console.log(CNPJ);
-
         if (CNPJ === "" && CPF === "" && MODELO === "" && MARCA === ""){
             cardsData = await getAllPJ(6);
             renderCardsPJ(cardsContainerPJ, cardsData);
