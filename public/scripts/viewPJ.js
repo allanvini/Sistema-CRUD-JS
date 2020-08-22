@@ -172,7 +172,7 @@ document.getElementById('fecha-view-pj').addEventListener('click',()=>{
 
 
 document.getElementById('add-cpf-viewPJ').addEventListener('click', ()=>{
-    cpfViewPJ.push(document.getElementById('cpfs-empresa-viewPJ').value);
+    cpfViewPJ.push(document.getElementById('cpfs-empresa-viewPJ').value.replace(/[^\d]+/g,''));
     document.getElementById('cpfs-empresa-viewPJ').value = "";
     renderCpfPJView(cpfContainerViewPJ,cpfViewPJ);
 });
@@ -1018,3 +1018,330 @@ document.getElementById('exclui-cadastro-pj').addEventListener('click',async ()=
 
     limpaViewPJ();
 })
+
+
+
+
+
+
+document.getElementById('envia-email-pj').addEventListener('click',async()=>{
+
+    let mailData = {
+        dadosCadastrais : {
+            razaoSocial : document.getElementById('razao-social-pj-view').value,
+            CNPJ : document.getElementById('cnpj-empresa-view').value.replace(/[^\d]+/g,''),
+            email : document.getElementById('email-empresa-view').value,
+            CPF : mailerizeCpfCnpj(cpfViewPJ),
+            dataAbertura : document.getElementById('data-abertura-empresa-view').value,
+            capitalSocial : document.getElementById('capital-social-empresa-view').value,
+            numeroFuncionariosRegistrados : document.getElementById('numero-funcionarios-registrados-view').value,
+            telefoneFixo : document.getElementById('telefone-fixo-pj-view').value,
+            CEP : document.getElementById('cep-empresa-view').value,
+            cidade : document.getElementById('cidade-empresa-view').value,
+            rua : document.getElementById('rua-empresa-view').value,
+            bairro : document.getElementById('bairro-empresa-view').value,
+            numero : document.getElementById('numero-empresa-view').value
+        },
+        dadosBancarios : {
+            banco : document.getElementById('banco-empresa-view').value,
+            agencia : document.getElementById('agencia-empresa-view').value,
+            conta : {
+                numero : document.getElementById('numero-conta-empresa-view').value,
+                digito : document.getElementById('digito-conta-empresa-view').value
+            },
+            tempoConta : document.getElementById('tempo-conta-empresa-view').value,
+            telefoneAgencia : document.getElementById('telefone-agencia-empresa-view').value
+        },
+        socios : {
+            porcentagemSocioMajoritario : document.getElementById('porcentagem-socio-majoritario-empresa-view').value,
+            porcentagemDemaisSocios : document.getElementById('porcentagem-demais-socios-empresa-view').value,
+            socioMajoritarioAssinaSozinho : socioMajoritarioViewPJ
+        },
+        contador : {
+            nome : document.getElementById('nome-contador-empresa-view').value,
+            escritorio : document.getElementById('escritorio-contador-empresa-view').value,
+            telefoneFixo : document.getElementById('telefone-fixo-contador-empresa-view').value,
+            celular : document.getElementById('celular-contador-empresa-view').value
+        },
+        faturamento : mailerizeFaturamentos(faturamentosAtuaisViewPJ),
+        ondePrestaServicos : {
+            empresasAtuais : mailerizeEmpresasAtuaisPJ(empresasAtuaisViewPJ),
+            empresasAnteriores : mailerizeEmpresasAnterioresPJ(empresasAnterioresViewPJ),
+            empresasFuturas : mailerizeEmpresasFuturasPJ(empresasFuturasViewPJ)
+        },
+        frotaDeVeiculos : mailerizeFrotaVeiculos(frotaVeiculosViewPJ),
+        referenciasComerciais : mailerizeReferenciasComerciais(referenciasComerciaisViewPJ),
+        veiculoAFinanciar : {
+            marca : document.getElementById('marca-veiculo-a-financiar-pj-view').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pj-view').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pj-view').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pj-view').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pj-view').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pj-view').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pj-view').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pj-view').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pj-view').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pj-view').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pj-view').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pj-view').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pj-view').value,
+            observacoes : document.getElementById('observacoes-pj-view').value
+        }
+    } // fim do objeto
+
+    await axios.post('https://automate-heroku-renan.herokuapp.com/mail',{
+        destino: "allanvinisilva@gmail.com",
+        assunto: `Dados da empresa: ${mailData.dadosCadastrais.razaoSocial}`,
+        corpo: `<h4>Dados cadastrais</h4>
+                <br>
+                <p>Razão social: ${mailData.dadosCadastrais.razaoSocial}</p>
+                <br>
+                <p>CNPJ: ${mailData.dadosCadastrais.CNPJ}</p>
+                <br>
+                <p>E-Mail: ${mailData.dadosCadastrais.email}</p>
+                <br>
+                <p>CPF's dos sócios: ${mailData.dadosCadastrais.CPF}</p>
+                <br>
+                <p>Data de abertura: ${mailData.dadosCadastrais.dataAbertura}</p>
+                <br>
+                <p>Capital social: ${mailData.dadosCadastrais.capitalSocial}</p>
+                <br>
+                <p>Numero de funcionarios registrados: ${mailData.dadosCadastrais.numeroFuncionariosRegistrados}</p>
+                <br>
+                <p>Telefone Fixo: ${mailData.dadosCadastrais.telefoneFixo}</p>
+                <br>
+                <p>CEP: ${mailData.dadosCadastrais.CEP}</p>
+                <br>
+                <p>Cidade: ${mailData.dadosCadastrais.cidade}</p>
+                <br>
+                <p>Rua: ${mailData.dadosCadastrais.rua}</p>
+                <br>
+                <p>Bairro: ${mailData.dadosCadastrais.bairro}</p>
+                <br>
+                <p>Número: ${mailData.dadosCadastrais.numero}</p>
+                <br>
+                <h4>Dados Bancários</h4>
+                <br>
+                <p>Banco: ${mailData.dadosBancarios.banco}</p>
+                <br>
+                <p>Agência: ${mailData.dadosBancarios.agencia}</p>
+                <br>
+                <p>Conta Corrente: Numero: ${mailData.dadosBancarios.conta.numero} Dígito: ${mailData.dadosBancarios.conta.digito}</p>
+                <br>
+                <p>Tempo de conta: ${mailData.dadosBancarios.tempoConta}</p>
+                <br>
+                <p>Telefone da agência: ${mailData.dadosBancarios.telefoneAgencia}</p>
+                <br>
+                <h4>Sócios</h4>
+                <br>
+                <p>Porcentagem do sócio majoritário: ${mailData.socios.porcentagemSocioMajoritario}</p>
+                <br>
+                <p>Porcentagem dos demais sócios: ${mailData.socios.porcentagemDemaisSocios}</p>
+                <br>
+                <p>Sócio majoritário assina sozinho?: ${mailData.socios.socioMajoritarioAssinaSozinho}</p>
+                <br>
+                <h4>Contador</h4>
+                <br>
+                <p>Nome do contador: ${mailData.contador.nome}</p>
+                <br>
+                <p>Escritório: ${mailData.contador.escritorio}</p>
+                <br>
+                <p>Telefone fixo: ${mailData.contador.telefoneFixo}</p>
+                <br>
+                <p>Celular: ${mailData.contador.celular}</p>
+                <br>
+                <h4>Últimos faturamentos registrados: </h4>
+                <br>
+                <p>${mailData.faturamento}</p>
+                <br>
+                <h4>Onde presta serviços: </h4>
+                <br>
+                <h5>Empresas atuais</h5>
+                <br>
+                <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
+                <br>
+                <h5>Empresas anteriores</h5>
+                <br>
+                <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
+                <br>
+                <h5>Empresas futuras</h5>
+                <br>
+                <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
+                <br>
+                <h4>Frota de veiculos</h4>
+                <br>
+                <p>${mailData.frotaDeVeiculos}</p>
+                <br>
+                <h4>Referencias comerciais</h4>
+                <p>${mailData.referenciasComerciais}</p>
+                <br>
+                <h4>Veículo à financiar</h4>
+                <br>
+                <p>Marca: ${mailData.veiculoAFinanciar.marca}</p>
+                <br>
+                <p>Modelo: ${mailData.veiculoAFinanciar.modelo}</p>
+                <br>
+                <p>Ano: ${mailData.veiculoAFinanciar.ano}</p>
+                <br>
+                <p>Placa: ${mailData.veiculoAFinanciar.placa}</p>
+                <br>
+                <p>Valor de venda: ${mailData.veiculoAFinanciar.valorDeVenda}</p>
+                <br>
+                <p>Valor da molicar: ${mailData.veiculoAFinanciar.valorDaMolicar}</p>
+                <br>
+                <p>Valor de entrada: ${mailData.veiculoAFinanciar.valorDeEntrada}</p>
+                <br>
+                <p>Valor financiado: ${mailData.veiculoAFinanciar.valorFinanciado}</p>
+                <br>
+                <p>Banco aprovado: ${mailData.veiculoAFinanciar.bancoAprovado}</p>
+                <br>
+                <p>Condições aprovadas: ${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+                <br>
+                <p>Indicação: ${mailData.veiculoAFinanciar.indicacao}</p>
+                <br>
+                <p>Data de conclusão: ${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+                <br>
+                <p>Resposta de negativa de credito: ${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
+                <br>
+                <p>Observações: ${mailData.veiculoAFinanciar.observacoes}</p>
+                <br>
+                `
+    })
+    .then((response)=>{
+        console.log(response);
+    }, (error)=>{
+        console.log(error);
+    });
+ 
+ })
+
+
+
+
+
+
+
+
+
+
+function mailerizeEmpresasAtuaisPJ(empresasAtuais){
+  let serialized = [];
+  empresasAtuais.forEach(element=>{
+    serialized.push(
+      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+      <br>
+      <p>CEP: ${element.CEP}</p>
+      <br>
+      <p>Cidade: ${element.cidade}</p>
+      <br>
+      <p>Rua: ${element.rua}</p>
+      <br>
+      <p>Bairro: ${element.bairro}</p>
+      <br>
+      <p>Numero: ${element.numero}</p>
+      <br>
+      <p>Telefone Fixo: ${element.telefoneFixo}</p>
+      <br>
+      <p>Celular: ${element.celular}</p>
+      <br>
+      <p>Tempo de serviço: ${element.tempoDeServico}</p>
+      <br>
+      <p>Faturamento Atual: ${element.faturamentoAtual}</p>
+      <br>
+      <p>Faturamento Futuro: ${element.faturamentoFuturo}</p>
+      <br><br>`);
+  })
+  return serialized.join('');
+}
+
+
+
+
+
+function mailerizeEmpresasAnterioresPJ(empresasAnteriores){
+  let serialized = [];
+  empresasAnteriores.forEach(element=>{
+    serialized.push(
+      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+      <br>
+      <p>CEP: ${element.CEP}</p>
+      <br>
+      <p>Cidade: ${element.cidade}</p>
+      <br>
+      <p>Rua: ${element.rua}</p>
+      <br>
+      <p>Bairro: ${element.bairro}</p>
+      <br>
+      <p>Numero: ${element.numero}</p>
+      <br>
+      <p>Telefone Fixo: ${element.telefoneFixo}</p>
+      <br>
+      <p>Celular: ${element.celular}</p>
+      <br>
+      <p>Tempo de serviço: ${element.tempoDeServico}</p>
+      <br>
+      <p>Salario: ${element.salario}</p>
+      <br><br>`);
+  })
+  return serialized.join('');
+}
+
+function mailerizeEmpresasFuturasPJ(empresasFuturas){
+  let serialized = [];
+  empresasFuturas.forEach(element=>{
+    serialized.push(
+      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+      <br>
+      <p>CEP: ${element.CEP}</p>
+      <br>
+      <p>Cidade: ${element.cidade}</p>
+      <br>
+      <p>Rua: ${element.rua}</p>
+      <br>
+      <p>Bairro: ${element.bairro}</p>
+      <br>
+      <p>Numero: ${element.numero}</p>
+      <br>
+      <p>Telefone Fixo: ${element.telefoneFixo}</p>
+      <br>
+      <p>Celular: ${element.celular}</p>
+      <br>
+      <p>Salario: ${element.salario}</p>
+      <br><br>`);
+  })
+  return serialized.join('');
+}
+
+
+function mailerizeReferenciasComerciais(referenciasComerciais){
+  let serialized = [];
+  referenciasComerciais.forEach(element=>{
+    serialized.push(
+      `<p>Empresa: ${element.empresa}</p>
+      <br>
+      <p>Telefone: ${element.telefone}</p>
+      <br><br>`);
+  })
+  return serialized.join('');
+}
+
+
+
+
+
+
+
+function mailerizeFaturamentos(faturamentos){
+    let serialized = [];
+    
+    faturamentos.forEach(element=>{
+      serialized.push(
+        `<p>mes: ${element.mes}</p>
+        <br>
+        <p>ano: ${element.ano}</p>
+        <br>
+        <p>valor: ${element.valor}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }

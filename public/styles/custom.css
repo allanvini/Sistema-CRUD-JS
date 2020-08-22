@@ -28,7 +28,8 @@ body {
     box-shadow: 0px 0px 3px rgba(0,0,0, 0.5);
     margin-top: 10px;
     border-radius: 5px;
-    width: 1280px;
+    width: 100%;
+    padding: 20px;
 }
 
 #search-queries input {
@@ -50,6 +51,7 @@ body {
     border-color: hsla(180, 100%, 25%, 0.5);
     border-width: 2px;
     border-radius: 3px;
+    width: 100%;
 }
 
 .card {
@@ -137,4 +139,112 @@ body {
 
 #login-form{
     margin-top: 10%;
+}
+
+@media(max-width: 1567px){
+    .card .card-title{
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        color: #fffc8b;
+    }
+    .card .card-content{
+        font-size: 12px;
+    }
+    #search-queries{
+        display:grid;
+        grid-template-columns: 12fr;
+    }
+}
+
+@media(max-width: 1222px){
+    .card .card-title{
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        color: #fffc8b;
+    }
+    .card .card-content{
+        font-size: 10px;
+    }
+    #search-queries{
+        display:grid;
+        grid-template-columns: 12fr;
+    }
+    #cards-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 5px;
+        padding: 25px;
+        border-style: dashed;
+        border-color: hsla(180, 100%, 25%, 0.5);
+        border-width: 2px;
+        border-radius: 3px;
+        width: 100%;
+    }
+
+}
+
+
+@media(max-width: 1140px){
+    .card .card-title{
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        color: #fffc8b;
+    }
+    .card .card-content{
+        font-size: 10px;
+    }
+    #search-queries{
+        display:grid;
+        grid-template-columns: 12fr;
+    }
+    #cards-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        padding: 25px;
+        border-style: dashed;
+        border-color: hsla(180, 100%, 25%, 0.5);
+        border-width: 2px;
+        border-radius: 3px;
+        width: 100%;
+    }
+
+}
+
+
+@media(max-width: 660px){
+    .card .card-title{
+        font-weight: 500;
+        text-align: center;
+        font-size: 14px;
+        color: #fffc8b;
+    }
+    .card .card-content{
+        font-size: 10px;
+    }
+    #search-queries{
+        display:grid;
+        grid-template-columns: 12fr;
+    }
+    #cards-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 5px;
+        padding: 25px;
+        border-style: dashed;
+        border-color: hsla(180, 100%, 25%, 0.5);
+        border-width: 2px;
+        border-radius: 3px;
+        width: 100%;
+    }
+
 }

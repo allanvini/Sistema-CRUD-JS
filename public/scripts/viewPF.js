@@ -48,7 +48,7 @@ function visualizePF (pos){
     document.getElementById('data-nascimento-pf-view').value = PFAtual.pfData.dadosCadastrais.dataDeNascimento;
     document.getElementById('estado-civil-pf-view').value = PFAtual.pfData.dadosCadastrais.estadoCivil;
     document.getElementById('naturalidade-pf-view').value = PFAtual.pfData.dadosCadastrais.naturalidade;
-    document.getElementById('nome-pai-pf-view'),value = PFAtual.pfData.dadosCadastrais.nomeDoPai;
+    document.getElementById('nome-pai-pf-view').value = PFAtual.pfData.dadosCadastrais.nomeDoPai;
     document.getElementById('nome-mae-pf-view').value = PFAtual.pfData.dadosCadastrais.nomeDaMae;
 
     document.getElementById('banco-pf-view').value = PFAtual.pfData.dadosBancarios.banco;
@@ -238,7 +238,7 @@ function renderCnpjPFView (container, data){
 document.getElementById('add-empresa-atual-pf-view').addEventListener('click',()=>{
     empresasAtuaisViewPF.push({
         nomeDaEmpresa: document.getElementById('nome-empresa-atual-pf-view').value,
-        CEP: document.getElementById('cep-empresa-atual-pf-view').value,
+        cep: document.getElementById('cep-empresa-atual-pf-view').value,
         cidade: document.getElementById('cidade-empresa-atual-pf-view').value,
         rua: document.getElementById('rua-empresa-atual-pf-view').value,
         bairro: document.getElementById('bairro-empresa-atual-pf-view').value,
@@ -283,7 +283,7 @@ function renderEmpresasAtuaisViewPF(container,data){
         let content = document.createElement('div');
 
             let cep = document.createElement('p');
-                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
                 cep.appendChild(cepValue);
 
             let nomeDaEmpresa = document.createElement('p')
@@ -379,7 +379,7 @@ function renderEmpresasAtuaisViewPF(container,data){
 document.getElementById('add-empresa-anterior-pf-view').addEventListener('click',()=>{
     empresasAnterioresViewPF.push({
         nomeDaEmpresa: document.getElementById('nome-empresa-anterior-pf-view').value,
-        CEP: document.getElementById('cep-empresa-anterior-pf-view').value,
+        cep: document.getElementById('cep-empresa-anterior-pf-view').value,
         cidade: document.getElementById('cidade-empresa-anterior-pf-view').value,
         rua: document.getElementById('rua-empresa-anterior-pf-view').value,
         bairro: document.getElementById('bairro-empresa-anterior-pf-view').value,
@@ -423,7 +423,7 @@ function renderEmpresasAnterioresViewPF (container, data){
         let content = document.createElement('div');
 
             let cep = document.createElement('p');
-                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
                 cep.appendChild(cepValue);
 
             let nomeDaEmpresa = document.createElement('p')
@@ -514,7 +514,7 @@ function renderEmpresasAnterioresViewPF (container, data){
 document.getElementById('add-empresa-futura-pf-view').addEventListener('click',()=>{
     empresasFuturasViewPF.push({
         nomeDaEmpresa: document.getElementById('nome-empresa-futura-pf-view').value,
-        CEP: document.getElementById('cep-empresa-futura-pf-view').value,
+        cep: document.getElementById('cep-empresa-futura-pf-view').value,
         cidade: document.getElementById('cidade-empresa-futura-pf-view').value,
         rua: document.getElementById('rua-empresa-futura-pf-view').value,
         bairro: document.getElementById('bairro-empresa-futura-pf-view').value,
@@ -556,7 +556,7 @@ function renderEmpresasFuturasViewPF (container, data){
         let content = document.createElement('div');
 
             let cep = document.createElement('p');
-                cepValue = document.createTextNode(`CEP: ${element.CEP}`);
+                cepValue = document.createTextNode(`CEP: ${element.cep}`);
                 cep.appendChild(cepValue);
 
             let nomeDaEmpresa = document.createElement('p')
@@ -955,3 +955,380 @@ document.getElementById('exclui-cadastro-pf').addEventListener('click',async ()=
     renderCardsPF(cardsContainerPF,cardsData);
     limpaViewPF();
 })
+
+
+
+
+
+
+document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
+
+    let mailData = {
+        dadosCadastrais : {
+            nomeCompleto : document.getElementById('nome-completo-pf-view').value,
+            CPF : document.getElementById('CPF-pf-view').value.replace(/[^\d]+/g,''),
+            email : document.getElementById('email-pf-view').value,
+            CNPJ : mailerizeCpfCnpj(cnpjViewPF),
+            RG : document.getElementById('RG-pf-view').value,
+            dataDeNascimento : document.getElementById('data-nascimento-pf-view').value,
+            estadoCivil : document.getElementById('estado-civil-pf-view').value,
+            naturalidade : document.getElementById('naturalidade-pf-view').value,
+            nomeDoPai : document.getElementById('nome-pai-pf-view').value,
+            nomeDaMae : document.getElementById('nome-mae-pf-view').value
+        },
+        dadosBancarios : {
+            banco : document.getElementById('banco-pf-view').value,
+            agencia : document.getElementById('agencia-pf-view').value,
+            contaCorrente : {
+                numero : document.getElementById('numero-conta-pf-view').value,
+                digito : document.getElementById('digito-conta-pf-view').value,
+            },
+            tempoDeConta : document.getElementById('tempo-conta-pf-view').value,
+            telefoneDaAgencia : document.getElementById('telefone-agencia-pf-view').value
+        },
+        endereco : {
+            enderecoAtual : {
+                cep : document.getElementById('CEP-endereco-atual-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-atual-pf-view').value,
+                rua : document.getElementById('rua-endereco-atual-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-atual-pf-view').value,
+                numero : document.getElementById('numero-endereco-atual-pf-view').value,
+                telefoneFixo : document.getElementById('telefone-fixo-pf-view').value,
+                celular : document.getElementById('celular-pf-view').value,
+                tempoResidencial : document.getElementById('tempo-residencia-atual-pf-view').value,
+                imovelProprio : imovelProprioStatePF,
+                valorDoImovel : document.getElementById('valor-imovel-residencia-atual-pf').value
+            },
+            enderecoAnterior : {
+                cep : document.getElementById('CEP-endereco-anterior-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-anterior-pf-view').value,
+                rua : document.getElementById('rua-endereco-anterior-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-anterior-pf-view').value,
+                numero : document.getElementById('numero-endereco-anterior-pf-view').value,
+                tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf-view').value
+            }
+        },
+        ondePrestaServicos : {
+            empresasAtuais : mailerizeEmpresasAtuais(empresasAtuaisViewPF),
+            empresasAnteriores : mailerizeEmpresasAnteriores(empresasAnterioresViewPF),
+            empresasFuturas : mailerizeEmpresasFuturas(empresasFuturasViewPF)
+        },
+        referenciaPessoal: mailerizeReferenciasPessoais(referenciasPessoaisViewPF),
+        frotaDeVeiculos : mailerizeFrotaVeiculos(frotaVeiculosViewPF),
+        veiculoAFinanciar : {
+            marca : document.getElementById('marca-veiculo-a-financiar-pf-view').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pf-view').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pf-view').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pf-view').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf-view').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf-view').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf-view').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf-view').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf-view').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf-view').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf-view').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf-view').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf-view').value,
+            observacoes : document.getElementById('observacoes-pf-view').value
+        }
+    }
+     
+    await axios.post('https://automate-heroku-renan.herokuapp.com/mail',{
+         destino: "allanvinisilva@gmail.com",
+         assunto: `Dados do cliente: ${mailData.dadosCadastrais.nomeCompleto}`,
+         corpo: `<h4>Dados cadastrais</h4>
+                 <br>
+                 <p>Nome completo: ${mailData.dadosCadastrais.nomeCompleto}</p>
+                 <br>
+                 <p>CPF: ${mailData.dadosCadastrais.CPF}</p>
+                 <br>
+                 <p>E-Mail: ${mailData.dadosCadastrais.email}</p>
+                 <br>
+                 <p>CNPJ: ${mailData.dadosCadastrais.CNPJ}</p>
+                 <br>
+                 <p>RG: ${mailData.dadosCadastrais.RG}</p>
+                 <br>
+                 <p>Data de nascimento: ${mailData.dadosCadastrais.dataDeNascimento}</p>
+                 <br>
+                 <p>Estado Civil: ${mailData.dadosCadastrais.estadoCivil}</p>
+                 <br>
+                 <p>Naturalidade: ${mailData.dadosCadastrais.naturalidade}</p>
+                 <br>
+                 <p>Nome do pai: ${mailData.dadosCadastrais.nomeDoPai}</p>
+                 <br>
+                 <p>Nome da mãe: ${mailData.dadosCadastrais.nomeDaMae}</p>
+                 <br><br>
+                 <h4>Dados Bancários</h4>
+                 <br>
+                 <p>Banco: ${mailData.dadosBancarios.banco}</p>
+                 <br>
+                 <p>Agência: ${mailData.dadosBancarios.agencia}</p>
+                 <br>
+                 <p>Conta Corrente:<br> Número: ${mailData.dadosBancarios.contaCorrente.numero} Dígito: ${mailData.dadosBancarios.contaCorrente.digito}</p>
+                 <br>
+                 <p>Tempo de conta: ${mailData.dadosBancarios.tempoDeConta}</p>
+                 <br>
+                 <p>Telefône da agência: ${mailData.dadosBancarios.telefoneDaAgencia}</p>
+                 <br><br>
+                 <h4>Endereço</h4>
+                 <br>
+                 <h5>Endereço atual</h5>
+                 <br>
+                 <p>CEP: ${mailData.endereco.enderecoAtual.cep}</p>
+                 <br>
+                 <p>Cidade: ${mailData.endereco.enderecoAtual.cidade}</p>
+                 <br>
+                 <p>Rua: ${mailData.endereco.enderecoAtual.rua}</p>
+                 <br>
+                 <p>Bairro: ${mailData.endereco.enderecoAtual.bairro}</p>
+                 <br>
+                 <p>Número: ${mailData.endereco.enderecoAtual.numero}</p>
+                 <br>
+                 <p>Telefone Fixo: ${mailData.endereco.enderecoAtual.telefoneFixo}</p>
+                 <br>
+                 <p>Celular: ${mailData.endereco.enderecoAtual.celular}</p>
+                 <br>
+                 <p>Tempo residencial: ${mailData.endereco.enderecoAtual.tempoResidencial}</p>
+                 <br>
+                 <p>Imovel próprio?: ${verifyBoolean(mailData.endereco.enderecoAtual.imovelProprio)}</p>
+                 <br>
+                 <p>Valor do imóvel: ${mailData.endereco.enderecoAtual.valorDoImovel}</p>
+                 <br>
+                 <h5>Endereço anterior</h5>
+                 <br>
+                 <p>CEP: ${mailData.endereco.enderecoAnterior.cep}</p>
+                 <br>
+                 <p>Cidade: ${mailData.endereco.enderecoAnterior.cidade}</p>
+                 <br>
+                 <p>Rua: ${mailData.endereco.enderecoAnterior.rua}</p>
+                 <br>
+                 <p>Bairro: ${mailData.endereco.enderecoAnterior.bairro}</p>
+                 <br>
+                 <p>Numero: ${mailData.endereco.enderecoAnterior.numero}</p>
+                 <br>
+                 <p>Tempo de residência: ${mailData.endereco.enderecoAnterior.tempoDeResidencia}</p>
+                 <br>
+                 <h4>Onde presta serviços</h4>
+                 <br>
+                 <h5>Empresas atuais</h5>
+                 <br>
+                 <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
+                 <br>
+                 <h5>Empresas anteriores</h5>
+                 <br>
+                 <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
+                 <br>
+                 <h5>Empresas futuras</h5>
+                 <br>
+                 <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
+                 <br>
+                 <h4>Frota de veiculos</h4>
+                 <p>${mailData.frotaDeVeiculos}</p>
+                 <br>
+                 <h4>Referencias pessoais</h4>
+                 <br>
+                 <p>${mailData.referenciaPessoal}</p>
+                 <br>
+                 <h4>Veiculo à financiar</h4>
+                 <br>
+                 <p>Marca: ${mailData.veiculoAFinanciar.marca}</p>
+                 <br>
+                 <p>Modelo: ${mailData.veiculoAFinanciar.modelo}</p>
+                 <br>
+                 <p>Ano: ${mailData.veiculoAFinanciar.ano}</p>
+                 <br>
+                 <p>Placa: ${mailData.veiculoAFinanciar.placa}</p>
+                 <br>
+                 <p>Valor de venda: ${mailData.veiculoAFinanciar.valorDeVenda}</p>
+                 <br>
+                 <p>Valor da molicar: ${mailData.veiculoAFinanciar.valorDaMolicar}</p>
+                 <br>
+                 <p>Valor de entrada: ${mailData.veiculoAFinanciar.valorDeEntrada}</p>
+                 <br>
+                 <p>Valor financiado: ${mailData.veiculoAFinanciar.valorFinanciado}</p>
+                 <br>
+                 <p>Banco aprovado: ${mailData.veiculoAFinanciar.bancoAprovado}</p>
+                 <br>
+                 <p>Condições aprovadas: ${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+                 <br>
+                 <p>Indicação: ${mailData.veiculoAFinanciar.indicacao}</p>
+                 <br>
+                 <p>Data de conclusão: ${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+                 <br>
+                 <p>Resposta de negativa de credito: ${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
+                 <br>
+                 <p>Observações: ${mailData.veiculoAFinanciar.observacoes}</p>
+                 <br>
+                `
+     })
+     .then((response)=>{
+         console.log(response);
+     }, (error)=>{
+         console.log(error);
+     });
+     
+  })
+
+
+
+  function verifyBoolean(value){
+      if (value){
+          return 'Sim'
+      } else {
+          return 'Não'
+      }
+  }
+
+
+
+  function mailerizeCpfCnpj(CpfCnpj){
+    let serialized = [];
+    CpfCnpj.forEach(element=>{
+      serialized.push(`<p>${element}</p>`);
+    })
+    return serialized.join('');
+  }
+
+
+
+
+
+
+
+
+
+
+
+  function mailerizeEmpresasAtuais(empresasAtuais){
+    let serialized = [];
+    empresasAtuais.forEach(element=>{
+      serialized.push(
+        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+        <br>
+        <p>CEP: ${element.cep}</p>
+        <br>
+        <p>Cidade: ${element.cidade}</p>
+        <br>
+        <p>Rua: ${element.rua}</p>
+        <br>
+        <p>Bairro: ${element.bairro}</p>
+        <br>
+        <p>Numero: ${element.numero}</p>
+        <br>
+        <p>Telefone Fixo: ${element.telefoneFixo}</p>
+        <br>
+        <p>Celular: ${element.celular}</p>
+        <br>
+        <p>Tempo de serviço: ${element.tempoDeServico}</p>
+        <br>
+        <p>Faturamento Atual: ${element.faturamentoAtual}</p>
+        <br>
+        <p>Faturamento Futuro: ${element.faturamentoFuturo}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }
+
+
+
+
+
+  function mailerizeEmpresasAnteriores(empresasAnteriores){
+    let serialized = [];
+    empresasAnteriores.forEach(element=>{
+      serialized.push(
+        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+        <br>
+        <p>CEP: ${element.cep}</p>
+        <br>
+        <p>Cidade: ${element.cidade}</p>
+        <br>
+        <p>Rua: ${element.rua}</p>
+        <br>
+        <p>Bairro: ${element.bairro}</p>
+        <br>
+        <p>Numero: ${element.numero}</p>
+        <br>
+        <p>Telefone Fixo: ${element.telefoneFixo}</p>
+        <br>
+        <p>Celular: ${element.celular}</p>
+        <br>
+        <p>Tempo de serviço: ${element.tempoDeServico}</p>
+        <br>
+        <p>Salario: ${element.salario}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }
+
+  function mailerizeEmpresasFuturas(empresasFuturas){
+    let serialized = [];
+    empresasFuturas.forEach(element=>{
+      serialized.push(
+        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
+        <br>
+        <p>CEP: ${element.cep}</p>
+        <br>
+        <p>Cidade: ${element.cidade}</p>
+        <br>
+        <p>Rua: ${element.rua}</p>
+        <br>
+        <p>Bairro: ${element.bairro}</p>
+        <br>
+        <p>Numero: ${element.numero}</p>
+        <br>
+        <p>Telefone Fixo: ${element.telefoneFixo}</p>
+        <br>
+        <p>Celular: ${element.celular}</p>
+        <br>
+        <p>Salario: ${element.salario}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }
+
+
+  function mailerizeReferenciasPessoais(referenciasPessoais){
+    let serialized = [];
+    referenciasPessoais.forEach(element=>{
+      serialized.push(
+        `<p>Nome: ${element.nome}</p>
+        <br>
+        <p>Telefone Fixo: ${element.telefoneFixo}</p>
+        <br>
+        <p>Celular: ${element.celular}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }
+
+
+
+
+
+  function mailerizeFrotaVeiculos(frotaVeiculos){
+    let serialized = [];
+    
+    frotaVeiculos.forEach(element=>{
+  
+      let quitado;
+        if(element.quitado){
+          quitado = 'Sim'
+        } else {
+          quitado = 'Não'
+        }
+  
+      serialized.push(
+        `<p>Marca: ${element.marca}</p>
+        <br>
+        <p>Modelo: ${element.modelo}</p>
+        <br>
+        <p>Placa: ${element.placa}</p>
+        <br>
+        <p>Quitado: ${quitado}</p>
+        <br>
+        <p>Tempo em nome: ${element.tempoEmNome}</p>
+        <br><br>`);
+    })
+    return serialized.join('');
+  }
