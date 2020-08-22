@@ -3,13 +3,14 @@ document.getElementById('login-send').addEventListener('click', async ()=>{
     let password = document.getElementById('password-login').value;
 
     let access = await(auth(email,password));
-    console.log(access);
 
     if(access){
-        alert('logado com sucesso');
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('app').style.display = 'block';
     } else {
-        alert ('login ou senha incorretos');
+        document.getElementById('login-error').style.display = "block";
+        setTimeout(()=>{
+            document.getElementById('login-error').style.display = "none";
+        }, 2000)
     }
 })

@@ -36,15 +36,13 @@
 
           <div class='row'>
             <div class='input-field col s12'>
-              <input class='validate' type='email' name='email' id='email-login' />
-              <label for='email'>Insira seu email</label>
+              <input class='validate' type='email' name='email' id='email-login' placeholder="Insira seu email" />
             </div>
           </div>
 
           <div class='row'>
             <div class='input-field col s12'>
-              <input class='validate' type='password' name='password' id='password-login' />
-              <label for='password'>Insira sua senha</label>
+              <input class='validate' type='password' name='password' id='password-login' placeholder="Insira sua senha" />
             </div>
           </div>
 
@@ -52,6 +50,9 @@
           <center>
             <div class='row'>
               <a id='login-send' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</a>
+            </div>
+            <div id="login-error" class="hoverable" style="display:none;">
+              <p>Email ou enha incorretos<i class="material-icons right">close</i></p>
             </div>
           </center>
         </form>
@@ -2278,7 +2279,7 @@
             <a id="atualiza-cadastro-pj" class="btn waves-effect"><i class="material-icons right">cloud_upload</i>Salvar Alterações</a>
             <a id="exclui-cadastro-pj" class="btn waves-effect"><i class="material-icons right">delete_forever</i>Excluir</a>
             <a id="imprime-registro-pj" class="btn waves-effect"><i class="material-icons right">local_printshop</i>Imprimir</a>
-            <a id="envia-email-pj" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
+            <a id="abre-email-pj" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
           </div>
         </div>
       </div>
@@ -2925,7 +2926,7 @@
           <a id="atualiza-cadastro-pf" class="btn waves-effect"><i class="material-icons right">cloud_upload</i>Salvar Alterações</a>
           <a id="exclui-cadastro-pf" class="btn waves-effect"><i class="material-icons right">delete_forever</i>Excluir</a>
           <a id="imprime-registro-pf" class="btn waves-effect"><i class="material-icons right">local_printshop</i>Imprimir</a>
-          <a id="envia-email-pf" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
+          <a id="abre-email-pf" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
         </div>
       </div>
     </div>
@@ -2937,6 +2938,158 @@
 
 
 
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+  <div class="container hoverable center" id="modal-email-PF" style="display:none;">
+    <form>
+      <input id="destinatario-email-PF" placeholder="Destinatário" type="email" /input>
+      <input id="assunto-email-PF" placeholder="Assunto" /input>
+    </form>
+    <a id="cancela-email-pf" class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
+    <a id="envia-email-pf" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
+  </div>
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+  <div class="container hoverable center" id="modal-email-PJ" style="display:none;">
+    <form>
+      <input id="destinatario-email-PJ" placeholder="Destinatário" type="email" /input>
+      <input id="assunto-email-PJ" placeholder="Assunto" /input>
+    </form>
+    <a id="cancela-email-pj" class="btn waves-effect"><i class="material-icons right">close</i>Cancelar</a>
+    <a id="envia-email-pj" class="btn waves-effect"><i class="material-icons right">email</i>Email</a>
+  </div>
 
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->

@@ -196,9 +196,12 @@ var config =  {
     });
   }
 
-  function auth(email, password){
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-        return false  
+  async function auth(email, password){
+    let authorized = false
+     await firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+         authorized = true
+     }).catch(function(error) {
+        authorized = false
       });
-      return true
+      return authorized
   }

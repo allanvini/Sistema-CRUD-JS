@@ -958,6 +958,18 @@ document.getElementById('exclui-cadastro-pf').addEventListener('click',async ()=
 
 
 
+document.getElementById('abre-email-pf').addEventListener('click',()=>{
+    document.getElementById('modal-email-PF').style.display = "block";
+})
+
+
+document.getElementById('cancela-email-pf').addEventListener('click',()=>{
+    document.getElementById('destinatario-email-PF').value = '';
+    document.getElementById('assunto-email-PF').value = '';
+    document.getElementById('modal-email-PF').style.display = "none"
+})
+
+
 
 
 
@@ -1034,131 +1046,107 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     }
      
     await axios.post('https://automate-heroku-renan.herokuapp.com/mail',{
-         destino: "allanvinisilva@gmail.com",
-         assunto: `Dados do cliente: ${mailData.dadosCadastrais.nomeCompleto}`,
-         corpo: `<h4>Dados cadastrais</h4>
-                 <br>
-                 <p>Nome completo: ${mailData.dadosCadastrais.nomeCompleto}</p>
-                 <br>
-                 <p>CPF: ${mailData.dadosCadastrais.CPF}</p>
-                 <br>
-                 <p>E-Mail: ${mailData.dadosCadastrais.email}</p>
-                 <br>
-                 <p>CNPJ: ${mailData.dadosCadastrais.CNPJ}</p>
-                 <br>
-                 <p>RG: ${mailData.dadosCadastrais.RG}</p>
-                 <br>
-                 <p>Data de nascimento: ${mailData.dadosCadastrais.dataDeNascimento}</p>
-                 <br>
-                 <p>Estado Civil: ${mailData.dadosCadastrais.estadoCivil}</p>
-                 <br>
-                 <p>Naturalidade: ${mailData.dadosCadastrais.naturalidade}</p>
-                 <br>
-                 <p>Nome do pai: ${mailData.dadosCadastrais.nomeDoPai}</p>
-                 <br>
-                 <p>Nome da mãe: ${mailData.dadosCadastrais.nomeDaMae}</p>
-                 <br><br>
-                 <h4>Dados Bancários</h4>
-                 <br>
-                 <p>Banco: ${mailData.dadosBancarios.banco}</p>
-                 <br>
-                 <p>Agência: ${mailData.dadosBancarios.agencia}</p>
-                 <br>
-                 <p>Conta Corrente:<br> Número: ${mailData.dadosBancarios.contaCorrente.numero} Dígito: ${mailData.dadosBancarios.contaCorrente.digito}</p>
-                 <br>
-                 <p>Tempo de conta: ${mailData.dadosBancarios.tempoDeConta}</p>
-                 <br>
-                 <p>Telefône da agência: ${mailData.dadosBancarios.telefoneDaAgencia}</p>
-                 <br><br>
-                 <h4>Endereço</h4>
-                 <br>
-                 <h5>Endereço atual</h5>
-                 <br>
-                 <p>CEP: ${mailData.endereco.enderecoAtual.cep}</p>
-                 <br>
-                 <p>Cidade: ${mailData.endereco.enderecoAtual.cidade}</p>
-                 <br>
-                 <p>Rua: ${mailData.endereco.enderecoAtual.rua}</p>
-                 <br>
-                 <p>Bairro: ${mailData.endereco.enderecoAtual.bairro}</p>
-                 <br>
-                 <p>Número: ${mailData.endereco.enderecoAtual.numero}</p>
-                 <br>
-                 <p>Telefone Fixo: ${mailData.endereco.enderecoAtual.telefoneFixo}</p>
-                 <br>
-                 <p>Celular: ${mailData.endereco.enderecoAtual.celular}</p>
-                 <br>
-                 <p>Tempo residencial: ${mailData.endereco.enderecoAtual.tempoResidencial}</p>
-                 <br>
-                 <p>Imovel próprio?: ${verifyBoolean(mailData.endereco.enderecoAtual.imovelProprio)}</p>
-                 <br>
-                 <p>Valor do imóvel: ${mailData.endereco.enderecoAtual.valorDoImovel}</p>
-                 <br>
-                 <h5>Endereço anterior</h5>
-                 <br>
-                 <p>CEP: ${mailData.endereco.enderecoAnterior.cep}</p>
-                 <br>
-                 <p>Cidade: ${mailData.endereco.enderecoAnterior.cidade}</p>
-                 <br>
-                 <p>Rua: ${mailData.endereco.enderecoAnterior.rua}</p>
-                 <br>
-                 <p>Bairro: ${mailData.endereco.enderecoAnterior.bairro}</p>
-                 <br>
-                 <p>Numero: ${mailData.endereco.enderecoAnterior.numero}</p>
-                 <br>
-                 <p>Tempo de residência: ${mailData.endereco.enderecoAnterior.tempoDeResidencia}</p>
-                 <br>
-                 <h4>Onde presta serviços</h4>
-                 <br>
-                 <h5>Empresas atuais</h5>
-                 <br>
-                 <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
-                 <br>
-                 <h5>Empresas anteriores</h5>
-                 <br>
-                 <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
-                 <br>
-                 <h5>Empresas futuras</h5>
-                 <br>
-                 <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
-                 <br>
-                 <h4>Frota de veiculos</h4>
-                 <p>${mailData.frotaDeVeiculos}</p>
-                 <br>
-                 <h4>Referencias pessoais</h4>
-                 <br>
-                 <p>${mailData.referenciaPessoal}</p>
-                 <br>
-                 <h4>Veiculo à financiar</h4>
-                 <br>
-                 <p>Marca: ${mailData.veiculoAFinanciar.marca}</p>
-                 <br>
-                 <p>Modelo: ${mailData.veiculoAFinanciar.modelo}</p>
-                 <br>
-                 <p>Ano: ${mailData.veiculoAFinanciar.ano}</p>
-                 <br>
-                 <p>Placa: ${mailData.veiculoAFinanciar.placa}</p>
-                 <br>
-                 <p>Valor de venda: ${mailData.veiculoAFinanciar.valorDeVenda}</p>
-                 <br>
-                 <p>Valor da molicar: ${mailData.veiculoAFinanciar.valorDaMolicar}</p>
-                 <br>
-                 <p>Valor de entrada: ${mailData.veiculoAFinanciar.valorDeEntrada}</p>
-                 <br>
-                 <p>Valor financiado: ${mailData.veiculoAFinanciar.valorFinanciado}</p>
-                 <br>
-                 <p>Banco aprovado: ${mailData.veiculoAFinanciar.bancoAprovado}</p>
-                 <br>
-                 <p>Condições aprovadas: ${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
-                 <br>
-                 <p>Indicação: ${mailData.veiculoAFinanciar.indicacao}</p>
-                 <br>
-                 <p>Data de conclusão: ${mailData.veiculoAFinanciar.dataDeConclusao}</p>
-                 <br>
-                 <p>Resposta de negativa de credito: ${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
-                 <br>
-                 <p>Observações: ${mailData.veiculoAFinanciar.observacoes}</p>
-                 <br>
+         destino: `${document.getElementById('destinatario-email-PF').value}`,
+         assunto: `${document.getElementById('assunto-email-PF').value}`,
+         corpo: `
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Dados cadastrais</h1>
+                    <p><b>Nome completo: </b>${mailData.dadosCadastrais.nomeCompleto}</p>
+                    <p><b>CPF: </b>${mailData.dadosCadastrais.CPF}</p>
+                    <p><b>E-Mail: </b>${mailData.dadosCadastrais.email}</p>
+                    <p><b>CNPJ: </b>${mailData.dadosCadastrais.CNPJ}</p>
+                    <p><b>RG: </b>${mailData.dadosCadastrais.RG}</p>
+                    <p><b>Data de nascimento: </b>${mailData.dadosCadastrais.dataDeNascimento}</p>
+                    <p><b>Estado Civil: </b>${mailData.dadosCadastrais.estadoCivil}</p>
+                    <p><b>Naturalidade: </b>${mailData.dadosCadastrais.naturalidade}</p>
+                    <p><b>Nome do pai: </b>${mailData.dadosCadastrais.nomeDoPai}</p>
+                    <p><b>Nome da mãe: </b>${mailData.dadosCadastrais.nomeDaMae}</p>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Dados Bancários</h1>
+                    <p><b>Banco: </b>${mailData.dadosBancarios.banco}</p>
+                    <p><b>Agência: </b>${mailData.dadosBancarios.agencia}</p>
+                    <p><b>Conta Corrente:</b><br> <b>Número: </b>${mailData.dadosBancarios.contaCorrente.numero} <b>Dígito: </b>${mailData.dadosBancarios.contaCorrente.digito}</p>
+                    <p><b>Tempo de conta: </b>${mailData.dadosBancarios.tempoDeConta}</p>
+                    <p><b>Telefône da agência: </b>${mailData.dadosBancarios.telefoneDaAgencia}</p>
+                </div>
+            
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Endereço</h1>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h2>Endereço atual</h2>
+                        <p><b>CEP: </b>${mailData.endereco.enderecoAtual.cep}</p>
+                        <p><b>Cidade: </b>${mailData.endereco.enderecoAtual.cidade}</p>
+                        <p><b>Rua: </b>${mailData.endereco.enderecoAtual.rua}</p>
+                        <p><b>Bairro: </b>${mailData.endereco.enderecoAtual.bairro}</p>
+                        <p><b>Número: </b>${mailData.endereco.enderecoAtual.numero}</p>
+                        <p><b>Telefone Fixo: </b>${mailData.endereco.enderecoAtual.telefoneFixo}</p>
+                        <p><b>Celular: </b>${mailData.endereco.enderecoAtual.celular}</p>
+                        <p><b>Tempo residencial: </b>${mailData.endereco.enderecoAtual.tempoResidencial}</p>
+                        <p><b>Imovel próprio?: </b>${verifyBoolean(mailData.endereco.enderecoAtual.imovelProprio)}</p>
+                        <p><b>Valor do imóvel: </b>${mailData.endereco.enderecoAtual.valorDoImovel}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h2>Endereço anterior</h2>
+                        <p><b>CEP: </b>${mailData.endereco.enderecoAnterior.cep}</p>
+                        <p><b>Cidade: </b>${mailData.endereco.enderecoAnterior.cidade}</p>
+                        <p><b>Rua: </b>${mailData.endereco.enderecoAnterior.rua}</p>
+                        <p><b>Bairro: </b>${mailData.endereco.enderecoAnterior.bairro}</p>
+                        <p><b>Numero: </b>${mailData.endereco.enderecoAnterior.numero}</p>
+                        <p><b>Tempo de residência: </b>${mailData.endereco.enderecoAnterior.tempoDeResidencia}</p>
+                    </div>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Onde presta serviços</h1>
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas atuais</h1>
+                        <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas anteriores</h1>
+                        <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas futuras</h1>
+                        <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
+                    </div>
+                </div>
+                
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Frota de veiculos</h1>
+                    <p>${mailData.frotaDeVeiculos}</p>
+                </div>
+                
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Referencias pessoais</h1>
+                    <p>${mailData.referenciaPessoal}</p>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Veiculo à financiar</h1>
+            
+                    <p><b>Marca: </b>${mailData.veiculoAFinanciar.marca}</p>
+                    <p><b>Modelo: </b>${mailData.veiculoAFinanciar.modelo}</p>
+                    <p><b>Ano: </b>${mailData.veiculoAFinanciar.ano}</p>
+                    <p><b>Placa: </b>${mailData.veiculoAFinanciar.placa}</p>
+                    <p><b>Valor de venda: </b>${mailData.veiculoAFinanciar.valorDeVenda}</p>
+                    <p><b>Valor da molicar: </b>${mailData.veiculoAFinanciar.valorDaMolicar}</p>
+                    <p><b>Valor de entrada: </b>${mailData.veiculoAFinanciar.valorDeEntrada}</p>
+                    <p><b>Valor financiado: </b>${mailData.veiculoAFinanciar.valorFinanciado}</p>
+                    <p><b>Banco aprovado: </b>${mailData.veiculoAFinanciar.bancoAprovado}</p>
+                    <p><b>Condições aprovadas: </b>${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+                    <p><b>Indicação: </b>${mailData.veiculoAFinanciar.indicacao}</p>
+                    <p><b>Data de conclusão: </b>${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+                    <p><b>Resposta de negativa de credito: </b>${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
+                    <p><b>Observações: </b>${mailData.veiculoAFinanciar.observacoes}</p>
+                </div>
                 `
      })
      .then((response)=>{
@@ -1166,6 +1154,11 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
      }, (error)=>{
          console.log(error);
      });
+
+     document.getElementById('destinatario-email-PF').value = '';
+     document.getElementById('assunto-email-PF').value = '';
+
+     document.getElementById('modal-email-PF').style.display = "none"
      
   })
 
@@ -1202,29 +1195,21 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
   function mailerizeEmpresasAtuais(empresasAtuais){
     let serialized = [];
     empresasAtuais.forEach(element=>{
-      serialized.push(
-        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-        <br>
-        <p>CEP: ${element.cep}</p>
-        <br>
-        <p>Cidade: ${element.cidade}</p>
-        <br>
-        <p>Rua: ${element.rua}</p>
-        <br>
-        <p>Bairro: ${element.bairro}</p>
-        <br>
-        <p>Numero: ${element.numero}</p>
-        <br>
-        <p>Telefone Fixo: ${element.telefoneFixo}</p>
-        <br>
-        <p>Celular: ${element.celular}</p>
-        <br>
-        <p>Tempo de serviço: ${element.tempoDeServico}</p>
-        <br>
-        <p>Faturamento Atual: ${element.faturamentoAtual}</p>
-        <br>
-        <p>Faturamento Futuro: ${element.faturamentoFuturo}</p>
-        <br><br>`);
+      serialized.push(`
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+            <p><b>CEP: </b>${element.cep}</p>
+            <p><b>Cidade: </b>${element.cidade}</p>
+            <p><b>Rua: </b>${element.rua}</p>
+            <p><b>Bairro: </b>${element.bairro}</p>
+            <p><b>Numero: </b>${element.numero}</p>
+            <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+            <p><b>Celular: </b>${element.celular}</p>
+            <p><b>Tempo de serviço: </b>${element.tempoDeServico}</p>
+            <p><b>Faturamento Atual: </b>${element.faturamentoAtual}</p>
+            <p><b>Faturamento Futuro: </b>${element.faturamentoFuturo}</p>
+        </div>
+        `);
     })
     return serialized.join('');
   }
@@ -1236,27 +1221,20 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
   function mailerizeEmpresasAnteriores(empresasAnteriores){
     let serialized = [];
     empresasAnteriores.forEach(element=>{
-      serialized.push(
-        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-        <br>
-        <p>CEP: ${element.cep}</p>
-        <br>
-        <p>Cidade: ${element.cidade}</p>
-        <br>
-        <p>Rua: ${element.rua}</p>
-        <br>
-        <p>Bairro: ${element.bairro}</p>
-        <br>
-        <p>Numero: ${element.numero}</p>
-        <br>
-        <p>Telefone Fixo: ${element.telefoneFixo}</p>
-        <br>
-        <p>Celular: ${element.celular}</p>
-        <br>
-        <p>Tempo de serviço: ${element.tempoDeServico}</p>
-        <br>
-        <p>Salario: ${element.salario}</p>
-        <br><br>`);
+      serialized.push(`
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+            <p><b>CEP: </b>${element.cep}</p>
+            <p><b>Cidade: </b>${element.cidade}</p>
+            <p><b>Rua: </b>${element.rua}</p>
+            <p><b>Bairro: </b>${element.bairro}</p>
+            <p><b>Numero: </b>${element.numero}</p>
+            <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+            <p><b>Celular: </b>${element.celular}</p>
+            <p><b>Tempo de serviço: </b>${element.tempoDeServico}</p>
+            <p><b>Salario: </b>${element.salario}</p>
+        </div>
+        `);
     })
     return serialized.join('');
   }
@@ -1264,25 +1242,19 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
   function mailerizeEmpresasFuturas(empresasFuturas){
     let serialized = [];
     empresasFuturas.forEach(element=>{
-      serialized.push(
-        `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-        <br>
-        <p>CEP: ${element.cep}</p>
-        <br>
-        <p>Cidade: ${element.cidade}</p>
-        <br>
-        <p>Rua: ${element.rua}</p>
-        <br>
-        <p>Bairro: ${element.bairro}</p>
-        <br>
-        <p>Numero: ${element.numero}</p>
-        <br>
-        <p>Telefone Fixo: ${element.telefoneFixo}</p>
-        <br>
-        <p>Celular: ${element.celular}</p>
-        <br>
-        <p>Salario: ${element.salario}</p>
-        <br><br>`);
+      serialized.push(`
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+            <p><b>CEP: </b>${element.cep}</p>
+            <p><b>Cidade: </b>${element.cidade}</p>
+            <p><b>Rua: </b>${element.rua}</p>
+            <p><b>Bairro: </b>${element.bairro}</p>
+            <p><b>Numero: </b>${element.numero}</p>
+            <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+            <p><b>Celular: </b>${element.celular}</p>
+            <p><b>Salario: </b>${element.salario}</p>
+        </div>
+        `);
     })
     return serialized.join('');
   }
@@ -1291,13 +1263,14 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
   function mailerizeReferenciasPessoais(referenciasPessoais){
     let serialized = [];
     referenciasPessoais.forEach(element=>{
-      serialized.push(
-        `<p>Nome: ${element.nome}</p>
-        <br>
-        <p>Telefone Fixo: ${element.telefoneFixo}</p>
-        <br>
-        <p>Celular: ${element.celular}</p>
-        <br><br>`);
+      serialized.push(`
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Nome: </b>${element.nome}</p>
+            <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+            <p><b>Celular: </b>${element.celular}</p>
+        </div>
+            
+        `);
     })
     return serialized.join('');
   }
@@ -1310,25 +1283,21 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     let serialized = [];
     
     frotaVeiculos.forEach(element=>{
-  
       let quitado;
         if(element.quitado){
           quitado = 'Sim'
         } else {
           quitado = 'Não'
         }
-  
-      serialized.push(
-        `<p>Marca: ${element.marca}</p>
-        <br>
-        <p>Modelo: ${element.modelo}</p>
-        <br>
-        <p>Placa: ${element.placa}</p>
-        <br>
-        <p>Quitado: ${quitado}</p>
-        <br>
-        <p>Tempo em nome: ${element.tempoEmNome}</p>
-        <br><br>`);
+      serialized.push(`
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Marca: </b>${element.marca}</p>
+            <p><b>Modelo: </b>${element.modelo}</p>
+            <p><b>Placa: </b>${element.placa}</p>
+            <p><b>Quitado: </b>${quitado}</p>
+            <p><b>Tempo em nome: </b>${element.tempoEmNome}</p>
+        </div>
+        `);
     })
     return serialized.join('');
   }

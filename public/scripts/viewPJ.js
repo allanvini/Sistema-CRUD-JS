@@ -1024,6 +1024,17 @@ document.getElementById('exclui-cadastro-pj').addEventListener('click',async ()=
 
 
 
+document.getElementById('abre-email-pj').addEventListener('click',()=>{
+    document.getElementById('modal-email-PJ').style.display = "block";
+})
+
+document.getElementById('cancela-email-pj').addEventListener('click',()=>{
+    document.getElementById('modal-email-PJ').style.display = "none";
+    document.getElementById('destinatario-email-PJ').value = "";
+    document.getElementById('assunto-email-PJ').value = "";
+})
+
+
 document.getElementById('envia-email-pj').addEventListener('click',async()=>{
 
     let mailData = {
@@ -1090,128 +1101,114 @@ document.getElementById('envia-email-pj').addEventListener('click',async()=>{
     } // fim do objeto
 
     await axios.post('https://automate-heroku-renan.herokuapp.com/mail',{
-        destino: "allanvinisilva@gmail.com",
-        assunto: `Dados da empresa: ${mailData.dadosCadastrais.razaoSocial}`,
-        corpo: `<h4>Dados cadastrais</h4>
-                <br>
-                <p>Razão social: ${mailData.dadosCadastrais.razaoSocial}</p>
-                <br>
-                <p>CNPJ: ${mailData.dadosCadastrais.CNPJ}</p>
-                <br>
-                <p>E-Mail: ${mailData.dadosCadastrais.email}</p>
-                <br>
-                <p>CPF's dos sócios: ${mailData.dadosCadastrais.CPF}</p>
-                <br>
-                <p>Data de abertura: ${mailData.dadosCadastrais.dataAbertura}</p>
-                <br>
-                <p>Capital social: ${mailData.dadosCadastrais.capitalSocial}</p>
-                <br>
-                <p>Numero de funcionarios registrados: ${mailData.dadosCadastrais.numeroFuncionariosRegistrados}</p>
-                <br>
-                <p>Telefone Fixo: ${mailData.dadosCadastrais.telefoneFixo}</p>
-                <br>
-                <p>CEP: ${mailData.dadosCadastrais.CEP}</p>
-                <br>
-                <p>Cidade: ${mailData.dadosCadastrais.cidade}</p>
-                <br>
-                <p>Rua: ${mailData.dadosCadastrais.rua}</p>
-                <br>
-                <p>Bairro: ${mailData.dadosCadastrais.bairro}</p>
-                <br>
-                <p>Número: ${mailData.dadosCadastrais.numero}</p>
-                <br>
-                <h4>Dados Bancários</h4>
-                <br>
-                <p>Banco: ${mailData.dadosBancarios.banco}</p>
-                <br>
-                <p>Agência: ${mailData.dadosBancarios.agencia}</p>
-                <br>
-                <p>Conta Corrente: Numero: ${mailData.dadosBancarios.conta.numero} Dígito: ${mailData.dadosBancarios.conta.digito}</p>
-                <br>
-                <p>Tempo de conta: ${mailData.dadosBancarios.tempoConta}</p>
-                <br>
-                <p>Telefone da agência: ${mailData.dadosBancarios.telefoneAgencia}</p>
-                <br>
-                <h4>Sócios</h4>
-                <br>
-                <p>Porcentagem do sócio majoritário: ${mailData.socios.porcentagemSocioMajoritario}</p>
-                <br>
-                <p>Porcentagem dos demais sócios: ${mailData.socios.porcentagemDemaisSocios}</p>
-                <br>
-                <p>Sócio majoritário assina sozinho?: ${mailData.socios.socioMajoritarioAssinaSozinho}</p>
-                <br>
-                <h4>Contador</h4>
-                <br>
-                <p>Nome do contador: ${mailData.contador.nome}</p>
-                <br>
-                <p>Escritório: ${mailData.contador.escritorio}</p>
-                <br>
-                <p>Telefone fixo: ${mailData.contador.telefoneFixo}</p>
-                <br>
-                <p>Celular: ${mailData.contador.celular}</p>
-                <br>
-                <h4>Últimos faturamentos registrados: </h4>
-                <br>
-                <p>${mailData.faturamento}</p>
-                <br>
-                <h4>Onde presta serviços: </h4>
-                <br>
-                <h5>Empresas atuais</h5>
-                <br>
+        destino: `${document.getElementById('destinatario-email-PJ').value}`,
+        assunto: `${document.getElementById('assunto-email-PJ').value}`,
+        corpo: `
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Dados cadastrais</h1>
+            <p><b>Razão social: </b>${mailData.dadosCadastrais.razaoSocial}</p>
+            <p> <b>CNPJ: </b>${mailData.dadosCadastrais.CNPJ}</p>
+            <p> <b>E-Mail: </b>${mailData.dadosCadastrais.email}</p>
+            <p> <b>CPF's dos sócios: </b>${mailData.dadosCadastrais.CPF}</p>
+            <p> <b>Data de abertura: </b>${mailData.dadosCadastrais.dataAbertura}</p>
+            <p> <b>Capital social: </b>${mailData.dadosCadastrais.capitalSocial}</p>
+            <p> <b>Numero de funcionarios registrados: </b>${mailData.dadosCadastrais.numeroFuncionariosRegistrados}</p>
+            <p> <b>Telefone Fixo: </b>${mailData.dadosCadastrais.telefoneFixo}</p>
+            <p> <b>CEP: </b>${mailData.dadosCadastrais.CEP}</p>
+            <p> <b>Cidade: </b>${mailData.dadosCadastrais.cidade}</p>
+            <p> <b>Rua: </b>${mailData.dadosCadastrais.rua}</p>
+            <p> <b>Bairro: </b>${mailData.dadosCadastrais.bairro}</p>
+            <p> <b>Número: </b>${mailData.dadosCadastrais.numero}</p>
+        </div>
+    
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Dados Bancários</h1>
+            <p><b>Banco: </b>${mailData.dadosBancarios.banco}</p>
+            <p><b>Agência: </b>${mailData.dadosBancarios.agencia}</p>
+            <p><b>Conta Corrente:</b> <b>Numero: </b>${mailData.dadosBancarios.conta.numero} <b>Dígito: </b>${mailData.dadosBancarios.conta.digito}</p>
+            <p><b>Tempo de conta: </b>${mailData.dadosBancarios.tempoConta}</p>
+            <p><b>Telefone da agência: </b>${mailData.dadosBancarios.telefoneAgencia}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Sócios</h1>
+            <p><b>Porcentagem do sócio majoritário: </b>${mailData.socios.porcentagemSocioMajoritario}</p>
+            <p><b>Porcentagem dos demais sócios: </b>${mailData.socios.porcentagemDemaisSocios}</p>
+            <p><b>Sócio majoritário assina sozinho?: </b>${mailData.socios.socioMajoritarioAssinaSozinho}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Contador</h1>
+            <p><b>Nome do contador: </b>${mailData.contador.nome}</p>
+            <p><b>Escritório: </b>${mailData.contador.escritorio}</p>
+            <p><b>Telefone fixo: </b>${mailData.contador.telefoneFixo}</p>
+            <p><b><Celular: /b>${mailData.contador.celular}</p>
+        </div>
+
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1><b>Últimos faturamentos registrados: </b></h1>
+            <p>${mailData.faturamento}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Onde presta serviços: </h1>
+                    
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas atuais</h1>    
                 <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
-                <br>
-                <h5>Empresas anteriores</h5>
-                <br>
+            </div>
+
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas anteriores</h1>    
                 <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
-                <br>
-                <h5>Empresas futuras</h5>
-                <br>
+            </div>
+
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas futuras</h1>
                 <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
-                <br>
-                <h4>Frota de veiculos</h4>
-                <br>
-                <p>${mailData.frotaDeVeiculos}</p>
-                <br>
-                <h4>Referencias comerciais</h4>
-                <p>${mailData.referenciasComerciais}</p>
-                <br>
-                <h4>Veículo à financiar</h4>
-                <br>
-                <p>Marca: ${mailData.veiculoAFinanciar.marca}</p>
-                <br>
-                <p>Modelo: ${mailData.veiculoAFinanciar.modelo}</p>
-                <br>
-                <p>Ano: ${mailData.veiculoAFinanciar.ano}</p>
-                <br>
-                <p>Placa: ${mailData.veiculoAFinanciar.placa}</p>
-                <br>
-                <p>Valor de venda: ${mailData.veiculoAFinanciar.valorDeVenda}</p>
-                <br>
-                <p>Valor da molicar: ${mailData.veiculoAFinanciar.valorDaMolicar}</p>
-                <br>
-                <p>Valor de entrada: ${mailData.veiculoAFinanciar.valorDeEntrada}</p>
-                <br>
-                <p>Valor financiado: ${mailData.veiculoAFinanciar.valorFinanciado}</p>
-                <br>
-                <p>Banco aprovado: ${mailData.veiculoAFinanciar.bancoAprovado}</p>
-                <br>
-                <p>Condições aprovadas: ${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
-                <br>
-                <p>Indicação: ${mailData.veiculoAFinanciar.indicacao}</p>
-                <br>
-                <p>Data de conclusão: ${mailData.veiculoAFinanciar.dataDeConclusao}</p>
-                <br>
-                <p>Resposta de negativa de credito: ${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
-                <br>
-                <p>Observações: ${mailData.veiculoAFinanciar.observacoes}</p>
-                <br>
-                `
+            </div>     
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Frota de veiculos</h1>
+            <p>${mailData.frotaDeVeiculos}</p>
+        </div>
+                
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Referencias comerciais</h1>
+            <p>${mailData.referenciasComerciais}</p>
+        </div>
+
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Veículo à financiar</h1> 
+            <p><b>Marca: </b>${mailData.veiculoAFinanciar.marca}</p>    
+            <p><b>Modelo: </b>${mailData.veiculoAFinanciar.modelo}</p>       
+            <p><b>Ano: </b>${mailData.veiculoAFinanciar.ano}</p>     
+            <p><b>Placa: </b>${mailData.veiculoAFinanciar.placa}</p>     
+            <p><b>Valor de venda: </b>${mailData.veiculoAFinanciar.valorDeVenda}</p>       
+            <p><b>Valor da molicar: </b>${mailData.veiculoAFinanciar.valorDaMolicar}</p>       
+            <p><b>Valor de entrada: </b>${mailData.veiculoAFinanciar.valorDeEntrada}</p>   
+            <p><b>Valor financiado: </b>${mailData.veiculoAFinanciar.valorFinanciado}</p> 
+            <p><b>Banco aprovado: </b>${mailData.veiculoAFinanciar.bancoAprovado}</p> 
+            <p><b>Condições aprovadas: </b>${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+            <p><b>Indicação: </b>${mailData.veiculoAFinanciar.indicacao}</p>
+            <p><b>Data de conclusão: </b>${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+            <p><b>Resposta de negativa de credito: </b>${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>    
+            <p><b>Observações: </b>${mailData.veiculoAFinanciar.observacoes}</p>
+        </div>
+     `
     })
     .then((response)=>{
         console.log(response);
     }, (error)=>{
         console.log(error);
     });
+
+    document.getElementById('modal-email-PJ').style.display = "none";
+    document.getElementById('destinatario-email-PJ').value = "";
+    document.getElementById('assunto-email-PJ').value = "";
  
  })
 
@@ -1228,28 +1225,21 @@ function mailerizeEmpresasAtuaisPJ(empresasAtuais){
   let serialized = [];
   empresasAtuais.forEach(element=>{
     serialized.push(
-      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-      <br>
-      <p>CEP: ${element.CEP}</p>
-      <br>
-      <p>Cidade: ${element.cidade}</p>
-      <br>
-      <p>Rua: ${element.rua}</p>
-      <br>
-      <p>Bairro: ${element.bairro}</p>
-      <br>
-      <p>Numero: ${element.numero}</p>
-      <br>
-      <p>Telefone Fixo: ${element.telefoneFixo}</p>
-      <br>
-      <p>Celular: ${element.celular}</p>
-      <br>
-      <p>Tempo de serviço: ${element.tempoDeServico}</p>
-      <br>
-      <p>Faturamento Atual: ${element.faturamentoAtual}</p>
-      <br>
-      <p>Faturamento Futuro: ${element.faturamentoFuturo}</p>
-      <br><br>`);
+      `
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+        <p><b>CEP: </b>${element.CEP}</p>
+        <p><b>Cidade: </b>${element.cidade}</p>
+        <p><b>Rua: </b>${element.rua}</p>
+        <p><b>Bairro: </b>${element.bairro}</p>
+        <p><b>Numero: </b>${element.numero}</p>
+        <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+        <p><b>Celular: </b>${element.celular}</p>
+        <p><b>Tempo de serviço: </b>${element.tempoDeServico}</p>
+        <p><b>Faturamento Atual: </b>${element.faturamentoAtual}</p>
+        <p><b>Faturamento Futuro: </b>${element.faturamentoFuturo}</p>
+      </div>
+      `);
   })
   return serialized.join('');
 }
@@ -1262,26 +1252,20 @@ function mailerizeEmpresasAnterioresPJ(empresasAnteriores){
   let serialized = [];
   empresasAnteriores.forEach(element=>{
     serialized.push(
-      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-      <br>
-      <p>CEP: ${element.CEP}</p>
-      <br>
-      <p>Cidade: ${element.cidade}</p>
-      <br>
-      <p>Rua: ${element.rua}</p>
-      <br>
-      <p>Bairro: ${element.bairro}</p>
-      <br>
-      <p>Numero: ${element.numero}</p>
-      <br>
-      <p>Telefone Fixo: ${element.telefoneFixo}</p>
-      <br>
-      <p>Celular: ${element.celular}</p>
-      <br>
-      <p>Tempo de serviço: ${element.tempoDeServico}</p>
-      <br>
-      <p>Salario: ${element.salario}</p>
-      <br><br>`);
+      `
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+        <p><b>CEP: </b>${element.CEP}</p>
+        <p><b>Cidade: </b>${element.cidade}</p>
+        <p><b>Rua: </b>${element.rua}</p>
+        <p><b>Bairro: </b>${element.bairro}</p>
+        <p><b>Numero: </b>${element.numero}</p>
+        <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+        <p><b>Celular: </b>${element.celular}</p>
+        <p><b>Tempo de serviço: </b>${element.tempoDeServico}</p>
+        <p><b>Salario: </b>${element.salario}</p>
+      </div>
+      `);
   })
   return serialized.join('');
 }
@@ -1290,24 +1274,19 @@ function mailerizeEmpresasFuturasPJ(empresasFuturas){
   let serialized = [];
   empresasFuturas.forEach(element=>{
     serialized.push(
-      `<p>Nome da empresa: ${element.nomeDaEmpresa}</p>
-      <br>
-      <p>CEP: ${element.CEP}</p>
-      <br>
-      <p>Cidade: ${element.cidade}</p>
-      <br>
-      <p>Rua: ${element.rua}</p>
-      <br>
-      <p>Bairro: ${element.bairro}</p>
-      <br>
-      <p>Numero: ${element.numero}</p>
-      <br>
-      <p>Telefone Fixo: ${element.telefoneFixo}</p>
-      <br>
-      <p>Celular: ${element.celular}</p>
-      <br>
-      <p>Salario: ${element.salario}</p>
-      <br><br>`);
+      `
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
+        <p><b>CEP: </b>${element.CEP}</p>
+        <p><b>Cidade: </b>${element.cidade}</p>
+        <p><b>Rua: </b>${element.rua}</p>
+        <p><b>Bairro: </b>${element.bairro}</p>
+        <p><b>Numero: </b>${element.numero}</p>
+        <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
+        <p><b>Celular: </b>${element.celular}</p>
+        <p><b>Salario: </b>${element.salario}</p>
+      </div>
+      `);
   })
   return serialized.join('');
 }
@@ -1317,10 +1296,12 @@ function mailerizeReferenciasComerciais(referenciasComerciais){
   let serialized = [];
   referenciasComerciais.forEach(element=>{
     serialized.push(
-      `<p>Empresa: ${element.empresa}</p>
-      <br>
-      <p>Telefone: ${element.telefone}</p>
-      <br><br>`);
+      `
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <p><b>Empresa: </b>${element.empresa}</p>
+        <p><b>Telefone: </b>${element.telefone}</p>
+      </div>
+      `);
   })
   return serialized.join('');
 }
@@ -1336,12 +1317,13 @@ function mailerizeFaturamentos(faturamentos){
     
     faturamentos.forEach(element=>{
       serialized.push(
-        `<p>mes: ${element.mes}</p>
-        <br>
-        <p>ano: ${element.ano}</p>
-        <br>
-        <p>valor: ${element.valor}</p>
-        <br><br>`);
+        `
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <p><b>Mes: </b>${element.mes}</p>
+            <p><b>Ano: </b>${element.ano}</p>
+            <p><b>Valor: </b>${element.valor}</p>
+        </div>
+        `);
     })
     return serialized.join('');
   }
