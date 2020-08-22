@@ -167,7 +167,7 @@ document.getElementById('fecha-view-pf').addEventListener('click',()=>{
 
 
 document.getElementById('add-cnpj-pf-view').addEventListener('click', ()=>{
-    cnpjViewPF.push(document.getElementById('cnpj-pf-view').value);
+    cnpjViewPF.push(document.getElementById('cnpj-pf-view').value.replace(/[^\d]+/g,''));
     document.getElementById('cnpj-pf-view').value = "";
     renderCnpjPFView(cnpjContainerViewPF,cnpjViewPF);
 });
