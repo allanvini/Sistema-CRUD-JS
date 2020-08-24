@@ -808,3 +808,56 @@ function renderReferenciaComercialPJ(container, data){
 
 
 
+document.getElementById('cep-empresa').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa').value = localidade;
+    document.getElementById('rua-empresa').value = logradouro;
+    document.getElementById('bairro-empresa').value = bairro;
+
+})
+
+document.getElementById('cep-empresa-atual-pj').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-atual-pj').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-atual-pj').value = localidade;
+    document.getElementById('rua-empresa-atual-pj').value = logradouro;
+    document.getElementById('bairro-empresa-atual-pj').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-anterior-pj').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-anterior-pj').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-anterior-pj').value = localidade;
+    document.getElementById('rua-empresa-anterior-pj').value = logradouro;
+    document.getElementById('bairro-empresa-anterior-pj').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-futura-pj').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-futura-pj').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-futura-pj').value = localidade;
+    document.getElementById('rua-empresa-futura-pj').value = logradouro;
+    document.getElementById('bairro-empresa-futura-pj').value = bairro;
+
+})
+
+
+document.getElementById('cnpj-empresa').addEventListener('focusout', async ()=>{
+    let CNPJ = document.getElementById('cnpj-empresa').value.replace(/[^\d]+/g,'');
+
+    let alreadyInSystem = await getPJFiltered(CNPJ);
+
+    if(alreadyInSystem[0].CNPJ == CNPJ){
+        alert('Este cliente ja foi cadastrado no sistema');
+        document.getElementById('cnpj-empresa').value = "";
+    }
+})

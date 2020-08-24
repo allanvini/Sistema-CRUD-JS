@@ -21,6 +21,8 @@ let veiculoFrotaQuitadoViewPJ;
 
 function visualizePJ (pos){
 
+    document.getElementById('app').style.display = 'none';
+
     let PJAtual = cardsData[pos];
 
 
@@ -149,6 +151,8 @@ function limpaViewPJ(){
     document.getElementById('socio-assina-nao-view').checked = false;
 
     document.getElementById('titulo-pj-view').innerHTML = "";
+
+    document.getElementById('app').style.display = 'block';
 }
 
 
@@ -1327,3 +1331,45 @@ function mailerizeFaturamentos(faturamentos){
     })
     return serialized.join('');
   }
+
+
+
+
+
+
+
+document.getElementById('cep-empresa-view').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-view').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-view').value = localidade;
+    document.getElementById('rua-empresa-view').value = logradouro;
+    document.getElementById('bairro-empresa-view').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-anterior-pj-view').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-anterior-pj-view').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-anterior-pj-view').value = localidade;
+    document.getElementById('rua-empresa-atual-pj-view').value = logradouro;
+    document.getElementById('bairro-empresa-anterior-pj-view').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-futura-pj-view').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-futura-pj-view').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-futura-pj-view').value = localidade;
+    document.getElementById('rua-empresa-futura-pj-view').value = logradouro;
+    document.getElementById('bairro-empresa-futura-pj-view').value = bairro;
+
+})
+
+document.getElementById('imprime-registro-pj').addEventListener('click',()=>{
+    window.print();
+});

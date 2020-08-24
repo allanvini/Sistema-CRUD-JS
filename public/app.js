@@ -160,7 +160,6 @@ var config =  {
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
             console.log(doc.id, " => ", doc.data());
-            //return doc.data()
             retorno.push(doc.data());
         });
     })

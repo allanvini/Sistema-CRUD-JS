@@ -15,8 +15,9 @@ PF.addEventListener('click', async ()=>{
     document.getElementById('actions-pj').style.display = "none";
     document.getElementById('actions-pf').style.display = "grid";
 
+    /*
     document.getElementById('year-query').setAttribute('disabled','');
     document.getElementById('model-query').setAttribute('disabled','');
     document.getElementById('brand-query').setAttribute('disabled','');
-
+    */
 })

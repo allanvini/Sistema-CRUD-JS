@@ -19,6 +19,8 @@ let imovelProprioViewPF;
 
 function visualizePF (pos){
 
+    document.getElementById('app').style.display = 'none';
+
     let PFAtual = cardsData[pos];
 
 
@@ -144,6 +146,8 @@ function limpaViewPF(){
     document.getElementById('pf-view').style.display = "none";
 
     document.getElementById('titulo-pf-view').innerHTML = "";
+
+    document.getElementById('app').style.display = 'block';
 }
 
 

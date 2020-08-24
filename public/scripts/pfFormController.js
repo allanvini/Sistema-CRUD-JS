@@ -729,3 +729,68 @@ function limpaCamposPF(){
     document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf').value = "";
     document.getElementById('observacoes-pf').value = "";
 }
+
+
+
+document.getElementById('CEP-endereco-atual-pf').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('CEP-endereco-atual-pf').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-endereco-atual-pf').value = localidade;
+    document.getElementById('rua-endereco-atual-pf').value = logradouro;
+    document.getElementById('bairro-endereco-atual-pf').value = bairro;
+
+})
+
+document.getElementById('CEP-endereco-anterior-pf').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('CEP-endereco-anterior-pf').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-endereco-anterior-pf').value = localidade;
+    document.getElementById('rua-endereco-anterior-pf').value = logradouro;
+    document.getElementById('bairro-endereco-anterior-pf').value = bairro;
+
+})
+
+document.getElementById('cep-empresa-atual-pf').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-atual-pf').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-atual-pf').value = localidade;
+    document.getElementById('rua-empresa-atual-pf').value = logradouro;
+    document.getElementById('bairro-empresa-atual-pf').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-anterior-pf').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-anterior-pf').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-anterior-pf').value = localidade;
+    document.getElementById('rua-empresa-anterior-pf').value = logradouro;
+    document.getElementById('bairro-empresa-anterior-pf').value = bairro;
+
+})
+
+
+document.getElementById('cep-empresa-futura-pf').addEventListener('focusout', async ()=>{
+    let CEP = document.getElementById('cep-empresa-futura-pf').value.replace(/[^\d]+/g,'');
+    let {bairro, localidade, logradouro} = await getCEP(CEP);
+
+    document.getElementById('cidade-empresa-futura-pf').value = localidade;
+    document.getElementById('rua-empresa-futura-pf').value = logradouro;
+    document.getElementById('bairro-empresa-futura-pf').value = bairro;
+
+})
+
+document.getElementById('CPF-pf').addEventListener('focusout', async()=>{
+    let CPF = document.getElementById('CPF-pf').value.replace(/[^\d]+/g,'');
+
+    let alreadyInSystem = await getPFByFilter(CPF, "");
+
+    if (alreadyInSystem[0].CPF == CPF){
+        alert('O este cliente ja foi cadastrado no sistema');
+        document.getElementById('CPF-pf').value = "";
+    }
+})

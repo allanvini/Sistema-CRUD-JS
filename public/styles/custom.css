@@ -46,20 +46,22 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 5px;
-    padding: 25px;
+    padding: 20px;
     border-style: dashed;
     border-color: hsla(180, 100%, 25%, 0.5);
     border-width: 2px;
     border-radius: 3px;
     width: 100%;
+    height: 600px;
 }
 
 .card {
-    height: 225px;
+    height: 260px;
 }
 
 .card-content {
     text-align: left;
+    padding: 17px;
 }
 
 .card .card-action {
@@ -69,8 +71,22 @@ body {
 .card .card-title{
     font-weight: 500;
     text-align: center;
-    font-size: 21px;
+    font-size: 18px;
     color: #fffc8b;
+}
+
+.card .card-content .card-title {
+    display: block;
+    line-height: 32px;
+    margin-bottom: -1px;
+}
+
+.card .card-content {
+    padding: 15px 10px 16px 9px;
+}
+
+.card .card-action {
+    margin-top: 30px;
 }
 
 #pj-form{
@@ -157,7 +173,7 @@ body {
     }
 }
 
-@media(max-width: 1222px){
+@media(max-width: 1740px){
     .card .card-title{
         font-weight: 500;
         text-align: center;
@@ -165,7 +181,7 @@ body {
         color: #fffc8b;
     }
     .card .card-content{
-        font-size: 10px;
+        font-size: 14px;
     }
     #search-queries{
         display:grid;
@@ -187,16 +203,32 @@ body {
 
 }
 
+@media(max-width: 1409px){
+    #cards-container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 5px;
+        padding: 25px;
+        border-style: dashed;
+        border-color: hsla(180, 100%, 25%, 0.5);
+        border-width: 2px;
+        border-radius: 3px;
+        width: 100%;
+    }
+}
 
-@media(max-width: 1140px){
+@media(max-width: 1366px){
     .card .card-title{
         font-weight: 500;
         text-align: center;
-        font-size: 14px;
+        font-size: 12px;
         color: #fffc8b;
     }
     .card .card-content{
-        font-size: 10px;
+        font-size: 12px;
+        padding: 20px;
     }
     #search-queries{
         display:grid;
@@ -249,6 +281,15 @@ body {
 
 }
 
+@media(max-height: 737px){
+    .card .card-title {
+        font-weight: 500;
+        text-align: center;
+        font-size: 17px;
+        color: #fffc8b;
+    }
+}
+
 
 
 
@@ -299,4 +340,10 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 5px;
+}
+
+@media print{
+    #app{
+        display: none;
+    }
 }
