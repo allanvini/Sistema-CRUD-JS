@@ -191,6 +191,7 @@ let empresasAtuaisPF = [];
 
             let del = document.createElement('a');
             del.setAttribute('class', 'btn-small');
+            del.setAttribute('style', 'width: 90%;');
             del.style.marginLeft = "10px";
             del.appendChild(icon);
             del.setAttribute('onclick', `deleteEmpresaAtualFromArrayPF(${pos})`);
@@ -307,6 +308,7 @@ let empresasAnterioresPF = [];
 
             let del = document.createElement('a');
             del.setAttribute('class', 'btn-small');
+            del.setAttribute('style', 'width: 90%;');
             del.style.marginLeft = "10px";
             del.appendChild(icon);
             del.setAttribute('onclick', `deleteEmpresaAnteriorFromArrayPF(${pos})`);
@@ -416,6 +418,7 @@ let empresasFuturasPF = [];
 
             let del = document.createElement('a');
             del.setAttribute('class', 'btn-small');
+            del.setAttribute('style', 'width: 90%;');
             del.style.marginLeft = "10px";
             del.appendChild(icon);
             del.setAttribute('onclick', `deleteEmpresaFuturaFromArrayPF(${pos})`);
@@ -515,6 +518,7 @@ let frotaDeVeiculosPF = [];
 
             let del = document.createElement('a');
             del.setAttribute('class', 'btn-small');
+            del.setAttribute('style', 'width: 90%;');
             del.style.marginLeft = "10px";
             del.appendChild(icon);
             del.setAttribute('onclick', `deleteVeiculoFrotaFromArray(${pos})`);
@@ -583,6 +587,7 @@ let referenciaPessoalPF = [];
 
             let del = document.createElement('a');
             del.setAttribute('class', 'btn-small');
+            del.setAttribute('style', 'width: 90%;');
             del.style.marginLeft = "10px";
             del.appendChild(icon);
             del.setAttribute('onclick', `deletaReferenciaPessoalFromArray(${pos})`);

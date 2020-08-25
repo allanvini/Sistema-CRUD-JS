@@ -239,13 +239,11 @@ function renderCpfPJView (container, data){
 
 document.getElementById('add-faturamento-viewPJ').addEventListener('click',()=>{
     faturamentosAtuaisViewPJ.push({
-        mes: document.getElementById('mes-faturamento-view').value,
-        ano: document.getElementById('ano-faturamento-view').value,
+        mes: document.getElementById('data-faturamento-view').value,
         valor: document.getElementById('valor-faturamento-view').value
     })
 
-    document.getElementById('mes-faturamento-view').value = "";
-    document.getElementById('ano-faturamento-view').value = "";
+    document.getElementById('data-faturamento-view').value = "";
     document.getElementById('valor-faturamento-view').value = "";
 
     renderFaturamentoPJView(faturamentoContainerViewPJ,faturamentosAtuaisViewPJ);
@@ -274,17 +272,12 @@ function renderFaturamentoPJView(container,data){
                 mesValue = document.createTextNode(`Mes: ${element.mes}`);
                 mes.appendChild(mesValue);
 
-            let ano = document.createElement('p')
-                anoValue = document.createTextNode(`Ano: ${element.ano}`);
-                ano.appendChild(anoValue);
-
             let valor = document.createElement('p')
                 valorValue = document.createTextNode(`Valor: ${element.valor}`);
                 valor.appendChild(valorValue);
 
 
             content.appendChild(mes);
-            content.appendChild(ano);
             content.appendChild(valor);
 
         let pos = data.indexOf(element);
@@ -1371,5 +1364,7 @@ document.getElementById('cep-empresa-futura-pj-view').addEventListener('focusout
 })
 
 document.getElementById('imprime-registro-pj').addEventListener('click',()=>{
-    window.print();
+    var conteudo = document.getElementById('modal-visualizacao-PJ');
+  
+    window.print(conteudo);
 });

@@ -25,11 +25,11 @@ document.getElementById('search').addEventListener('click', async ()=>{
         MODELO = document.getElementById('model-query').value;
         MARCA = document.getElementById('brand-query').value;
 
-        if(CNPJ === "" && CPF === "" && MODELO === "" && MARCA === ""){
+        if(!CNPJ && !CPF && !MODELO && !MARCA && !ANO){
             cardsData = await getAllPF(6);
             renderCardsPF(cardsContainerPF,cardsData);
         } else {
-            cardsData = await getPFByFilter(CPF,CNPJ);
+            cardsData = await getPFByFilter(CPF,CNPJ,MODELO,MARCA, ANO);
             renderCardsPF(cardsContainerPF, cardsData);
         }
         

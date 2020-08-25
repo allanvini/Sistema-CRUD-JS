@@ -45,16 +45,14 @@ let faturamentosPJ = [];
     document.getElementById('add-faturamento').addEventListener('click', () => {
 
         faturamentosPJ.push({
-            mes : document.getElementById('mes-faturamento').value,
-            ano : document.getElementById('ano-faturamento').value,
+            mes : document.getElementById('faturamento').value,
             valor : document.getElementById('valor-faturamento').value
         })
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
         renderFaturamentoPJ(faturamentoContainerPJ,faturamentosPJ);
 
-        document.getElementById('mes-faturamento').value = "";
-        document.getElementById('ano-faturamento').value = "";
+        document.getElementById('faturamento').value = "";
         document.getElementById('valor-faturamento').value = ""
 
     });
@@ -383,6 +381,8 @@ function deleteFaturamentoFromArrayPJ(pos){
 function renderFaturamentoPJ(container, data){
     container.innerHTML = "";
 
+    console.log(data);
+
     data.forEach(element => {
         let li = document.createElement('li');
             li.style.border = "solid 1px black";
@@ -393,21 +393,16 @@ function renderFaturamentoPJ(container, data){
         let content = document.createElement('div');
         
 
-        let mes = document.createElement('p');
-            mesValue = document.createTextNode(`Mes: ${element.mes}`);
-            mes.appendChild(mesValue);
-
-        let ano = document.createElement('p')
-            anoValue = document.createTextNode(`Ano: ${element.ano}`);
-            ano.appendChild(anoValue);
+        let mesAno = document.createElement('p');
+            mesAnoValue = document.createTextNode(`Mes: ${element.mes}`);
+            mesAno.appendChild(mesAnoValue);
 
         let valor = document.createElement('p')
             valorValue = document.createTextNode(`Valor: ${element.valor}`);
             valor.appendChild(valorValue);
 
 
-        content.appendChild(mes);
-        content.appendChild(ano);
+        content.appendChild(mesAno);
         content.appendChild(valor);
 
 
@@ -417,6 +412,7 @@ function renderFaturamentoPJ(container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteFaturamentoFromArrayPJ(${pos})`);
@@ -506,6 +502,7 @@ function renderEmpresasAtuaisPJ(container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAtualFromArrayPJ(${pos})`);
@@ -591,6 +588,7 @@ function renderEmpresasAnterioresPJ (container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAnteriorFromArrayPJ(${pos})`);
@@ -670,6 +668,7 @@ function renderEmpresasFuturasPJ(container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaFuturaFromArrayPJ(${pos})`);
@@ -746,6 +745,7 @@ function renderFrotaPJ(container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteFrotaFromArrayPJ(${pos})`);
@@ -792,6 +792,7 @@ function renderReferenciaComercialPJ(container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteReferenciaComercialFromArrayPJ(${pos})`);

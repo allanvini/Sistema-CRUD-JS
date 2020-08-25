@@ -342,8 +342,16 @@ body {
     border-radius: 5px;
 }
 
-@media print{
-    #app{
-        display: none;
+@media print {
+    #modal-visualizacao-PJ {
+      visibility: visible;
     }
-}
+    #modal-visualizacao-PJ, #modal-visualizacao-PJ * {
+      visibility: visible;
+    }
+    #printable {
+      position: relative;
+      left: 0;
+      top: 25px;
+    }
+  }

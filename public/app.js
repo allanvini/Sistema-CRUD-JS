@@ -139,8 +139,29 @@ var config =  {
   function createPF(pfData){
     const docRef = firestore.doc(`PF/${pfData.dadosCadastrais.CPF}`)
 
-    let filtros = [...pfData.dadosCadastrais.CNPJ, pfData.dadosCadastrais.CPF];
-    console.log(filtros)
+    var anos = [];
+    var marcas = [];
+    var modelos = [];
+    var cnpj = pfData.dadosCadastrais.CNPJ;
+    var filtros = [];
+
+    if(pfData.dadosCadastrais.CNPJ.length>0){
+        pfData.dadosCadastrais.CNPJ.forEach(cnpj => {
+            filtros.push(cnpj)
+        })
+    }
+
+    if(pfData.frotaDeVeiculos.length>0){
+        pfData.frotaDeVeiculos.forEach(veiculo => {
+            console.log(veiculo)
+            anos.push(veiculo.ano)
+            marcas.push(veiculo.marca)
+            modelos.push(veiculo.modelo)
+            filtros.push(veiculo.ano,veiculo.marca,veiculo.modelo)
+        })
+    };
+
+    console.log("=====",filtros)
     docRef.set({
         CPF: pfData.dadosCadastrais.CPF,
         FILTROS: filtros,
@@ -152,10 +173,10 @@ var config =  {
     })
   }
   
-  async function getPFByFilter(CPF=0, CNPJ=0){
+  async function getPFByFilter(cnpj='', cpf='', ano='', modelo='', marca='', page=25){
+    console.log(ano);
     let retorno = [];
-    await firestore.collection("PF").where('FILTROS', 'array-contains-any',
-    [CPF, CNPJ])
+    await firestore.collection("PF").limit(page).where('FILTROS', 'array-contains-any', [cnpj, cpf, ano, modelo, marca])
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {

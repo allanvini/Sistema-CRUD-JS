@@ -19,7 +19,7 @@
     
 
 
-   </head>
+  </head>
   <body>
 
 
@@ -283,7 +283,7 @@
         <input id="data-abertura-empresa" placeholder="00/00/0000" class="validate data"/input>
 
         <p>Capital Social</p>
-        <input id="capital-social-empresa" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="capital-social-empresa" placeholder="R$ 00.000,00" class="validate moeda"/input>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr;">
           <p>Numero de funcionarios registrados</p>
@@ -427,22 +427,20 @@
         <div class="divider"></div>
 
         <div class="input-field align-center" style="display: flex;">
-          <p>Mes</p>
-          <input id="mes-faturamento" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
-          <p>Ano</p>
-          <input id="ano-faturamento" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
-        </div>
-
-        <div class="input-field" style="display: grid; grid-template-columns: 1fr 10fr 1fr; align-items: inherit;">
+          <p>Data</p>
+          <input id="faturamento" placeholder="00/0000" class="validate parted-input mes-ano" style="margin-left: 10px;"/input>
           <p>Valor</p>
-          <input id="valor-faturamento" placeholder="R$ 00.000,00" class="validate"/input>
-          <a class="btn waves-effect" id="add-faturamento"><i class="tiny material-icons">add</i></a>
+          <input id="valor-faturamento" placeholder="R$" class="validate parted-input moeda" style="margin-left: 10px;"/input>
+          <a class="btn waves-effect" id="add-faturamento"><i class="tiny material-icons" style="padding-right: 25px;">add</i></a>
         </div>
+        
             <!-- Lista de faturamentos registrados-->
             <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
               <p><b>Ultimos faturamentos registrados:</b></p>
               <ul id="faturamento-pego">
+
                 <!-- AQUI SERÃO RENDERIZADOS OS FATURAMENTOS REGISTRADOS -->
+
               </ul>
             </div>
             <!-- Fim da Lista de faturamentos registrados-->
@@ -495,10 +493,10 @@
         <input id="tempo-empresa-atual-pj" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Faturamento atual</p>
-        <input id="faturamento-atual-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-futuro-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="faturamento-futuro-empresa-atual-pj" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-atual-pj"><i class="tiny material-icons">add</i></a>
@@ -556,7 +554,7 @@
         <input id="tempo-empresa-anterior-pj" placeholder="Ex: 2 anos" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-anterior-pj" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="salario-empresa-anterior-pj" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-anterior-pj"><i class="tiny material-icons">add</i></a>
@@ -609,7 +607,7 @@
         <input id="celular-empresa-futura-pj" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-futura-pj" placeholder="" class="validate"/input>
+        <input id="salario-empresa-futura-pj" placeholder="" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-futura-pj"><i class="tiny material-icons">add</i></a>
@@ -671,6 +669,10 @@
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-veiculo-frota-pj"><i class="tiny material-icons">add</i></a>
+        </div>
+
+        <div style="display: flex;">
+
         </div>
 
         <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
@@ -743,16 +745,16 @@
         </div>
 
         <p>Valor de venda</p>
-        <input id="valor-venda-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <input id="valor-venda-veiculo-a-financiar-pj" placeholder="" class="validate moeda"/input>
 
         <p>Valor da molicar</p>
-        <input id="valor-molicar-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <input id="valor-molicar-veiculo-a-financiar-pj" placeholder="" class="validate moeda"/input>
 
         <p>Valor de entrada</p>
-        <input id="valor-entrada-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <input id="valor-entrada-veiculo-a-financiar-pj" placeholder="" class="validate moeda"/input>
 
         <p>Valor financiado</p>
-        <input id="valor-financiado-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <input id="valor-financiado-veiculo-a-financiar-pj" placeholder="" class="validate moeda"/input>
 
         <p>Banco aprovado</p>
         <input id="banco-aprovado-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
@@ -767,7 +769,7 @@
         <input id="data-conclusao-veiculo-a-financiar-pj" placeholder="" class="validate data"/input>
 
         <p>Resposta de negativa de credito</p>
-        <input id="resposta-negativa-credito-veiculo-a-financiar-pj" placeholder="" class="validate"/input>
+        <textarea id="resposta-negativa-credito-veiculo-a-financiar-pj" placeholder="" class="materialize-textarea"></textarea>
 
         <p>Observações</p>
         <textarea id="observacoes-pj" class="materialize-textarea"></textarea>
@@ -1125,7 +1127,7 @@
         </div>
 
         <p>Valor do imovel</p>
-        <input id="valor-imovel-residencia-atual-pf" placeholder="" class="validate"/input>
+        <input id="valor-imovel-residencia-atual-pf" placeholder="" class="validate moeda"/input>
 
         <!-- FIM DO ENDEREÇO ATUAL -->
 
@@ -1218,10 +1220,10 @@
         <input id="tempo-empresa-atual-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Faturamento atual</p>
-        <input id="faturamento-atual-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="faturamento-atual-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Faturamento futuro</p>
-        <input id="faturamento-futuro-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="faturamento-futuro-empresa-atual-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-atual-pf"><i class="tiny material-icons">add</i></a>
@@ -1279,7 +1281,7 @@
         <input id="tempo-empresa-anterior-pf" placeholder="Ex: 5 anos" class="validate"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-anterior-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="salario-empresa-anterior-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-anterior-pf"><i class="tiny material-icons">add</i></a>
@@ -1332,7 +1334,7 @@
         <input id="celular-empresa-futura-pf" placeholder="(00) 00000-0000" class="validate telefone"/input>
 
         <p>Salário</p>
-        <input id="salario-empresa-futura-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="salario-empresa-futura-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-empresa-futura-pf"><i class="tiny material-icons">add</i></a>
@@ -1391,6 +1393,11 @@
             </label>
           </div>
         </div>
+        
+        <div style="display: flex;">
+
+        </div>
+
 
         <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
           <a class="btn waves-effect" id="add-veiculo-frota-pf"><i class="tiny material-icons">add</i></a>
@@ -1468,16 +1475,16 @@
         </div>
 
         <p>Valor de venda</p>
-        <input id="valor-venda-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="valor-venda-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Valor da molicar</p>
-        <input id="valor-molicar-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="valor-molicar-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Valor de entrada</p>
-        <input id="valor-entrada-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="valor-entrada-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Valor financiado</p>
-        <input id="valor-financiado-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate"/input>
+        <input id="valor-financiado-veiculo-a-financiar-pf" placeholder="R$ 00.000,00" class="validate moeda"/input>
 
         <p>Banco aprovado</p>
         <input id="banco-aprovado-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
@@ -1492,7 +1499,7 @@
         <input id="data-conclusao-veiculo-a-financiar-pf" placeholder="" class="validate data"/input>
 
         <p>Resposta de negativa de credito</p>
-        <input id="resposta-negativa-credito-veiculo-a-financiar-pf" placeholder="" class="validate"/input>
+        <textarea id="resposta-negativa-credito-veiculo-a-financiar-pf" placeholder="" class="materialize-textarea"></textarea>
 
         <p>Observações</p>
         <textarea id="observacoes-pf" class="materialize-textarea"></textarea>
@@ -1738,7 +1745,7 @@
             <input id="data-abertura-empresa-view" placeholder="00/00/0000" class="validate data"/input>
     
             <p>Capital Social</p>
-            <input id="capital-social-empresa-view" placeholder="R$ 00.000,00" class="validate"/input>
+            <input id="capital-social-empresa-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
             
             <div style="display: grid; grid-template-columns: 1fr 1fr;">
               <p>Numero de funcionarios registrados</p>
@@ -1883,19 +1890,12 @@
             
 
             <div class="input-field align-center" style="display: flex;">
-              <p>Mes</p>
-              <input id="mes-faturamento-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
-              <p>Ano</p>
-              <input id="ano-faturamento-view" placeholder="" class="validate parted-input" style="margin-left: 10px;"/input>
-            </div>
-    
-            <div class="input-field" style="display: grid; grid-template-columns: 1fr 10fr 1fr; align-items: inherit;">
+              <p>Data</p>
+              <input id="data-faturamento-view" placeholder="" class="validate parted-input mes-ano" style="margin-left: 10px;"/input>
               <p>Valor</p>
-              <input id="valor-faturamento-view" placeholder="R$ 00.000,00" class="validate"/input>
-              <a class="btn waves-effect" id="add-faturamento-viewPJ"><i class="tiny material-icons">add</i></a>
+              <input id="valor-faturamento-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
+              <a class="btn waves-effect" id="add-faturamento-viewPJ"><i class="tiny material-icons" style="padding-right: 25px;">add</i></a>
             </div>
-
-
             
                 <!-- Lista de faturamentos registrados-->
                 <div class="container" style="border-style: dashed; border-width: 2px; border-color: hsla(180, 100%, 25%, 0.5);"> 
@@ -1957,10 +1957,10 @@
             <input id="tempo-empresa-atual-pj-view" placeholder="Ex: 5 anos" class="validate"/input>
     
             <p>Faturamento atual</p>
-            <input id="faturamento-atual-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+            <input id="faturamento-atual-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
     
             <p>Faturamento futuro</p>
-            <input id="faturamento-futuro-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+            <input id="faturamento-futuro-empresa-atual-pj-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
     
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-atual-pj-view"><i class="tiny material-icons">add</i></a>
@@ -2024,7 +2024,7 @@
             <input id="tempo-empresa-anterior-pj-view" placeholder="Ex: 2 anos" class="validate"/input>
     
             <p>Salário</p>
-            <input id="salario-empresa-anterior-pj-view" placeholder="R$ 00.000,00" class="validate"/input>
+            <input id="salario-empresa-anterior-pj-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
     
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-anterior-pj-view"><i class="tiny material-icons">add</i></a>
@@ -2082,7 +2082,7 @@
             <input id="celular-empresa-futura-pj-view" placeholder="(00) 00000-0000" class="validate telefone"/input>
     
             <p>Salário</p>
-            <input id="salario-empresa-futura-pj-view" placeholder="" class="validate"/input>
+            <input id="salario-empresa-futura-pj-view" placeholder="" class="validate moeda"/input>
     
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-empresa-futura-pj-view"><i class="tiny material-icons">add</i></a>
@@ -2146,6 +2146,10 @@
     
             <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
               <a class="btn waves-effect" id="add-veiculo-frota-pj-view"><i class="tiny material-icons">add</i></a>
+            </div>
+
+            <div Style="display: flex;">
+
             </div>
     
             
@@ -2227,16 +2231,16 @@
             </div>
     
             <p>Valor de venda</p>
-            <input id="valor-venda-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+            <input id="valor-venda-veiculo-a-financiar-pj-view" placeholder="" class="validate moeda"/input>
     
             <p>Valor da molicar</p>
-            <input id="valor-molicar-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+            <input id="valor-molicar-veiculo-a-financiar-pj-view" placeholder="" class="validate moeda"/input>
     
             <p>Valor de entrada</p>
-            <input id="valor-entrada-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+            <input id="valor-entrada-veiculo-a-financiar-pj-view" placeholder="" class="validate moeda"/input>
     
             <p>Valor financiado</p>
-            <input id="valor-financiado-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+            <input id="valor-financiado-veiculo-a-financiar-pj-view" placeholder="" class="validate moeda"/input>
     
             <p>Banco aprovado</p>
             <input id="banco-aprovado-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
@@ -2251,7 +2255,7 @@
             <input id="data-conclusao-veiculo-a-financiar-pj-view" placeholder="" class="validate data"/input>
     
             <p>Resposta de negativa de credito</p>
-            <input id="resposta-negativa-credito-veiculo-a-financiar-pj-view" placeholder="" class="validate"/input>
+            <textarea id="resposta-negativa-credito-veiculo-a-financiar-pj-view" placeholder="" class="materialize-textarea"></textarea>
     
             <p>Observações</p>
             <textarea id="observacoes-pj-view" class="materialize-textarea"></textarea>
@@ -2623,10 +2627,10 @@
           <input id="tempo-empresa-atual-pf-view" placeholder="Ex: 5 anos" class="validate"/input>
   
           <p>Faturamento atual</p>
-          <input id="faturamento-atual-empresa-atual-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="faturamento-atual-empresa-atual-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <p>Faturamento futuro</p>
-          <input id="faturamento-futuro-empresa-atual-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="faturamento-futuro-empresa-atual-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
             <a class="btn waves-effect" id="add-empresa-atual-pf-view"><i class="tiny material-icons">add</i></a>
@@ -2686,7 +2690,7 @@
           <input id="tempo-empresa-anterior-pf-view" placeholder="Ex: 5 anos" class="validate"/input>
   
           <p>Salário</p>
-          <input id="salario-empresa-anterior-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="salario-empresa-anterior-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
             <a class="btn waves-effect" id="add-empresa-anterior-pf-view"><i class="tiny material-icons">add</i></a>
@@ -2739,7 +2743,7 @@
           <input id="celular-empresa-futura-pf-view" placeholder="(00) 00000-0000" class="validate telefone"/input>
   
           <p>Salário</p>
-          <input id="salario-empresa-futura-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="salario-empresa-futura-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
             <a class="btn waves-effect" id="add-empresa-futura-pf-view"><i class="tiny material-icons">add</i></a>
@@ -2797,6 +2801,10 @@
                 <span>Não</span>
               </label>
             </div>
+          </div>
+
+          <div style="display: flex;">
+
           </div>
   
           <div style="display: grid; grid-template-columns: 12fr; margin-top: 10px; margin-bottom: 10px;">
@@ -2877,16 +2885,16 @@
           </div>
   
           <p>Valor de venda</p>
-          <input id="valor-venda-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="valor-venda-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <p>Valor da molicar</p>
-          <input id="valor-molicar-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="valor-molicar-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <p>Valor de entrada</p>
-          <input id="valor-entrada-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="valor-entrada-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <p>Valor financiado</p>
-          <input id="valor-financiado-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate"/input>
+          <input id="valor-financiado-veiculo-a-financiar-pf-view" placeholder="R$ 00.000,00" class="validate moeda"/input>
   
           <p>Banco aprovado</p>
           <input id="banco-aprovado-veiculo-a-financiar-pf-view" placeholder="" class="validate"/input>
@@ -2901,7 +2909,7 @@
           <input id="data-conclusao-veiculo-a-financiar-pf-view" placeholder="" class="validate data"/input>
   
           <p>Resposta de negativa de credito</p>
-          <input id="resposta-negativa-credito-veiculo-a-financiar-pf-view" placeholder="" class="validate"/input>
+          <textarea id="resposta-negativa-credito-veiculo-a-financiar-pf-view" placeholder="" class="materialize-textarea"></textarea>
   
           <p>Observações</p>
           <textarea id="observacoes-pf-view" class="materialize-textarea"></textarea>
@@ -3137,7 +3145,9 @@
       $('.placa').mask('AAA-9999', {reverse: true})
       $('.rg').mask('00.000.000-0', {reverse: true})
       $('.mes-ano').mask('00/0000', {reverse: true})
+      $(".moeda").mask('000.000.000,00', { numericInput: true, reverse:true});
     })
   </script>
+
   </body>
 </html>
