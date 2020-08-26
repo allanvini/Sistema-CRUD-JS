@@ -348,6 +348,7 @@ function renderEmpresasAtuaisViewPF(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAtualViewPF(${pos})`);
@@ -483,6 +484,7 @@ function renderEmpresasAnterioresViewPF (container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAnteriorViewPF(${pos})`);
@@ -611,6 +613,7 @@ function renderEmpresasFuturasViewPF (container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaFuturaViewPF(${pos})`);
@@ -649,7 +652,11 @@ document.getElementById('add-veiculo-frota-pf-view').addEventListener('click',()
         modelo: document.getElementById('modelo-veiculo-frota-pf-view').value,
         placa: document.getElementById('placa-veiculo-frota-pf-view').value,
         quitado: veiculoFrotaQuitadoViewPF,
-        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pf-view').value
+        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pf-view').value,
+        bco: document.getElementById('bco-veiculo-frota-pf-view').value,
+        plano: document.getElementById('plano-veiculo-frota-pf-view').value,
+        valorParcela: document.getElementById('valor-parcela-veiculo-frota-pf-view').value,
+        parcelasPagas: document.getElementById('parcelas-pagas-veiculo-frota-pf-view').value
     })
 
     renderFrotaViewPF (frotaVeiculoContainerViewPF,frotaVeiculosViewPF);
@@ -662,6 +669,10 @@ document.getElementById('add-veiculo-frota-pf-view').addEventListener('click',()
     document.getElementById('quitado-veiculo-frota-pf-view').checked = false;
     document.getElementById('nao-quitado-veiculo-frota-pf-view').checked = false;
     veiculoFrotaQuitadoViewPF = null;
+    document.getElementById('bco-veiculo-frota-pf-view').value = "";
+    document.getElementById('plano-veiculo-frota-pf-view').value = "";
+    document.getElementById('valor-parcela-veiculo-frota-pf-view').value = "";
+    document.getElementById('parcelas-pagas-veiculo-frota-pf-view').value = "";
 
 })
 
@@ -716,12 +727,34 @@ function renderFrotaViewPF(container,data){
                 veiculoQuitado.appendChild(veiculoQuitadoValue);
 
 
+            let bco = document.createElement('p');
+                bcoValue = document.createTextNode(`BCO: ${element.bco}`);
+                bco.appendChild(bcoValue);
+
+            let plano = document.createElement('p');
+                planoValue = document.createTextNode(`Plano: ${element.plano}`);
+                plano.appendChild(planoValue);
+
+
+            let valorParcela = document.createElement('p');
+                valorParcelaValue = document.createTextNode(`Valor da parcela: ${element.valorParcela}`);
+                valorParcela.appendChild(valorParcelaValue);
+
+            let parcelasPagas = document.createElement('p');
+                parcelasPagasValue = document.createTextNode(`Parcelas pagas: ${element.parcelasPagas}`);
+                parcelasPagas.appendChild(parcelasPagasValue);
+
+
             content.appendChild(marca)
             content.appendChild(modelo);
             content.appendChild(ano);
             content.appendChild(placa);
             content.appendChild(tempoEmNome);
             content.appendChild(veiculoQuitado);
+            content.appendChild(bco);
+            content.appendChild(plano);
+            content.appendChild(valorParcela);
+            content.appendChild(parcelasPagas);
 
         let pos = data.indexOf(element);
 
@@ -729,6 +762,7 @@ function renderFrotaViewPF(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteFrotaViewPF(${pos})`);
@@ -824,6 +858,7 @@ function renderReferenciasPessoaisViewPF(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteReferenciaPessoalViewPF(${pos})`);
@@ -1181,7 +1216,7 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
   function mailerizeCpfCnpj(CpfCnpj){
     let serialized = [];
     CpfCnpj.forEach(element=>{
-      serialized.push(`<p>${element}</p>`);
+      serialized.push(`<p style="page-break-inside: avoid;">${element}</p>`);
     })
     return serialized.join('');
   }
@@ -1200,7 +1235,7 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     let serialized = [];
     empresasAtuais.forEach(element=>{
       serialized.push(`
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
             <p><b>CEP: </b>${element.cep}</p>
             <p><b>Cidade: </b>${element.cidade}</p>
@@ -1226,7 +1261,7 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     let serialized = [];
     empresasAnteriores.forEach(element=>{
       serialized.push(`
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
             <p><b>CEP: </b>${element.cep}</p>
             <p><b>Cidade: </b>${element.cidade}</p>
@@ -1247,7 +1282,7 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     let serialized = [];
     empresasFuturas.forEach(element=>{
       serialized.push(`
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
             <p><b>CEP: </b>${element.cep}</p>
             <p><b>Cidade: </b>${element.cidade}</p>
@@ -1268,7 +1303,7 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
     let serialized = [];
     referenciasPessoais.forEach(element=>{
       serialized.push(`
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Nome: </b>${element.nome}</p>
             <p><b>Telefone Fixo: </b>${element.telefoneFixo}</p>
             <p><b>Celular: </b>${element.celular}</p>
@@ -1294,14 +1329,206 @@ document.getElementById('envia-email-pf').addEventListener('click', async ()=>{
           quitado = 'Não'
         }
       serialized.push(`
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Marca: </b>${element.marca}</p>
             <p><b>Modelo: </b>${element.modelo}</p>
             <p><b>Placa: </b>${element.placa}</p>
             <p><b>Quitado: </b>${quitado}</p>
-            <p><b>Tempo em nome: </b>${element.tempoEmNome}</p>
+            <p><b>BCO: </b>${element.bco}</p>
+            <p><b>Plano: </b>${element.plano}</p>
+            <p><b>Valor da parcela: </b>${element.valorParcela}</p>
+            <p><b>Parcelas pagas: </b>${element.parcelasPagas}</p>
         </div>
         `);
     })
     return serialized.join('');
   }
+
+
+
+
+
+
+
+  document.getElementById('imprime-registro-pf').addEventListener('click', ()=>{
+    let mailData = {
+        dadosCadastrais : {
+            nomeCompleto : document.getElementById('nome-completo-pf-view').value,
+            CPF : document.getElementById('CPF-pf-view').value.replace(/[^\d]+/g,''),
+            email : document.getElementById('email-pf-view').value,
+            CNPJ : mailerizeCpfCnpj(cnpjViewPF),
+            RG : document.getElementById('RG-pf-view').value,
+            dataDeNascimento : document.getElementById('data-nascimento-pf-view').value,
+            estadoCivil : document.getElementById('estado-civil-pf-view').value,
+            naturalidade : document.getElementById('naturalidade-pf-view').value,
+            nomeDoPai : document.getElementById('nome-pai-pf-view').value,
+            nomeDaMae : document.getElementById('nome-mae-pf-view').value
+        },
+        dadosBancarios : {
+            banco : document.getElementById('banco-pf-view').value,
+            agencia : document.getElementById('agencia-pf-view').value,
+            contaCorrente : {
+                numero : document.getElementById('numero-conta-pf-view').value,
+                digito : document.getElementById('digito-conta-pf-view').value,
+            },
+            tempoDeConta : document.getElementById('tempo-conta-pf-view').value,
+            telefoneDaAgencia : document.getElementById('telefone-agencia-pf-view').value
+        },
+        endereco : {
+            enderecoAtual : {
+                cep : document.getElementById('CEP-endereco-atual-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-atual-pf-view').value,
+                rua : document.getElementById('rua-endereco-atual-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-atual-pf-view').value,
+                numero : document.getElementById('numero-endereco-atual-pf-view').value,
+                telefoneFixo : document.getElementById('telefone-fixo-pf-view').value,
+                celular : document.getElementById('celular-pf-view').value,
+                tempoResidencial : document.getElementById('tempo-residencia-atual-pf-view').value,
+                imovelProprio : imovelProprioStatePF,
+                valorDoImovel : document.getElementById('valor-imovel-residencia-atual-pf').value
+            },
+            enderecoAnterior : {
+                cep : document.getElementById('CEP-endereco-anterior-pf-view').value,
+                cidade : document.getElementById('cidade-endereco-anterior-pf-view').value,
+                rua : document.getElementById('rua-endereco-anterior-pf-view').value,
+                bairro : document.getElementById('bairro-endereco-anterior-pf-view').value,
+                numero : document.getElementById('numero-endereco-anterior-pf-view').value,
+                tempoDeResidencia : document.getElementById('tempo-residencia-anterior-pf-view').value
+            }
+        },
+        ondePrestaServicos : {
+            empresasAtuais : mailerizeEmpresasAtuais(empresasAtuaisViewPF),
+            empresasAnteriores : mailerizeEmpresasAnteriores(empresasAnterioresViewPF),
+            empresasFuturas : mailerizeEmpresasFuturas(empresasFuturasViewPF)
+        },
+        referenciaPessoal: mailerizeReferenciasPessoais(referenciasPessoaisViewPF),
+        frotaDeVeiculos : mailerizeFrotaVeiculos(frotaVeiculosViewPF),
+        veiculoAFinanciar : {
+            marca : document.getElementById('marca-veiculo-a-financiar-pf-view').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pf-view').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pf-view').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pf-view').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pf-view').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pf-view').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pf-view').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pf-view').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pf-view').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pf-view').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pf-view').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pf-view').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pf-view').value,
+            observacoes : document.getElementById('observacoes-pf-view').value
+        }
+    }
+
+    let conteudo = innerHTML = 
+
+    `
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+                    <h1>Dados cadastrais</h1>
+                    <p><b>Nome completo: </b>${mailData.dadosCadastrais.nomeCompleto}</p>
+                    <p><b>CPF: </b>${mailData.dadosCadastrais.CPF}</p>
+                    <p><b>E-Mail: </b>${mailData.dadosCadastrais.email}</p>
+                    <p><b>CNPJ: </b>${mailData.dadosCadastrais.CNPJ}</p>
+                    <p><b>RG: </b>${mailData.dadosCadastrais.RG}</p>
+                    <p><b>Data de nascimento: </b>${mailData.dadosCadastrais.dataDeNascimento}</p>
+                    <p><b>Estado Civil: </b>${mailData.dadosCadastrais.estadoCivil}</p>
+                    <p><b>Naturalidade: </b>${mailData.dadosCadastrais.naturalidade}</p>
+                    <p><b>Nome do pai: </b>${mailData.dadosCadastrais.nomeDoPai}</p>
+                    <p><b>Nome da mãe: </b>${mailData.dadosCadastrais.nomeDaMae}</p>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+                    <h1>Dados Bancários</h1>
+                    <p><b>Banco: </b>${mailData.dadosBancarios.banco}</p>
+                    <p><b>Agência: </b>${mailData.dadosBancarios.agencia}</p>
+                    <p><b>Conta Corrente:</b><br> <b>Número: </b>${mailData.dadosBancarios.contaCorrente.numero} <b>Dígito: </b>${mailData.dadosBancarios.contaCorrente.digito}</p>
+                    <p><b>Tempo de conta: </b>${mailData.dadosBancarios.tempoDeConta}</p>
+                    <p><b>Telefône da agência: </b>${mailData.dadosBancarios.telefoneDaAgencia}</p>
+                </div>
+            
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Endereço</h1>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+                        <h2>Endereço atual</h2>
+                        <p><b>CEP: </b>${mailData.endereco.enderecoAtual.cep}</p>
+                        <p><b>Cidade: </b>${mailData.endereco.enderecoAtual.cidade}</p>
+                        <p><b>Rua: </b>${mailData.endereco.enderecoAtual.rua}</p>
+                        <p><b>Bairro: </b>${mailData.endereco.enderecoAtual.bairro}</p>
+                        <p><b>Número: </b>${mailData.endereco.enderecoAtual.numero}</p>
+                        <p><b>Telefone Fixo: </b>${mailData.endereco.enderecoAtual.telefoneFixo}</p>
+                        <p><b>Celular: </b>${mailData.endereco.enderecoAtual.celular}</p>
+                        <p><b>Tempo residencial: </b>${mailData.endereco.enderecoAtual.tempoResidencial}</p>
+                        <p><b>Imovel próprio?: </b>${verifyBoolean(mailData.endereco.enderecoAtual.imovelProprio)}</p>
+                        <p><b>Valor do imóvel: </b>${mailData.endereco.enderecoAtual.valorDoImovel}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+                        <h2>Endereço anterior</h2>
+                        <p><b>CEP: </b>${mailData.endereco.enderecoAnterior.cep}</p>
+                        <p><b>Cidade: </b>${mailData.endereco.enderecoAnterior.cidade}</p>
+                        <p><b>Rua: </b>${mailData.endereco.enderecoAnterior.rua}</p>
+                        <p><b>Bairro: </b>${mailData.endereco.enderecoAnterior.bairro}</p>
+                        <p><b>Numero: </b>${mailData.endereco.enderecoAnterior.numero}</p>
+                        <p><b>Tempo de residência: </b>${mailData.endereco.enderecoAnterior.tempoDeResidencia}</p>
+                    </div>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Onde presta serviços</h1>
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas atuais</h1>
+                        <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas anteriores</h1>
+                        <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
+                    </div>
+            
+                    <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                        <h1>Empresas futuras</h1>
+                        <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
+                    </div>
+                </div>
+                
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Frota de veiculos</h1>
+                    <p>${mailData.frotaDeVeiculos}</p>
+                </div>
+                
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                    <h1>Referencias pessoais</h1>
+                    <p>${mailData.referenciaPessoal}</p>
+                </div>
+            
+                <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+                    <h1>Veiculo à financiar</h1>
+            
+                    <p><b>Marca: </b>${mailData.veiculoAFinanciar.marca}</p>
+                    <p><b>Modelo: </b>${mailData.veiculoAFinanciar.modelo}</p>
+                    <p><b>Ano: </b>${mailData.veiculoAFinanciar.ano}</p>
+                    <p><b>Placa: </b>${mailData.veiculoAFinanciar.placa}</p>
+                    <p><b>Valor de venda: </b>${mailData.veiculoAFinanciar.valorDeVenda}</p>
+                    <p><b>Valor da molicar: </b>${mailData.veiculoAFinanciar.valorDaMolicar}</p>
+                    <p><b>Valor de entrada: </b>${mailData.veiculoAFinanciar.valorDeEntrada}</p>
+                    <p><b>Valor financiado: </b>${mailData.veiculoAFinanciar.valorFinanciado}</p>
+                    <p><b>Banco aprovado: </b>${mailData.veiculoAFinanciar.bancoAprovado}</p>
+                    <p><b>Condições aprovadas: </b>${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+                    <p><b>Indicação: </b>${mailData.veiculoAFinanciar.indicacao}</p>
+                    <p><b>Data de conclusão: </b>${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+                    <p><b>Resposta de negativa de credito: </b>${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>
+                    <p><b>Observações: </b>${mailData.veiculoAFinanciar.observacoes}</p>
+                </div>
+    `;
+
+    tela_impressao = window.open('about:blank');
+
+        tela_impressao.document.write(conteudo);
+        //ela_impressao.window.print();
+        tela_impressao.alert("Pressione CTRL + P para imprimir");
+
+
+  })

@@ -157,7 +157,11 @@ let frotaDeVeiculosPJ = [];
             ano : document.getElementById('ano-veiculo-frota-pj').value,
             placa : document.getElementById('placa-veiculo-frota-pj').value,
             tempoEmNome : document.getElementById('tempo-em-nome-veiculo-frota-pj').value,
-            quitado : veiculoQuitadoStatePJ
+            quitado : veiculoQuitadoStatePJ,
+            bco: document.getElementById('bco-veiculo-frota-pj').value,
+            plano: document.getElementById('plano-veiculo-frota-pj').value,
+            valorParcela: document.getElementById('valor-parcela-veiculo-frota-pj').value,
+            parcelasPagas: document.getElementById('parcelas=pagas-veiculo-frota-pj').value
         })
 
         // FUNÇÃO QUE LIMPA O CONTAINER E RENDERIZA OS DADOS ATUAIS
@@ -171,6 +175,10 @@ let frotaDeVeiculosPJ = [];
         veiculoQuitadoStatePJ = null;
         document.getElementById('quitado-veiculo-frota-pj').checked = false;
         document.getElementById('nao-quitado-veiculo-frota-pj').checked = false;
+        document.getElementById('bco-veiculo-frota-pj').value = "";
+        document.getElementById('plano-veiculo-frota-pj').value = "";
+        document.getElementById('valor-parcela-veiculo-frota-pj').value = "";
+        parcelasPagas: document.getElementById('parcelas=pagas-veiculo-frota-pj').value = "";
     })
 
 let referenciaComercialPJ = [];
@@ -731,6 +739,23 @@ function renderFrotaPJ(container, data){
                 veiculoQuitadoValue = document.createTextNode(`Quitado: ${quitado}`);
                 veiculoQuitado.appendChild(veiculoQuitadoValue);
 
+            let bco = document.createElement('p');
+                bcoValue = document.createTextNode(`BCO: ${element.bco}`);
+                bco.appendChild(bcoValue);
+
+            let plano = document.createElement('p');
+                planoValue = document.createTextNode(`Plano: ${element.plano}`);
+                plano.appendChild(planoValue);
+
+
+            let valorParcela = document.createElement('p');
+                valorParcelaValue = document.createTextNode(`Valor da parcela: ${element.valorParcela}`);
+                valorParcela.appendChild(valorParcelaValue);
+
+            let parcelasPagas = document.createElement('p');
+                parcelasPagasValue = document.createTextNode(`Parcelas pagas: ${element.parcelasPagas}`);
+                parcelasPagas.appendChild(parcelasPagasValue);
+
 
             content.appendChild(marca)
             content.appendChild(modelo);
@@ -738,6 +763,10 @@ function renderFrotaPJ(container, data){
             content.appendChild(placa);
             content.appendChild(tempoEmNome);
             content.appendChild(veiculoQuitado);
+            content.appendChild(bco);
+            content.appendChild(plano);
+            content.appendChild(valorParcela);
+            content.appendChild(parcelasPagas);
 
         let pos = data.indexOf(element);
 

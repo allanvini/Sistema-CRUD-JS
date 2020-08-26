@@ -286,6 +286,7 @@ function renderFaturamentoPJView(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteFaturamentoViewPJ(${pos})`);
@@ -417,6 +418,7 @@ function renderEmpresasAtuaisViewPJ(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAtualViewPJ(${pos})`);
@@ -552,6 +554,7 @@ function renderEmpresasAnterioresViewPJ (container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaAnteriorViewPJ(${pos})`);
@@ -680,6 +683,7 @@ function renderEmpresasFuturasViewPJ (container, data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteEmpresaFuturaViewPJ(${pos})`);
@@ -718,7 +722,11 @@ document.getElementById('add-veiculo-frota-pj-view').addEventListener('click',()
         modelo: document.getElementById('modelo-veiculo-frota-pj-view').value,
         placa: document.getElementById('placa-veiculo-frota-pj-view').value,
         quitado: veiculoFrotaQuitadoViewPJ,
-        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pj-view').value
+        tempoEmNome: document.getElementById('tempo-em-nome-veiculo-frota-pj-view').value,
+        bco: document.getElementById('bco-veiculo-frota-pj-view').value,
+        plano: document.getElementById('plano-veiculo-frota-pj-view').value,
+        valorParcela: document.getElementById('valor-parcela-veiculo-frota-pj-view').value,
+        parcelasPagas: document.getElementById('parcelas-pagas-veiculo-frota-pj-view').value
     })
 
     renderFrotaViewPJ (frotaVeiculoContainerViewPJ,frotaVeiculosViewPJ);
@@ -731,7 +739,10 @@ document.getElementById('add-veiculo-frota-pj-view').addEventListener('click',()
     document.getElementById('quitado-veiculo-frota-pj-view').checked = false;
     document.getElementById('nao-quitado-veiculo-frota-pj-view').checked = false;
     veiculoFrotaQuitadoViewPJ = null;
-
+    document.getElementById('bco-veiculo-frota-pj-view').value = "";
+    document.getElementById('plano-veiculo-frota-pj-view').value = "";
+    document.getElementById('valor-parcela-veiculo-frota-pj-view').value = "";
+    document.getElementById('parcelas-pagas-veiculo-frota-pj-view').value = "";
 })
 
 function deleteFrotaViewPJ(pos){
@@ -785,12 +796,34 @@ function renderFrotaViewPJ(container,data){
                 veiculoQuitado.appendChild(veiculoQuitadoValue);
 
 
+            let bco = document.createElement('p');
+                bcoValue = document.createTextNode(`BCO: ${element.bco}`);
+                bco.appendChild(bcoValue);
+
+            let plano = document.createElement('p');
+                planoValue = document.createTextNode(`Plano: ${element.plano}`);
+                plano.appendChild(planoValue);
+
+
+            let valorParcela = document.createElement('p');
+                valorParcelaValue = document.createTextNode(`Valor da parcela: ${element.valorParcela}`);
+                valorParcela.appendChild(valorParcelaValue);
+
+            let parcelasPagas = document.createElement('p');
+                parcelasPagasValue = document.createTextNode(`Parcelas pagas: ${element.parcelasPagas}`);
+                parcelasPagas.appendChild(parcelasPagasValue);
+
+
             content.appendChild(marca)
             content.appendChild(modelo);
             content.appendChild(ano);
             content.appendChild(placa);
             content.appendChild(tempoEmNome);
             content.appendChild(veiculoQuitado);
+            content.appendChild(bco);
+            content.appendChild(plano);
+            content.appendChild(valorParcela);
+            content.appendChild(parcelasPagas);
 
         let pos = data.indexOf(element);
 
@@ -798,6 +831,7 @@ function renderFrotaViewPJ(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteFrotaViewPJ(${pos})`);
@@ -886,6 +920,7 @@ function renderReferenciasComerciaisViewPJ(container,data){
 
         let del = document.createElement('a');
         del.setAttribute('class', 'btn-small');
+        del.setAttribute('style', 'width: 90%;');
         del.style.marginLeft = "10px";
         del.appendChild(icon);
         del.setAttribute('onclick', `deleteReferenciaComercialViewPJ(${pos})`);
@@ -1103,7 +1138,7 @@ document.getElementById('envia-email-pj').addEventListener('click',async()=>{
         corpo: `
         <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
             <h1>Dados cadastrais</h1>
-            <p><b>Razão social: </b>${mailData.dadosCadastrais.razaoSocial}</p>
+            <p> <b>Razão social: </b>${mailData.dadosCadastrais.razaoSocial}</p>
             <p> <b>CNPJ: </b>${mailData.dadosCadastrais.CNPJ}</p>
             <p> <b>E-Mail: </b>${mailData.dadosCadastrais.email}</p>
             <p> <b>CPF's dos sócios: </b>${mailData.dadosCadastrais.CPF}</p>
@@ -1223,7 +1258,7 @@ function mailerizeEmpresasAtuaisPJ(empresasAtuais){
   empresasAtuais.forEach(element=>{
     serialized.push(
       `
-      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
         <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
         <p><b>CEP: </b>${element.CEP}</p>
         <p><b>Cidade: </b>${element.cidade}</p>
@@ -1250,7 +1285,7 @@ function mailerizeEmpresasAnterioresPJ(empresasAnteriores){
   empresasAnteriores.forEach(element=>{
     serialized.push(
       `
-      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
         <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
         <p><b>CEP: </b>${element.CEP}</p>
         <p><b>Cidade: </b>${element.cidade}</p>
@@ -1272,7 +1307,7 @@ function mailerizeEmpresasFuturasPJ(empresasFuturas){
   empresasFuturas.forEach(element=>{
     serialized.push(
       `
-      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
         <p><b>Nome da empresa: </b>${element.nomeDaEmpresa}</p>
         <p><b>CEP: </b>${element.CEP}</p>
         <p><b>Cidade: </b>${element.cidade}</p>
@@ -1294,7 +1329,7 @@ function mailerizeReferenciasComerciais(referenciasComerciais){
   referenciasComerciais.forEach(element=>{
     serialized.push(
       `
-      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+      <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
         <p><b>Empresa: </b>${element.empresa}</p>
         <p><b>Telefone: </b>${element.telefone}</p>
       </div>
@@ -1315,7 +1350,7 @@ function mailerizeFaturamentos(faturamentos){
     faturamentos.forEach(element=>{
       serialized.push(
         `
-        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
             <p><b>Mes: </b>${element.mes}</p>
             <p><b>Ano: </b>${element.ano}</p>
             <p><b>Valor: </b>${element.valor}</p>
@@ -1364,7 +1399,171 @@ document.getElementById('cep-empresa-futura-pj-view').addEventListener('focusout
 })
 
 document.getElementById('imprime-registro-pj').addEventListener('click',()=>{
-    var conteudo = document.getElementById('modal-visualizacao-PJ');
-  
-    window.print(conteudo);
+
+    let mailData = {
+        dadosCadastrais : {
+            razaoSocial : document.getElementById('razao-social-pj-view').value,
+            CNPJ : document.getElementById('cnpj-empresa-view').value.replace(/[^\d]+/g,''),
+            email : document.getElementById('email-empresa-view').value,
+            CPF : mailerizeCpfCnpj(cpfViewPJ),
+            dataAbertura : document.getElementById('data-abertura-empresa-view').value,
+            capitalSocial : document.getElementById('capital-social-empresa-view').value,
+            numeroFuncionariosRegistrados : document.getElementById('numero-funcionarios-registrados-view').value,
+            telefoneFixo : document.getElementById('telefone-fixo-pj-view').value,
+            CEP : document.getElementById('cep-empresa-view').value,
+            cidade : document.getElementById('cidade-empresa-view').value,
+            rua : document.getElementById('rua-empresa-view').value,
+            bairro : document.getElementById('bairro-empresa-view').value,
+            numero : document.getElementById('numero-empresa-view').value
+        },
+        dadosBancarios : {
+            banco : document.getElementById('banco-empresa-view').value,
+            agencia : document.getElementById('agencia-empresa-view').value,
+            conta : {
+                numero : document.getElementById('numero-conta-empresa-view').value,
+                digito : document.getElementById('digito-conta-empresa-view').value
+            },
+            tempoConta : document.getElementById('tempo-conta-empresa-view').value,
+            telefoneAgencia : document.getElementById('telefone-agencia-empresa-view').value
+        },
+        socios : {
+            porcentagemSocioMajoritario : document.getElementById('porcentagem-socio-majoritario-empresa-view').value,
+            porcentagemDemaisSocios : document.getElementById('porcentagem-demais-socios-empresa-view').value,
+            socioMajoritarioAssinaSozinho : socioMajoritarioViewPJ
+        },
+        contador : {
+            nome : document.getElementById('nome-contador-empresa-view').value,
+            escritorio : document.getElementById('escritorio-contador-empresa-view').value,
+            telefoneFixo : document.getElementById('telefone-fixo-contador-empresa-view').value,
+            celular : document.getElementById('celular-contador-empresa-view').value
+        },
+        faturamento : mailerizeFaturamentos(faturamentosAtuaisViewPJ),
+        ondePrestaServicos : {
+            empresasAtuais : mailerizeEmpresasAtuaisPJ(empresasAtuaisViewPJ),
+            empresasAnteriores : mailerizeEmpresasAnterioresPJ(empresasAnterioresViewPJ),
+            empresasFuturas : mailerizeEmpresasFuturasPJ(empresasFuturasViewPJ)
+        },
+        frotaDeVeiculos : mailerizeFrotaVeiculos(frotaVeiculosViewPJ),
+        referenciasComerciais : mailerizeReferenciasComerciais(referenciasComerciaisViewPJ),
+        veiculoAFinanciar : {
+            marca : document.getElementById('marca-veiculo-a-financiar-pj-view').value,
+            modelo : document.getElementById('modelo-veiculo-a-financiar-pj-view').value,
+            ano : document.getElementById('ano-veiculo-a-financiar-pj-view').value,
+            placa : document.getElementById('placa-veiculo-a-financiar-pj-view').value,
+            valorDeVenda : document.getElementById('valor-venda-veiculo-a-financiar-pj-view').value,
+            valorDaMolicar : document.getElementById('valor-molicar-veiculo-a-financiar-pj-view').value,
+            valorDeEntrada : document.getElementById('valor-entrada-veiculo-a-financiar-pj-view').value,
+            valorFinanciado : document.getElementById('valor-financiado-veiculo-a-financiar-pj-view').value,
+            bancoAprovado : document.getElementById('banco-aprovado-veiculo-a-financiar-pj-view').value,
+            condicoesAprovadas : document.getElementById('condicoes-aprovadas-veiculo-a-financiar-pj-view').value,
+            indicacao : document.getElementById('indicacao-veiculo-a-financiar-pj-view').value,
+            dataDeConclusao : document.getElementById('data-conclusao-veiculo-a-financiar-pj-view').value,
+            respostaNegativaCredito : document.getElementById('resposta-negativa-credito-veiculo-a-financiar-pj-view').value,
+            observacoes : document.getElementById('observacoes-pj-view').value
+        }
+    } // fim do objeto
+
+    
+    var conteudo = innerHTML = 
+    `
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+            <h1>Dados cadastrais</h1>
+            <p> <b>Razão social: </b>${mailData.dadosCadastrais.razaoSocial}</p>
+            <p> <b>CNPJ: </b>${mailData.dadosCadastrais.CNPJ}</p>
+            <p> <b>E-Mail: </b>${mailData.dadosCadastrais.email}</p>
+            <p> <b>CPF's dos sócios: </b>${mailData.dadosCadastrais.CPF}</p>
+            <p> <b>Data de abertura: </b>${mailData.dadosCadastrais.dataAbertura}</p>
+            <p> <b>Capital social: </b>${mailData.dadosCadastrais.capitalSocial}</p>
+            <p> <b>Numero de funcionarios registrados: </b>${mailData.dadosCadastrais.numeroFuncionariosRegistrados}</p>
+            <p> <b>Telefone Fixo: </b>${mailData.dadosCadastrais.telefoneFixo}</p>
+            <p> <b>CEP: </b>${mailData.dadosCadastrais.CEP}</p>
+            <p> <b>Cidade: </b>${mailData.dadosCadastrais.cidade}</p>
+            <p> <b>Rua: </b>${mailData.dadosCadastrais.rua}</p>
+            <p> <b>Bairro: </b>${mailData.dadosCadastrais.bairro}</p>
+            <p> <b>Número: </b>${mailData.dadosCadastrais.numero}</p>
+        </div>
+    
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+            <h1>Dados Bancários</h1>
+            <p><b>Banco: </b>${mailData.dadosBancarios.banco}</p>
+            <p><b>Agência: </b>${mailData.dadosBancarios.agencia}</p>
+            <p><b>Conta Corrente:</b> <b>Numero: </b>${mailData.dadosBancarios.conta.numero} <b>Dígito: </b>${mailData.dadosBancarios.conta.digito}</p>
+            <p><b>Tempo de conta: </b>${mailData.dadosBancarios.tempoConta}</p>
+            <p><b>Telefone da agência: </b>${mailData.dadosBancarios.telefoneAgencia}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+            <h1>Sócios</h1>
+            <p><b>Porcentagem do sócio majoritário: </b>${mailData.socios.porcentagemSocioMajoritario}</p>
+            <p><b>Porcentagem dos demais sócios: </b>${mailData.socios.porcentagemDemaisSocios}</p>
+            <p><b>Sócio majoritário assina sozinho?: </b>${mailData.socios.socioMajoritarioAssinaSozinho}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+            <h1>Contador</h1>
+            <p><b>Nome do contador: </b>${mailData.contador.nome}</p>
+            <p><b>Escritório: </b>${mailData.contador.escritorio}</p>
+            <p><b>Telefone fixo: </b>${mailData.contador.telefoneFixo}</p>
+            <p><b><Celular: /b>${mailData.contador.celular}</p>
+        </div>
+
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1><b>Últimos faturamentos registrados: </b></h1>
+            <p>${mailData.faturamento}</p>
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Onde presta serviços: </h1>
+                    
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas atuais</h1>    
+                <p>${mailData.ondePrestaServicos.empresasAtuais}</p>
+            </div>
+
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas anteriores</h1>    
+                <p>${mailData.ondePrestaServicos.empresasAnteriores}</p>
+            </div>
+
+            <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+                <h1>Empresas futuras</h1>
+                <p>${mailData.ondePrestaServicos.empresasFuturas}</p>
+            </div>     
+        </div>
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Frota de veiculos</h1>
+            <p>${mailData.frotaDeVeiculos}</p>
+        </div>
+                
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%;">
+            <h1>Referencias comerciais</h1>
+            <p>${mailData.referenciasComerciais}</p>
+        </div>
+
+
+        <div style = "padding: 10px; border: solid 1px black; border-radius: 5px; margin: 10px auto; width: 50%; page-break-inside: avoid;">
+            <h1>Veículo à financiar</h1> 
+            <p><b>Marca: </b>${mailData.veiculoAFinanciar.marca}</p>    
+            <p><b>Modelo: </b>${mailData.veiculoAFinanciar.modelo}</p>       
+            <p><b>Ano: </b>${mailData.veiculoAFinanciar.ano}</p>     
+            <p><b>Placa: </b>${mailData.veiculoAFinanciar.placa}</p>     
+            <p><b>Valor de venda: </b>${mailData.veiculoAFinanciar.valorDeVenda}</p>       
+            <p><b>Valor da molicar: </b>${mailData.veiculoAFinanciar.valorDaMolicar}</p>       
+            <p><b>Valor de entrada: </b>${mailData.veiculoAFinanciar.valorDeEntrada}</p>   
+            <p><b>Valor financiado: </b>${mailData.veiculoAFinanciar.valorFinanciado}</p> 
+            <p><b>Banco aprovado: </b>${mailData.veiculoAFinanciar.bancoAprovado}</p> 
+            <p><b>Condições aprovadas: </b>${mailData.veiculoAFinanciar.condicoesAprovadas}</p>
+            <p><b>Indicação: </b>${mailData.veiculoAFinanciar.indicacao}</p>
+            <p><b>Data de conclusão: </b>${mailData.veiculoAFinanciar.dataDeConclusao}</p>
+            <p><b>Resposta de negativa de credito: </b>${mailData.veiculoAFinanciar.respostaNegativaCredito}</p>    
+            <p><b>Observações: </b>${mailData.veiculoAFinanciar.observacoes}</p>
+        </div>
+    `;
+        tela_impressao = window.open('about:blank');
+
+        tela_impressao.document.write(conteudo);
+        //ela_impressao.window.print();
+        tela_impressao.alert("Pressione CTRL + P para imprimir");
 });

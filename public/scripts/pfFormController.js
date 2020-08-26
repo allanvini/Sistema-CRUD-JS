@@ -439,7 +439,11 @@ let frotaDeVeiculosPF = [];
             ano : document.getElementById('ano-veiculo-frota-pf').value,
             placa : document.getElementById('placa-veiculo-frota-pf').value,
             tempoEmNome : document.getElementById('tempo-em-nome-veiculo-frota-pf').value,
-            quitado : veiculoQuitadoFrotaStatePF
+            quitado : veiculoQuitadoFrotaStatePF,
+            bco: document.getElementById('bco-veiculo-frota-pf').value,
+            plano: document.getElementById('plano-veiculo-frota-pf').value,
+            valorParcela: document.getElementById('valor-parcela-veiculo-frota-pf').value,
+            parcelasPagas: document.getElementById('parcelas-pagas-veiculo-frota-pf').value
         })
 
         //FUNÇÃO QUE RENDERIZA A FROTA CADASTRADA
@@ -453,7 +457,10 @@ let frotaDeVeiculosPF = [];
         document.getElementById('nao-quitado-veiculo-frota-pf').checked = false;
         document.getElementById('quitado-veiculo-frota-pf').checked = false;
         veiculoQuitadoFrotaState = null;
-
+        document.getElementById('bco-veiculo-frota-pf').value = "";
+        document.getElementById('plano-veiculo-frota-pf').value = "";
+        document.getElementById('valor-parcela-veiculo-frota-pf').value = "";
+        document.getElementById('parcelas-pagas-veiculo-frota-pf').value = "";
     })
 
     function deleteVeiculoFrotaFromArray(pos){
@@ -505,12 +512,34 @@ let frotaDeVeiculosPF = [];
                 veiculoQuitado.appendChild(veiculoQuitadoValue);
 
 
+            let bco = document.createElement('p');
+                bcoValue = document.createTextNode(`BCO: ${element.bco}`);
+                bco.appendChild(bcoValue);
+
+            let plano = document.createElement('p');
+                planoValue = document.createTextNode(`Plano: ${element.plano}`);
+                plano.appendChild(planoValue);
+
+
+            let valorParcela = document.createElement('p');
+                valorParcelaValue = document.createTextNode(`Valor da parcela: ${element.valorParcela}`);
+                valorParcela.appendChild(valorParcelaValue);
+
+            let parcelasPagas = document.createElement('p');
+                parcelasPagasValue = document.createTextNode(`Parcelas pagas: ${element.parcelasPagas}`);
+                parcelasPagas.appendChild(parcelasPagasValue);
+
+
             content.appendChild(marca)
             content.appendChild(modelo);
             content.appendChild(ano);
             content.appendChild(placa);
             content.appendChild(tempoEmNome);
             content.appendChild(veiculoQuitado);
+            content.appendChild(bco);
+            content.appendChild(plano);
+            content.appendChild(valorParcela);
+            content.appendChild(parcelasPagas);
 
             let pos = data.indexOf(element);
 
@@ -792,7 +821,9 @@ document.getElementById('cep-empresa-futura-pf').addEventListener('focusout', as
 document.getElementById('CPF-pf').addEventListener('focusout', async()=>{
     let CPF = document.getElementById('CPF-pf').value.replace(/[^\d]+/g,'');
 
-    let alreadyInSystem = await getPFByFilter(CPF, "");
+    let alreadyInSystem = await getPFByFilter('', CPF, '', '', '', 25);
+
+    console.log(alreadyInSystem);
 
     if (alreadyInSystem[0].CPF == CPF){
         alert('O este cliente ja foi cadastrado no sistema');
