@@ -1,13 +1,15 @@
 
+//require('dotenv').config();
+
 var config =  {
-    apiKey: "AIzaSyBKSX0FJAIAC74IB_NJBQThtFht_Hctbn0",
-    authDomain: "marli-manager.firebaseapp.com",
-    databaseURL: "https://marli-manager.firebaseio.com",
-    projectId: "marli-manager",
-    storageBucket: "marli-manager.appspot.com",
-    messagingSenderId: "566023474141",
-    appId: "1:566023474141:web:cdd2582692f963f9820434",
-    measurementId: "G-G9M8BPGYN0"
+    apiKey: process.env.apiKey,
+    authDomain: process.env,authDomain,
+    databaseURL: process.env.databaseURL,
+    projectId: process.env.projectId,
+    storageBucket: process.env.storageBucket,
+    messagingSenderId: process.env.messagingSenderId,
+    appId: process.env.appId,
+    measurementId: process.env.measurementId
   };
 
 
@@ -224,5 +226,5 @@ var config =  {
      }).catch(function(error) {
         authorized = false  
       });
-      return authorized
+      return authorized;
   }
