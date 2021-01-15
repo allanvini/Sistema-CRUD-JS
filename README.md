@@ -1,2 +1,2 @@
 # Sistema-CRUD-JS
-A simple CRUD system to store personal data it in a noSQL db
+A simple CRUD system to store personal data in a noSQL db
